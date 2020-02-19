@@ -1,3 +1,14 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:3b3b80dcb0939744c6cfdefd74942f3a50de224c55faf12b9954d5131cee86a2
-size 511
+Base path: '/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents', plugins path '/Applications/Unity/Hub/Editor/2019.3.0f5/PlaybackEngines'
+Cmd: initializeCompiler
+Cmd: compileComputeKernel
+  api=14 insize=18731 outsize=9901 ok=1
+Cmd: translateComputeKernel
+  api=14 insize=9678 outsize=16573 ok=1
+Cmd: translateComputeKernel
+  api=14 insize=11742 outsize=25434 ok=1
+Cmd: translateComputeKernel
+  api=14 insize=5781 outsize=8380 ok=1
+Cmd: translateComputeKernel
+  api=14 insize=11445 outsize=22649 ok=1
+
+Quitting shader compiler process
