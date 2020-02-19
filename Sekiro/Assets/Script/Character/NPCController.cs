@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(AIController))]
+[RequireComponent(typeof(AIFOV))]
+[RequireComponent(typeof(EnemyStat))]
+[RequireComponent(typeof(NavMeshAgent))]
 
 public class NPCController : MonoBehaviour
 {
@@ -17,8 +21,8 @@ public class NPCController : MonoBehaviour
     [SerializeField] float m_MoveSpeedMultiplier = 1f;
     [SerializeField] float m_AnimSpeedMultiplier = 1f;
     [SerializeField] float m_GroundCheckDistance = 0.1f;
-
-    [SerializeField] private bool useStrafeControl;
+    
+    public bool useStrafeControl;
 
     AIController ai;
     Animator animator;
@@ -28,7 +32,6 @@ public class NPCController : MonoBehaviour
 
     Vector3 capsuleCenter;
     float capsuleHeight;
-
     float turnAmount;
     float forwardAmount;
     float turnSpeed;
@@ -55,12 +58,20 @@ public class NPCController : MonoBehaviour
     void UpdateAnimator(Vector3 move)
     {
         isGrounded = true;
-        // update the animator parameters
-        //m_Animator.SetFloat("Forward", m_ForwardAmount, 0.1f, Time.deltaTime);
         animator.SetFloat("Forward", forwardAmount, 0.1f, Time.deltaTime);
         animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
     }
 
+    public void PlayAnimation(string animation) => animator.Play(animation);
+
+    public void ExcuteBoolAnimation(string animation, bool value) => animator.SetBool(animation, value);
+
+    public void ExcuteTriggerAnimation(string animation) => animator.SetTrigger(animation);
+
+    public void ExcuteAttack(string aniamtion, bool isAttack)
+    {
+
+    }
     public void Move(Vector3 move, bool crouch, bool jump)
     {
 
@@ -71,14 +82,15 @@ public class NPCController : MonoBehaviour
         move = transform.InverseTransformDirection(move);
         //CheckGroundStatus();
         move = Vector3.ProjectOnPlane(move, groundNormal);
-        turnAmount = Mathf.Atan2(move.x, move.z);
+        turnAmount = Mathf.Atan2(move.x, move.z) * Time.deltaTime * 10f;
+        //turnAmount = move.x * Time.deltaTime;
         forwardAmount = move.z;
 
         if (useStrafeControl)
         {
             if (forwardAmount < 0.0f)
             {
-                turnSpeed = ai.Agent.speed;
+                //turnSpeed = ai.Agent.speed;
 
                 turnSpeed = Mathf.Clamp(turnSpeed, -1.0f, 1.0f);
                 //forwardSpeed = Mathf.Clamp(turnSpeed, -1.0f, 1.0f);
