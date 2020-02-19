@@ -1,0 +1,6 @@
+Sekiro/ filter=lfs diff=lfs merge=lfs -text
+Sekiro/Assets/ filter=lfs diff=lfs merge=lfs -text
+Sekiro/* filter=lfs diff=lfs merge=lfs -text
+Sekiro/** filter=lfs diff=lfs merge=lfs -text
+Sekiro/*/* filter=lfs diff=lfs merge=lfs -text
+Sekiro/**/* filter=lfs diff=lfs merge=lfs -text
