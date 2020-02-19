@@ -1,16 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerStat : CharacterStat
-{
-    private Vector3 lastPosition;
-    //private Transform currentPosition = Transform.fi;
-
-    //public Vector3 PlayerPosition()
-    //{
-
-    //}
-    public Vector3 LastPlayerPosition()
-        => lastPosition;
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:0b9ba5d9d6728c7c37b9c38e56398660181ee215c70c41259912db17f06d9692
+size 351

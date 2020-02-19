@@ -1,36 +1,3 @@
-namespace VSCodeEditor
-{
-    public static class Utility
-    {
-        public static string FileNameWithoutExtension(string path)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                return "";
-            }
-
-            var indexOfDot = -1;
-            var indexOfSlash = 0;
-            for (var i = path.Length - 1; i >= 0; i--)
-            {
-                if (indexOfDot == -1 && path[i] == '.')
-                {
-                    indexOfDot = i;
-                }
-
-                if (indexOfSlash == 0 && path[i] == '/' || path[i] == '\\')
-                {
-                    indexOfSlash = i + 1;
-                    break;
-                }
-            }
-
-            if (indexOfDot == -1)
-            {
-                indexOfDot = path.Length;
-            }
-
-            return path.Substring(indexOfSlash, indexOfDot - indexOfSlash);
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:fed276acf96616a9eb880e84aa119dfff3f29c1b8086a19256b583006efd6132
+size 900

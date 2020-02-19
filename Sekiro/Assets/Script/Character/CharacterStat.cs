@@ -1,19 +1,3 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
-public abstract class CharacterStat : MonoBehaviour
-{
-    private Stat _damage;
-    private HealthSystem _healthSystem;
-    private PostureSystem _postureSystem;
-    public bool isAlive = true;
-
-    public Stat Damage { get => _damage; set => _damage = value; }
-    public HealthSystem HealthSystem { get => _healthSystem; set => _healthSystem = value; }
-    public PostureSystem PostureSystem
-    {
-        get => _postureSystem; set => _postureSystem = value;
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:cce9996d6366b098b67d6e5d1ef8ca523c81f5c914a1c7df39fa84c4cfb99a2f
+size 586
