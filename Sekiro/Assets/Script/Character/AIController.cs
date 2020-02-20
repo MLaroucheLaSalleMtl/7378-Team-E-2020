@@ -9,11 +9,12 @@ public class AIController : MonoBehaviour
     private NPCController myController;
     private CharacterStat myStat;
     private AIFOV mySight;
-    [SerializeField]
-    private NPCState state;
+
 
     private NavMeshAgent agent;
 
+    [SerializeField]
+    private NPCState state;
     [SerializeField]
     private Transform pathHolder;
     [SerializeField]
@@ -88,59 +89,54 @@ public class AIController : MonoBehaviour
 
     void ActivateFSM() => StartCoroutine("FSM");
 
-    void OnChase()
+
+    IEnumerator OnChase()
     {
-        state = NPCState.Chase;
         agent.speed = chaseSpeed;
+
+        myController.WithdrawWeapon();
+
+        agent.stoppingDistance = 2f;
+
+
+        while (state == NPCState.Chase)
+        {
+            myController.Move(agent.desiredVelocity, false, false);
+            if (mySight.CanSeePlayer())
+                agent.SetDestination(mySight.player.transform.position);
+            else
+            {
+                myController.Stop();
+                agent.SetDestination(transform.position);
+                yield return new WaitForSeconds(.1f);
+                state = NPCState.Caution;
+            }
+
+            yield return null;
+        }
     }
 
     IEnumerator OnCaution()
     {
-        state = NPCState.Caution;
         agent.speed = patrolSpeed;
-        myController.Move(agent.desiredVelocity, false, false);
-        agent.autoBraking = false;
-        myController.useStrafeControl = true;
-        target = mySight.GetSuspectedObject();
-        FaceTarget();
-        agent.updateRotation = true;
 
         agent.stoppingDistance = stoppingDistance;
 
+        myController.Move(agent.desiredVelocity, false, false);
+        
         while (state == NPCState.Caution)
         {
-            if (target != null)
+            if (!mySight.CanSeePlayer())
             {
-                agent.autoBraking = true;
-                myController.ExcuteBoolAnimation("ShealthSword", false);
-                myController.ExcuteBoolAnimation("SuspectedObject", true);
-                myController.ExcuteBoolAnimation("WithdrawingSword", true);
-                agent.autoBraking = false;
-                agent.SetDestination(target.position);
+                myController.Stop();
 
-                if (Vector3.Distance(transform.position, target.position) <= 5f)
-                {
-                    agent.autoBraking = true;
-                    agent.SetDestination(transform.position);
-                    myController.Move(Vector3.zero, false, false);
+                myController.ShealthSword();
 
-                    if (mySight.GetSuspectedObject().tag != "Player")
-                    {
-                        myController.useStrafeControl = false;
-                        agent.SetDestination(transform.position);
+                agent.SetDestination(transform.position);
 
-                        myController.ExcuteBoolAnimation("WithdrawingSword", false);
-                        myController.ExcuteBoolAnimation("ShealthSword", true);
-                        myController.ExcuteBoolAnimation("SuspectedObject", false);
-                        mySight.IsSuspectedObject(false);
-                        target = null;
-                        state = NPCState.Patrol;
-                    }
-                    //else
-                    //{
-                    //    Invoke("OnChase", .1f);
-                    //}
-                }
+                yield return new WaitForSeconds(waitTime);
+
+                state = NPCState.Patrol;
             }
             yield return null;
         }
@@ -148,23 +144,23 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnPatrol()
     {
-        state = NPCState.Patrol;
         myController.useStrafeControl = false;
-        agent.updateRotation = true;
         agent.stoppingDistance = stoppingDistance;
         agent.speed = patrolSpeed;
-
-        mySight.SetSuspectedObjectToNull();
-        mySight.SetPlayerToNull();
 
         if (waypoints.Length == 0) yield return null;
 
         while (state == NPCState.Patrol)
         {
-            if (mySight.CanSeeSmth() && state == NPCState.Patrol)
+            myController.Move(agent.desiredVelocity, false, false);
+
+            if (mySight.CanSeePlayer())
             {
-                state = NPCState.Caution;
+                myController.Stop();
                 agent.SetDestination(transform.position);
+                yield return new WaitForSeconds(.1f);
+
+                state = NPCState.Chase;
             }
 
             if (Vector3.Distance(transform.position, waypoints[currentWaypoint]) > 2.0f)
@@ -210,6 +206,10 @@ public class AIController : MonoBehaviour
                 case NPCState.Caution:
                     Debug.Log("I am here OnCaution");
                     yield return StartCoroutine(OnCaution());
+                    break;
+                case NPCState.Chase:
+                    Debug.Log("I am here OnChase");
+                    yield return StartCoroutine(OnChase());
                     break;
             }
             yield return null;

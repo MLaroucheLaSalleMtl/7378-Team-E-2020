@@ -64,6 +64,20 @@ public class NPCController : MonoBehaviour
         animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
     }
 
+    public void WithdrawWeapon()
+    {
+        ExcuteBoolAnimation("ShealthSword", false);
+        ExcuteBoolAnimation("SuspectedObject", true);
+        ExcuteBoolAnimation("WithdrawingSword", true);
+    }
+
+    public void ShealthSword()
+    {
+        ExcuteBoolAnimation("WithdrawingSword", false);
+        ExcuteBoolAnimation("ShealthSword", true);
+        ExcuteBoolAnimation("SuspectedObject", false);
+    }
+
     public void PlayAnimation(string animation) => animator.Play(animation);
 
     public void ExcuteBoolAnimation(string animation, bool value) => animator.SetBool(animation, value);
@@ -74,6 +88,13 @@ public class NPCController : MonoBehaviour
     {
 
     }
+
+    public void Stop()
+    {
+        animator.SetFloat("Turn", 0);
+        animator.SetFloat("Forward", 0);
+    }
+
     public void Move(Vector3 move, bool crouch, bool jump)
     {
 

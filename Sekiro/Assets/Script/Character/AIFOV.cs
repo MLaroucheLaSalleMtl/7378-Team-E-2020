@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AIFOV : MonoBehaviour
 {
-    public List<Transform> visibleObjects;
+    public GameObject player;
+
+    public List<GameObject> visibleObjects;
+
     [SerializeField]
     private bool smthInFOV;
     [SerializeField]
     private bool isPlayerInFOV;
     [SerializeField]
     private Transform suspectedObject;
-    [SerializeField]
-    private Transform player;
+
     [SerializeField]
     [Range(0, 360)]
     private float viewAngle;
@@ -53,23 +55,24 @@ public class AIFOV : MonoBehaviour
 
     public void InFOV()
     {
-        Collider[] objInRadiusView = Physics.OverlapSphere(transform.position, viewRadius + 5f);
+        Collider[] objInRadiusView = Physics.OverlapSphere(transform.position, viewRadius);
 
         for (int i = 0; i < objInRadiusView.Length; i++)
         {
-            Transform obj = objInRadiusView[i].transform;
-            Vector3 dirToTarget = (obj.position - transform.position).normalized;
+            GameObject obj = objInRadiusView[i].gameObject;
+            Vector3 dirToTarget = (obj.transform.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) <= viewAngle)
             {
                 Ray ray = new Ray(transform.position, obj.transform.position - transform.position);
                 //float disTarget = Vector3.Distance(transform.position, obj.position);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit, viewRadius + 5f))
+                if (Physics.Raycast(ray, out hit, viewRadius))
                 {
                     if (hit.transform == obj.transform)
                     {
                         if (!visibleObjects.Contains(obj))
                             visibleObjects.Add(obj);
+
                         if(obj.tag == "Terrain")
                             visibleObjects.Remove(obj);
                     }
@@ -82,30 +85,31 @@ public class AIFOV : MonoBehaviour
     public void SetSuspectedObjectToNull() => suspectedObject = null;
     public Transform GetSuspectedObject() => suspectedObject;
     public void SetPlayerToNull() => player = null;
-    public Transform GetPlayer() => player;
-    public bool CanSeeSmth()
-    {
-        foreach (Transform visibleObj in visibleObjects)
-        {
-            if (Vector3.Distance(transform.position, visibleObj.transform.position) > 4 && Vector3.Distance(transform.position, visibleObj.transform.position) <= viewRadius + 5f)
-            {
-                //Recognize specified objects only
-                if (visibleObj.tag == "Rock" || visibleObj.tag == "Coin" || visibleObj.tag == "Player")
-                {
-                    suspectedObject = visibleObj;
-                    return true;
-                }
-            }
-        }
-        suspectedObject = null;
-        return false;
-    }
+    public GameObject GetPlayer() => player;
+
+    //public bool CanSeeSmth()
+    //{
+    //    foreach (Transform visibleObj in visibleObjects)
+    //    {
+    //        if (Vector3.Distance(transform.position, visibleObj.transform.position) > 4 && Vector3.Distance(transform.position, visibleObj.transform.position) <= viewRadius + 5f)
+    //        {
+    //            //Recognize specified objects only
+    //            if (visibleObj.tag == "Rock" || visibleObj.tag == "Coin" || visibleObj.tag == "Player")
+    //            {
+    //                suspectedObject = visibleObj;
+    //                return true;
+    //            }
+    //        }
+    //    }
+    //    suspectedObject = null;
+    //    return false;
+    //}
 
     public bool IsSuspectedObject(bool value) => smthInFOV = value;
 
     public bool CanSeePlayer()
     {
-        foreach (Transform visibleObj in visibleObjects)
+        foreach (GameObject visibleObj in visibleObjects)
         {
             if (visibleObj.tag == "Player" && Vector3.Distance(transform.position, visibleObj.transform.position) <= viewRadius)
             {
@@ -113,12 +117,15 @@ public class AIFOV : MonoBehaviour
                 return true;
             }
         }
+
+        player = null;
         return false;
     }
     private void FixedUpdate()
     {
         InFOV();
         isPlayerInFOV = CanSeePlayer();
-        smthInFOV = CanSeeSmth();
+
+        //smthInFOV = CanSeeSmth();
     }
 }
