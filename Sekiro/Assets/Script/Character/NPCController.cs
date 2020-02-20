@@ -21,7 +21,7 @@ public class NPCController : MonoBehaviour
     [SerializeField] float m_MoveSpeedMultiplier = 1f;
     [SerializeField] float m_AnimSpeedMultiplier = 1f;
     [SerializeField] float m_GroundCheckDistance = 0.1f;
-    
+
     public bool useStrafeControl;
 
     AIController ai;
@@ -46,6 +46,16 @@ public class NPCController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+    }
+
+    public void FaceTarget(Vector3 target)
+    {
+        Vector3 direction;
+
+        direction = (target - transform.position).normalized;
+
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
     public Animator GetAnimator() => animator;
@@ -97,16 +107,11 @@ public class NPCController : MonoBehaviour
 
     public void Move(Vector3 move, bool crouch, bool jump)
     {
-
-        // convert the world relative moveInput vector into a local-relative
-        // turn amount and forward amount required to head in the desired
-        // direction.
         if (move.magnitude > 1f) move.Normalize();
         move = transform.InverseTransformDirection(move);
-        //CheckGroundStatus();
+        
         move = Vector3.ProjectOnPlane(move, groundNormal);
         turnAmount = Mathf.Atan2(move.x, move.z) * Time.deltaTime * 10f;
-        //turnAmount = move.x * Time.deltaTime;
         forwardAmount = move.z;
 
         if (useStrafeControl)

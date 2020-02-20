@@ -61,7 +61,7 @@ public class AIFOV : MonoBehaviour
         {
             GameObject obj = objInRadiusView[i].gameObject;
             Vector3 dirToTarget = (obj.transform.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) <= viewAngle)
+            if (Vector3.Angle(transform.forward, dirToTarget) >= -viewAngle && Vector3.Angle(transform.forward, dirToTarget) <= viewAngle)
             {
                 Ray ray = new Ray(transform.position, obj.transform.position - transform.position);
                 //float disTarget = Vector3.Distance(transform.position, obj.position);
@@ -73,13 +73,16 @@ public class AIFOV : MonoBehaviour
                         if (!visibleObjects.Contains(obj))
                             visibleObjects.Add(obj);
 
-                        if(obj.tag == "Terrain")
+                        if (obj.tag == "Terrain")
                             visibleObjects.Remove(obj);
                     }
                 }
             }
             else
+            {
+                Debug.Log("Target is outside of viewangle");
                 visibleObjects.Remove(obj);
+            }
         }
     }
     public void SetSuspectedObjectToNull() => suspectedObject = null;
@@ -111,10 +114,14 @@ public class AIFOV : MonoBehaviour
     {
         foreach (GameObject visibleObj in visibleObjects)
         {
-            if (visibleObj.tag == "Player" && Vector3.Distance(transform.position, visibleObj.transform.position) <= viewRadius)
+            if (visibleObj.tag == "Player")
             {
-                player = visibleObj;
-                return true;
+                float disTarget = Vector3.Distance(transform.position, visibleObj.transform.position);
+                if (disTarget >= 0 && disTarget <= viewRadius)
+                {
+                    player = visibleObj;
+                    return true;
+                }
             }
         }
 
