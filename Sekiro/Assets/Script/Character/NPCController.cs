@@ -21,6 +21,7 @@ public class NPCController : MonoBehaviour
     [SerializeField] float m_MoveSpeedMultiplier = 1f;
     [SerializeField] float m_AnimSpeedMultiplier = 1f;
     [SerializeField] float m_GroundCheckDistance = 0.1f;
+    [SerializeField] List<GameObject> items;
 
     public bool useStrafeControl;
 
@@ -46,6 +47,8 @@ public class NPCController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+        items[0].gameObject.SetActive(false);
     }
 
     public void FaceTarget(Vector3 target)
@@ -74,18 +77,28 @@ public class NPCController : MonoBehaviour
         animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
     }
 
+    IEnumerator WaitABit(bool withdrawSword, bool shealthSword)
+    {
+        yield return new WaitForSeconds(0.5f);
+        items[2].gameObject.SetActive(shealthSword);
+        items[0].gameObject.SetActive(withdrawSword);
+    }
+
+
     public void WithdrawWeapon()
     {
         ExcuteBoolAnimation("ShealthSword", false);
-        ExcuteBoolAnimation("SuspectedObject", true);
         ExcuteBoolAnimation("WithdrawingSword", true);
+        ExcuteBoolAnimation("SuspectedObject", true);
+        StartCoroutine(WaitABit(true, false));
     }
 
     public void ShealthSword()
     {
+        ExcuteBoolAnimation("SuspectedObject", false);
         ExcuteBoolAnimation("WithdrawingSword", false);
         ExcuteBoolAnimation("ShealthSword", true);
-        ExcuteBoolAnimation("SuspectedObject", false);
+        StartCoroutine(WaitABit(false, true));
     }
 
     public void PlayAnimation(string animation) => animator.Play(animation);
