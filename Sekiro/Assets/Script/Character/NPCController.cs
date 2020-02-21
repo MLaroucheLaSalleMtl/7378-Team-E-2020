@@ -77,9 +77,9 @@ public class NPCController : MonoBehaviour
         animator.SetFloat("Turn", turnAmount, 0.1f, Time.deltaTime);
     }
 
-    IEnumerator WaitABit(bool withdrawSword, bool shealthSword)
+    IEnumerator WaitABit(float delay, bool withdrawSword, bool shealthSword)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(delay);
         items[2].gameObject.SetActive(shealthSword);
         items[0].gameObject.SetActive(withdrawSword);
     }
@@ -90,7 +90,7 @@ public class NPCController : MonoBehaviour
         ExcuteBoolAnimation("ShealthSword", false);
         ExcuteBoolAnimation("WithdrawingSword", true);
         ExcuteBoolAnimation("SuspectedObject", true);
-        StartCoroutine(WaitABit(true, false));
+        StartCoroutine(WaitABit(0.6f, true, false));
     }
 
     public void ShealthSword()
@@ -98,7 +98,7 @@ public class NPCController : MonoBehaviour
         ExcuteBoolAnimation("SuspectedObject", false);
         ExcuteBoolAnimation("WithdrawingSword", false);
         ExcuteBoolAnimation("ShealthSword", true);
-        StartCoroutine(WaitABit(false, true));
+        StartCoroutine(WaitABit(0.6f, false, true));
     }
 
     public void PlayAnimation(string animation) => animator.Play(animation);

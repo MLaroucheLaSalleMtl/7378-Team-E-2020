@@ -19,7 +19,7 @@ public class AIController : MonoBehaviour
     [SerializeField]
     private int currentWaypoint = 0;
     [SerializeField]
-    private Transform target;
+    private GameObject target;
     [SerializeField]
     private float stoppingDistance = .1f;
     [SerializeField]
@@ -90,18 +90,26 @@ public class AIController : MonoBehaviour
             {
                 if (mySight.player != null)
                 {
-                    target = mySight.player.transform;
-                    myController.FaceTarget(target.position);
-                    agent.SetDestination(target.position);
+                    target = mySight.player;
+                    myController.FaceTarget(target.transform.position);
+                    agent.SetDestination(target.transform.position);
+
+                    if(Vector3.Distance(transform.position, target.transform.position) <= 5f)
+                    {
+                        state = NPCState.Fight;
+                        yield return new WaitForSeconds(.1f);
+                        break;
+                    }
                 }
             }
             else
             {
                 myController.Stop();
                 myController.FaceTarget(transform.forward);
-                agent.SetDestination(transform.position);
-                yield return new WaitForSeconds(2f);
+                agent.SetDestination(transform.position); ;
                 state = NPCState.Caution;
+                yield return new WaitForSeconds(2f);
+                break;
             }
             yield return null;
         }
@@ -125,9 +133,10 @@ public class AIController : MonoBehaviour
 
                 agent.SetDestination(transform.position);
 
-                yield return new WaitForSeconds(2f);
-
                 state = NPCState.Patrol;
+                yield return new WaitForSeconds(2f);
+                break;
+
             }
             yield return null;
         }
@@ -150,9 +159,10 @@ public class AIController : MonoBehaviour
                 myController.Stop();
                 agent.SetDestination(transform.position);
                 myController.WithdrawWeapon();
-                yield return new WaitForSeconds(1f);
 
                 state = NPCState.Chase;
+                yield return new WaitForSeconds(1f);
+                break;
             }
 
             if (Vector3.Distance(transform.position, waypoints[currentWaypoint]) > 2.0f)
@@ -178,10 +188,61 @@ public class AIController : MonoBehaviour
                         currentWaypoint = 0;
 
                     myController.FaceTarget(waypoints[currentWaypoint]);
-                    yield return new WaitForSeconds(waitTime);
                     myController.Move(agent.desiredVelocity, false, false);
+                    yield return new WaitForSeconds(waitTime);
+                    break;
                 }
             }
+            yield return null;
+        }
+    }
+
+    IEnumerator OnFight()
+    {
+        myController.ExcuteBoolAnimation("InFight", true);
+        int numberOfHits = 0;
+        agent.stoppingDistance = 0.8f;
+        myController.useStrafeControl = true;
+        //int decision = Random.Range(0, 2);
+        //target.gameObject.GetComponent<PlayerStat>().isAlive -- While condition later on
+        while (true)
+        {
+
+            Debug.Log(Vector3.Distance(transform.position, target.transform.position));
+            if (Vector3.Distance(transform.position, target.transform.position) > stoppingDistance + 2f)
+            {
+                state = NPCState.Chase;
+                //yield return new WaitForSeconds(.1f);
+            }
+            else
+            {
+                myController.Move(Vector3.zero, false, false);
+                agent.SetDestination(transform.position);
+                agent.autoBraking = true;
+
+                if(numberOfHits == 0)
+                {
+                    state = NPCState.Attack;
+                    yield return new WaitForSeconds(.1f);
+                    break;
+                }
+
+                ////Number of hits to consider to block
+                //if (decision == 0)
+                //{
+                //    state = NPCState.Defend;
+                //    yield return new WaitForSeconds(1f);
+                //}
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator OnAttack()
+    {
+        while(true)
+        {
+            myController.ExcuteBoolAnimation("Attack", true);
             yield return null;
         }
     }
@@ -203,6 +264,14 @@ public class AIController : MonoBehaviour
                 case NPCState.Chase:
                     Debug.Log("I am here OnChase");
                     yield return StartCoroutine(OnChase());
+                    break;
+                case NPCState.Fight:
+                    Debug.Log("I am here OnFight");
+                    yield return StartCoroutine(OnFight());
+                    break;
+                case NPCState.Attack:
+                    Debug.Log("I am here OnAttack");
+                    yield return StartCoroutine(OnAttack());
                     break;
             }
             yield return null;

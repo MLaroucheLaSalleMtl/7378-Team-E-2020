@@ -80,7 +80,6 @@ public class AIFOV : MonoBehaviour
             }
             else
             {
-                Debug.Log("Target is outside of viewangle");
                 visibleObjects.Remove(obj);
             }
         }
