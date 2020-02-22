@@ -207,27 +207,22 @@ public class AIController : MonoBehaviour
         myWeaponHitDetector.numberOfHits = 0;
         myWeaponHitDetector.isHit = false;
 
+        myController.Move(agent.desiredVelocity, false, false);
+        agent.SetDestination(transform.position);
+
         while (state == NPCState.Attack)
         {
-            if(Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
+            if (Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
             {
                 state = NPCState.Chase;
             }
             else
             {
-                myController.Move(agent.desiredVelocity, false, false);
-                agent.SetDestination(transform.position);
-                if (myWeaponHitDetector.numberOfHits >= 0 && myWeaponHitDetector.numberOfHits < 3)
+                if(!myHitDetector.isHit)
                 {
-                    if (!myHitDetector.isHit)
-                    {
-                        myController.ExcuteBoolAnimation("Attack", true);
-                        state = NPCState.Attack;
-                    }
-                }
-                else
-                {
-                    Debug.Log("I am chaning state");
+                    myController.ExcuteBoolAnimation("Attack", true);
+                    int delayTime = Random.Range(1, 4);
+                    yield return new WaitForSeconds(delayTime);
                     myController.ExcuteBoolAnimation("Attack", false);
                     state = NPCState.Fight;
                 }
@@ -238,7 +233,7 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnDefend()
     {
-        while(true)
+        while (true)
         {
             yield return null;
         }
@@ -272,12 +267,12 @@ public class AIController : MonoBehaviour
                 if (!myHitDetector.isHit)
                 {
                     state = NPCState.Attack;
-                    int delayTime = Random.Range(1, 4);
+                    int delayTime = Random.Range(1, 3);
                     yield return new WaitForSeconds(delayTime);
                     break;
                 }
 
-                if(myHitDetector.isHit)
+                if (myHitDetector.isHit)
                 {
                     state = NPCState.Defend;
                     yield return new WaitForSeconds(.1f);
