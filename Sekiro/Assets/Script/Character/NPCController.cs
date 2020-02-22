@@ -10,6 +10,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(AIFOV))]
 [RequireComponent(typeof(EnemyStat))]
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(NPCHitDetector))]
 
 public class NPCController : MonoBehaviour
 {

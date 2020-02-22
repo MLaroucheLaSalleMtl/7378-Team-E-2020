@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Coin
   - Terrain
+  - Weapon
+  - WeaponHand
   layers:
   - Default
   - TransparentFX

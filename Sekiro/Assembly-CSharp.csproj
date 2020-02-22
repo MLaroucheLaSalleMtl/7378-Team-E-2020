@@ -92,12 +92,14 @@
     <Compile Include="Assets\ProCore\Polybrush\Code\Scripts\Utility\z_Util.cs" />
     <Compile Include="Assets\ProCore\Polybrush\Code\Scripts\Utility\z_Vector.cs" />
     <Compile Include="Assets\Script\Base\BaseSingleton.cs" />
+    <Compile Include="Assets\Script\Base\HitDetectorBase.cs" />
     <Compile Include="Assets\Script\Character\AIController.cs" />
     <Compile Include="Assets\Script\Character\AIFOV.cs" />
     <Compile Include="Assets\Script\Character\AIStat.cs" />
     <Compile Include="Assets\Script\Character\CharacterStat.cs" />
     <Compile Include="Assets\Script\Character\EnemyStat.cs" />
     <Compile Include="Assets\Script\Character\NPCController.cs" />
+    <Compile Include="Assets\Script\Character\NPCHitDetector.cs" />
     <Compile Include="Assets\Script\Character\NPCState.cs" />
     <Compile Include="Assets\Script\Character\PlayerStat.cs" />
     <Compile Include="Assets\Script\Character\Stat.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="Assets\Script\Systems\PostureSystem.cs" />
     <Compile Include="Assets\Script\UI\UIManager.cs" />
     <Compile Include="Assets\Script\btnFX.cs" />
+    <Compile Include="Assets\WeaponHitDetector.cs" />
     <None Include="Assets\ProCore\Polybrush\Shader\z_TextureBlender_SfSrc.shader" />
     <None Include="Assets\ProCore\Polybrush\ThirdPartyLicenses.txt" />
     <None Include="Assets\ProCore\Polybrush\Shader\Example\z_UnlitTextureBlendAndSnow.shader" />

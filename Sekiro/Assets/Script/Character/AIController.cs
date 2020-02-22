@@ -9,7 +9,10 @@ public class AIController : MonoBehaviour
     private NPCController myController;
     private CharacterStat myStat;
     private AIFOV mySight;
+    private NPCHitDetector myHitDetector;
     private NavMeshAgent agent;
+    [SerializeField]
+    private WeaponHitDetector myWeaponHitDetector;
     [SerializeField]
     private NPCState state;
     [SerializeField]
@@ -24,7 +27,7 @@ public class AIController : MonoBehaviour
     private float stoppingDistance = .1f;
     [SerializeField]
     [Range(0.0f, 1.0f)] private float patrolSpeed = 0.5f;
-    
+
     [SerializeField]
     [Range(0.0f, 1.0f)] private float chaseSpeed = 1f;
     [SerializeField]
@@ -57,6 +60,7 @@ public class AIController : MonoBehaviour
         myController = GetComponent<NPCController>();
         myStat = GetComponent<CharacterStat>();
         mySight = GetComponent<AIFOV>();
+        myHitDetector = GetComponent<NPCHitDetector>();
 
         agent.updatePosition = true;
         agent.updateRotation = true;
@@ -78,9 +82,10 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnChase()
     {
+        myController.ExcuteBoolAnimation("InFight", false);
         agent.speed = chaseSpeed;
 
-        agent.stoppingDistance = 2f;
+        agent.stoppingDistance = 1f;
 
         while (state == NPCState.Chase)
         {
@@ -94,7 +99,7 @@ public class AIController : MonoBehaviour
                     myController.FaceTarget(target.transform.position);
                     agent.SetDestination(target.transform.position);
 
-                    if(Vector3.Distance(transform.position, target.transform.position) <= 5f)
+                    if (Vector3.Distance(transform.position, target.transform.position) <= 3f)
                     {
                         state = NPCState.Fight;
                         yield return new WaitForSeconds(.1f);
@@ -197,52 +202,88 @@ public class AIController : MonoBehaviour
         }
     }
 
-    IEnumerator OnFight()
+    IEnumerator OnAttack()
     {
-        myController.ExcuteBoolAnimation("InFight", true);
-        int numberOfHits = 0;
-        agent.stoppingDistance = 0.8f;
-        myController.useStrafeControl = true;
-        //int decision = Random.Range(0, 2);
-        //target.gameObject.GetComponent<PlayerStat>().isAlive -- While condition later on
-        while (true)
-        {
+        myWeaponHitDetector.numberOfHits = 0;
+        myWeaponHitDetector.isHit = false;
 
-            Debug.Log(Vector3.Distance(transform.position, target.transform.position));
-            if (Vector3.Distance(transform.position, target.transform.position) > stoppingDistance + 2f)
+        while (state == NPCState.Attack)
+        {
+            if(Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
             {
                 state = NPCState.Chase;
-                //yield return new WaitForSeconds(.1f);
             }
             else
             {
-                myController.Move(Vector3.zero, false, false);
+                myController.Move(agent.desiredVelocity, false, false);
                 agent.SetDestination(transform.position);
-                agent.autoBraking = true;
-
-                if(numberOfHits == 0)
+                if (myWeaponHitDetector.numberOfHits >= 0 && myWeaponHitDetector.numberOfHits < 3)
                 {
-                    state = NPCState.Attack;
-                    yield return new WaitForSeconds(.1f);
-                    break;
+                    if (!myHitDetector.isHit)
+                    {
+                        myController.ExcuteBoolAnimation("Attack", true);
+                        state = NPCState.Attack;
+                    }
                 }
-
-                ////Number of hits to consider to block
-                //if (decision == 0)
-                //{
-                //    state = NPCState.Defend;
-                //    yield return new WaitForSeconds(1f);
-                //}
+                else
+                {
+                    Debug.Log("I am chaning state");
+                    myController.ExcuteBoolAnimation("Attack", false);
+                    state = NPCState.Fight;
+                }
             }
             yield return null;
         }
     }
 
-    IEnumerator OnAttack()
+    IEnumerator OnDefend()
     {
         while(true)
         {
-            myController.ExcuteBoolAnimation("Attack", true);
+            yield return null;
+        }
+    }
+
+    IEnumerator OnFight()
+    {
+        myController.ExcuteBoolAnimation("InFight", true);
+        agent.stoppingDistance = 1f;
+        myController.useStrafeControl = true;
+        //int decision = Random.Range(0, 2);
+        //target.gameObject.GetComponent<PlayerStat>().isAlive -- While condition later on
+        while (true)
+        {
+            //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
+            //if (Vector3.Distance(transform.position, target.transform.position) > 2f)
+            Debug.Log(agent.remainingDistance);
+            if (agent.remainingDistance > 1.9f)
+            {
+                state = NPCState.Chase;
+                yield return new WaitForSeconds(.1f);
+            }
+            else
+            {
+                Debug.Log("Oh My God");
+                agent.speed = patrolSpeed;
+                myController.Stop();
+                agent.SetDestination(transform.position);
+                agent.autoBraking = true;
+
+                if (!myHitDetector.isHit)
+                {
+                    state = NPCState.Attack;
+                    int delayTime = Random.Range(1, 4);
+                    yield return new WaitForSeconds(delayTime);
+                    break;
+                }
+
+                if(myHitDetector.isHit)
+                {
+                    state = NPCState.Defend;
+                    yield return new WaitForSeconds(.1f);
+                    break;
+                }
+            }
             yield return null;
         }
     }

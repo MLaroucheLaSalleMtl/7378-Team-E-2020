@@ -139,6 +139,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 407981780}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &47706317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47706312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bada9ad61c114944a13d437883b3f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfHits: 0
+  isHit: 0
 --- !u!1 &177547463
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,6 +193,10 @@ PrefabInstance:
     - target: {fileID: 184202, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
       propertyPath: m_Name
       value: SM_Wep_Odachi_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 184202, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
       objectReference: {fileID: 0}
     - target: {fileID: 416848, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -234,6 +252,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 416848, guid: d44f072607d893145b2f6d39c8229bef, type: 3}
       propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810502809124012702, guid: d44f072607d893145b2f6d39c8229bef,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1810502809124012702, guid: d44f072607d893145b2f6d39c8229bef,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -916,6 +944,26 @@ Transform:
   m_Father: {fileID: 1477423642}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2057394358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7293567892538471345, guid: 5215d2431a18b44429cafc671d16ad39,
+    type: 3}
+  m_PrefabInstance: {fileID: 1591486236529410858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2057394359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057394358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6052825b13187545b2d65cbb70025e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfHits: 0
+  isHit: 0
 --- !u!1001 &1591486236529410858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -943,6 +991,11 @@ PrefabInstance:
       propertyPath: pathHolder
       value: 
       objectReference: {fileID: 1477423642}
+    - target: {fileID: 1591486235669195453, guid: 5215d2431a18b44429cafc671d16ad39,
+        type: 3}
+      propertyPath: myWeaponHitDetector
+      value: 
+      objectReference: {fileID: 47706317}
     - target: {fileID: 1591486235669195454, guid: 5215d2431a18b44429cafc671d16ad39,
         type: 3}
       propertyPath: items.Array.size
