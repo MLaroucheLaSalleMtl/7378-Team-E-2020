@@ -151,6 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bada9ad61c114944a13d437883b3f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combat: {fileID: 2057394360}
+  targetStat: {fileID: 0}
   numberOfHits: 0
   isHit: 0
 --- !u!1 &177547463
@@ -826,6 +828,8 @@ GameObject:
   - component: {fileID: 1883850584}
   - component: {fileID: 1883850583}
   - component: {fileID: 1883850582}
+  - component: {fileID: 1883850587}
+  - component: {fileID: 1883850586}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Player
@@ -908,6 +912,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1883850586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883850581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da416a1d34f65324cbc0a7906caf22ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1883850587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883850581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9fd513d11c0e44abb664b5c89b6288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage:
+    baseValue: 10
+  armor:
+    baseValue: 0
+  alive: 0
 --- !u!4 &1915222844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7167807833726209158, guid: 5215d2431a18b44429cafc671d16ad39,
@@ -964,6 +998,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfHits: 0
   isHit: 0
+--- !u!114 &2057394360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057394358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da416a1d34f65324cbc0a7906caf22ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1591486236529410858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1016,6 +1062,16 @@ PrefabInstance:
       propertyPath: items.Array.data[2]
       value: 
       objectReference: {fileID: 518437892}
+    - target: {fileID: 1591486235669195455, guid: 5215d2431a18b44429cafc671d16ad39,
+        type: 3}
+      propertyPath: damage.baseValue
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1591486235669195455, guid: 5215d2431a18b44429cafc671d16ad39,
+        type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4460445186248502488, guid: 5215d2431a18b44429cafc671d16ad39,
         type: 3}
       propertyPath: m_Controller

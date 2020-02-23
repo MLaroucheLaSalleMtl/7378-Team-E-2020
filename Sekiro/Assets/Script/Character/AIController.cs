@@ -35,6 +35,8 @@ public class AIController : MonoBehaviour
 
     public NavMeshAgent Agent { get => agent; }
 
+    public bool isAttacking;
+    public bool isDefending;
     private void OnDrawGizmos()
     {
         Transform startPosition = pathHolder.GetChild(0);
@@ -72,13 +74,7 @@ public class AIController : MonoBehaviour
         Invoke("ActivateFSM", 1f);
     }
 
-    private void Update()
-    {
-
-    }
-
     void ActivateFSM() => StartCoroutine("FSM");
-
 
     IEnumerator OnChase()
     {
@@ -233,8 +229,14 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnDefend()
     {
-        while (true)
+        myWeaponHitDetector.numberOfHits = 0;
+        myWeaponHitDetector.isHit = false;
+
+        myController.Move(agent.desiredVelocity, false, false);
+        agent.SetDestination(transform.position);
+        while (state == NPCState.Defend)
         {
+
             yield return null;
         }
     }
@@ -285,7 +287,7 @@ public class AIController : MonoBehaviour
 
     IEnumerator FSM()
     {
-        while (myStat.isAlive)
+        while (myStat.alive)
         {
             switch (state)
             {
@@ -307,6 +309,7 @@ public class AIController : MonoBehaviour
                     break;
                 case NPCState.Attack:
                     Debug.Log("I am here OnAttack");
+                    isAttacking = true;
                     yield return StartCoroutine(OnAttack());
                     break;
             }

@@ -93,9 +93,11 @@
     <Compile Include="Assets\ProCore\Polybrush\Code\Scripts\Utility\z_Vector.cs" />
     <Compile Include="Assets\Script\Base\BaseSingleton.cs" />
     <Compile Include="Assets\Script\Base\HitDetectorBase.cs" />
+    <Compile Include="Assets\Script\Character\AICombat.cs" />
     <Compile Include="Assets\Script\Character\AIController.cs" />
     <Compile Include="Assets\Script\Character\AIFOV.cs" />
     <Compile Include="Assets\Script\Character\AIStat.cs" />
+    <Compile Include="Assets\Script\Character\CharacterCombat.cs" />
     <Compile Include="Assets\Script\Character\CharacterStat.cs" />
     <Compile Include="Assets\Script\Character\EnemyStat.cs" />
     <Compile Include="Assets\Script\Character\NPCController.cs" />

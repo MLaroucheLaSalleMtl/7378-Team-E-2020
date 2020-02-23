@@ -3,17 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class CharacterStat : MonoBehaviour
+public class CharacterStat : MonoBehaviour
 {
-    private Stat _damage;
-    private HealthSystem _healthSystem;
-    private PostureSystem _postureSystem;
-    public bool isAlive = true;
+    [SerializeField]
+    private int maxHealth;
 
-    public Stat Damage { get => _damage; set => _damage = value; }
-    public HealthSystem HealthSystem { get => _healthSystem; set => _healthSystem = value; }
-    public PostureSystem PostureSystem
+    //[SerializeField]
+    //private Slider healthBar;
+
+    public int currentHealth { get; set; }
+
+    public Stat damage;
+    public Stat armor;
+
+    public bool alive;
+
+    private void Start()
     {
-        get => _postureSystem; set => _postureSystem = value;
+        //healthBar.value = maxHealth;
+        alive = true;
+    }
+
+    public void SetHp()
+        => currentHealth = maxHealth;
+
+    private void Awake()
+        => SetHp();
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= armor.GetValue();
+        damage = Mathf.Clamp(damage, 0, int.MaxValue);
+
+        currentHealth -= damage;
+        //healthBar.value = currentHealth;
+
+        if (currentHealth <= 0)
+            Die();
+    }
+
+    public virtual void Die()
+    {
+        alive = false;
+        Debug.Log("Die");
     }
 }

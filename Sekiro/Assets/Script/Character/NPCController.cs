@@ -99,7 +99,7 @@ public class NPCController : MonoBehaviour
         ExcuteBoolAnimation("SuspectedObject", false);
         ExcuteBoolAnimation("WithdrawingSword", false);
         ExcuteBoolAnimation("ShealthSword", true);
-        StartCoroutine(WaitABit(0.6f, false, true));
+        StartCoroutine(WaitABit(1.4f, false, true));
     }
 
     public void PlayAnimation(string animation) => animator.Play(animation);
