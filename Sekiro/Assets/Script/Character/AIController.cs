@@ -202,7 +202,7 @@ public class AIController : MonoBehaviour
     {
         myWeaponHitDetector.numberOfHits = 0;
         myWeaponHitDetector.isHit = false;
-
+        myController.ExcuteBoolAnimation("Attack", false);
         myController.Move(agent.desiredVelocity, false, false);
         agent.SetDestination(transform.position);
 
@@ -217,7 +217,7 @@ public class AIController : MonoBehaviour
                 if(!myHitDetector.isHit)
                 {
                     myController.ExcuteBoolAnimation("Attack", true);
-                    int delayTime = Random.Range(1, 4);
+                    float delayTime = Random.Range(1, 3f);
                     yield return new WaitForSeconds(delayTime);
                     myController.ExcuteBoolAnimation("Attack", false);
                     state = NPCState.Fight;
@@ -243,6 +243,7 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnFight()
     {
+        agent.speed = patrolSpeed;
         myController.ExcuteBoolAnimation("InFight", true);
         agent.stoppingDistance = 1f;
         myController.useStrafeControl = true;
