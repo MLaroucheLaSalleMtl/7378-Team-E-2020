@@ -8,6 +8,7 @@ TagManager:
   - Terrain
   - Weapon
   - WeaponHand
+  - Grass
   layers:
   - Default
   - TransparentFX

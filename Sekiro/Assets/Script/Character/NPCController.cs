@@ -11,7 +11,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EnemyStat))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(NPCHitDetector))]
-
 public class NPCController : MonoBehaviour
 {
     [SerializeField] float movingTurnSpeed = 360;

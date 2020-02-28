@@ -12,6 +12,8 @@ public class AIController : MonoBehaviour
     private NPCHitDetector myHitDetector;
     private NavMeshAgent agent;
     [SerializeField]
+    private ParticleSystem swordTrail;
+    [SerializeField]
     private WeaponHitDetector myWeaponHitDetector;
     [SerializeField]
     private NPCState state;
@@ -53,6 +55,7 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        swordTrail.gameObject.SetActive(false);
         waypoints = new Vector3[pathHolder.childCount];
 
         for (int i = 0; i < waypoints.Length; i++)
@@ -217,9 +220,13 @@ public class AIController : MonoBehaviour
                 if(!myHitDetector.isHit)
                 {
                     myController.ExcuteBoolAnimation("Attack", true);
+                    yield return new WaitForSeconds(0.1f);
+                    swordTrail.gameObject.SetActive(true);
                     float delayTime = Random.Range(1, 3f);
                     yield return new WaitForSeconds(delayTime);
                     myController.ExcuteBoolAnimation("Attack", false);
+                    yield return new WaitForSeconds(1f);
+                    swordTrail.gameObject.SetActive(false);
                     state = NPCState.Fight;
                 }
             }
@@ -234,6 +241,7 @@ public class AIController : MonoBehaviour
 
         myController.Move(agent.desiredVelocity, false, false);
         agent.SetDestination(transform.position);
+        
         while (state == NPCState.Defend)
         {
 
