@@ -12,6 +12,8 @@ public class AIController : MonoBehaviour
     private NPCHitDetector myHitDetector;
     private NavMeshAgent agent;
     [SerializeField]
+    private GameObject swordTrail;
+    [SerializeField]
     private WeaponHitDetector myWeaponHitDetector;
     [SerializeField]
     private NPCState state;
@@ -35,6 +37,8 @@ public class AIController : MonoBehaviour
 
     public NavMeshAgent Agent { get => agent; }
 
+    public bool isAttacking;
+    public bool isDefending;
     private void OnDrawGizmos()
     {
         Transform startPosition = pathHolder.GetChild(0);
@@ -51,6 +55,7 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        swordTrail.gameObject.SetActive(false);
         waypoints = new Vector3[pathHolder.childCount];
 
         for (int i = 0; i < waypoints.Length; i++)
@@ -72,13 +77,7 @@ public class AIController : MonoBehaviour
         Invoke("ActivateFSM", 1f);
     }
 
-    private void Update()
-    {
-
-    }
-
     void ActivateFSM() => StartCoroutine("FSM");
-
 
     IEnumerator OnChase()
     {
@@ -206,29 +205,28 @@ public class AIController : MonoBehaviour
     {
         myWeaponHitDetector.numberOfHits = 0;
         myWeaponHitDetector.isHit = false;
+        myController.ExcuteBoolAnimation("Attack", false);
+        myController.Move(agent.desiredVelocity, false, false);
+        agent.SetDestination(transform.position);
 
         while (state == NPCState.Attack)
         {
-            if(Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
+            if (Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
             {
                 state = NPCState.Chase;
             }
             else
             {
-                myController.Move(agent.desiredVelocity, false, false);
-                agent.SetDestination(transform.position);
-                if (myWeaponHitDetector.numberOfHits >= 0 && myWeaponHitDetector.numberOfHits < 3)
+                if(!myHitDetector.isHit)
                 {
-                    if (!myHitDetector.isHit)
-                    {
-                        myController.ExcuteBoolAnimation("Attack", true);
-                        state = NPCState.Attack;
-                    }
-                }
-                else
-                {
-                    Debug.Log("I am chaning state");
+                    myController.ExcuteBoolAnimation("Attack", true);
+                    yield return new WaitForSeconds(0.1f);
+                    swordTrail.gameObject.SetActive(true);
+                    float delayTime = Random.Range(1, 3f);
+                    yield return new WaitForSeconds(delayTime);
                     myController.ExcuteBoolAnimation("Attack", false);
+                    yield return new WaitForSeconds(1f);
+                    swordTrail.gameObject.SetActive(false);
                     state = NPCState.Fight;
                 }
             }
@@ -238,14 +236,21 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnDefend()
     {
-        while(true)
+        myWeaponHitDetector.numberOfHits = 0;
+        myWeaponHitDetector.isHit = false;
+
+        myController.Move(agent.desiredVelocity, false, false);
+        agent.SetDestination(transform.position);
+        while (state == NPCState.Defend)
         {
+
             yield return null;
         }
     }
 
     IEnumerator OnFight()
     {
+        agent.speed = patrolSpeed;
         myController.ExcuteBoolAnimation("InFight", true);
         agent.stoppingDistance = 1f;
         myController.useStrafeControl = true;
@@ -272,12 +277,12 @@ public class AIController : MonoBehaviour
                 if (!myHitDetector.isHit)
                 {
                     state = NPCState.Attack;
-                    int delayTime = Random.Range(1, 4);
+                    int delayTime = Random.Range(1, 3);
                     yield return new WaitForSeconds(delayTime);
                     break;
                 }
 
-                if(myHitDetector.isHit)
+                if (myHitDetector.isHit)
                 {
                     state = NPCState.Defend;
                     yield return new WaitForSeconds(.1f);
@@ -288,9 +293,20 @@ public class AIController : MonoBehaviour
         }
     }
 
+    IEnumerator OnDie()
+    {
+        target = null;
+        while(true)
+        {
+            myController.ExcuteTriggerAnimation("Die");
+            yield return new WaitForSeconds(5f);
+            yield return null;
+        }
+    }
+
     IEnumerator FSM()
     {
-        while (myStat.isAlive)
+        while (myStat.alive)
         {
             switch (state)
             {
@@ -312,8 +328,14 @@ public class AIController : MonoBehaviour
                     break;
                 case NPCState.Attack:
                     Debug.Log("I am here OnAttack");
+                    isAttacking = true;
                     yield return StartCoroutine(OnAttack());
                     break;
+            }
+            if(!myStat.alive)
+            {
+                state = NPCState.Die;
+                break;
             }
             yield return null;
         }

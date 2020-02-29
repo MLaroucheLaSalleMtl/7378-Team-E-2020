@@ -6,6 +6,8 @@ public class VFXActivation : MonoBehaviour
 {
     [SerializeField] private GameObject healVFX = null;
     [SerializeField] private GameObject swordTrail=null;
+    [SerializeField] private GameObject tornadoVFX = null;
+    private Vector3 offset = new Vector3(0, 1, 1.5f);
     
     public void HealVFXOn()
     {
@@ -31,5 +33,10 @@ public class VFXActivation : MonoBehaviour
         {
             swordTrail.SetActive(false);
         }
+    }
+
+    public void InvokeTornado()
+    {
+        Destroy(Instantiate(tornadoVFX, transform.position + offset, transform.rotation) as GameObject,3f);
     }
 }

@@ -11,6 +11,7 @@ public enum State
 
 [RequireComponent(typeof(UnityEngine.CharacterController))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     public class ControlSpamClick
@@ -66,7 +67,6 @@ public class PlayerController : MonoBehaviour
     private float v = 0f;
     private UnityEngine.CharacterController character_controller;
     private Vector3 player_velocity;
-    private bool jumping = false;
     private bool isEquipingSword = false;
     private bool isDeflecting = false;
     private bool isFalling = false;
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnPowerUp(InputAction.CallbackContext context)
+    public void OnHeal(InputAction.CallbackContext context)
     {
         if (context.started)
         {
@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour
         char_anim = GetComponent<CharacterAnimation>();
         character_controller = GetComponent<UnityEngine.CharacterController>();
         rb = GetComponent<Rigidbody>();
+        //katana.transform.position = katanaSpotInCover.position;
         Cursor.lockState = CursorLockMode.Locked;
         UpdateState();
     }
@@ -174,7 +175,6 @@ public class PlayerController : MonoBehaviour
             {
                 char_anim.AnimationWithdrawSword();
             }
-
         }
     }
 
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
     private void PlayerMove()
     {
         Vector3 player_move = transform.right * h + transform.forward * v;
-
+        //Vector3 player_move = new Vector3(h, 0, v);
         if (player_velocity.y <= 0 && character_controller.isGrounded)
         {
             player_velocity.y = -2f;
@@ -214,7 +214,7 @@ public class PlayerController : MonoBehaviour
         {
             player_velocity.y = 0f;
             if (jumpControl.CheckTimer())
-            {
+            {    
                 player_velocity.y = jumpForce;
                 char_anim.JumpAnimation();
             }
@@ -223,7 +223,6 @@ public class PlayerController : MonoBehaviour
 
         //Move player
         character_controller.Move(player_move.normalized * moveSpeed * Time.deltaTime);
-
         //Apply gravity
         player_velocity.y -= gravityForce * Time.deltaTime;
         character_controller.Move(player_velocity * Time.deltaTime);
@@ -233,6 +232,7 @@ public class PlayerController : MonoBehaviour
 
     public void AnimationControl()
     {
+        char_anim.MoveAnimationBlendTree(h, v);
         char_anim.StateAnimation(is_unarmed_anim);
         char_anim.FallAnimation(isFalling);
         char_anim.DeflectAnimation(isDeflecting);

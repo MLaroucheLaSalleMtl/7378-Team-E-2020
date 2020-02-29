@@ -12,4 +12,5 @@ public enum NPCState
     Fight,
     Attack,
     Defend,
+    Die,
 }

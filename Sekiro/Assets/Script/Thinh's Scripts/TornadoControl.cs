@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class TornadoControl : MonoBehaviour
 {
-    [SerializeField] private float rotateSpeed=10f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    [SerializeField] private float moveSpeed = 0f;
+    
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(Vector3.up * rotateSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            GameObject enemy = other.gameObject;
+            enemy.GetComponent<Rigidbody>().AddForce(transform.up*5f, ForceMode.Impulse);
+            
+        }
     }
 }

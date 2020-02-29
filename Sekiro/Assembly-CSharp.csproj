@@ -88,6 +88,7 @@
      <Compile Include="Assets\Script\Character\NPCState.cs" />
      <Compile Include="Assets\Script\Character\PlayerStat.cs" />
      <Compile Include="Assets\Script\Character\Stat.cs" />
+     <Compile Include="Assets\Script\Character\WeaponHitDetector.cs" />
      <Compile Include="Assets\Script\New Folder\btnFX.cs" />
      <Compile Include="Assets\Script\Systems\HealthSystem.cs" />
      <Compile Include="Assets\Script\Systems\PostureSystem.cs" />
@@ -98,10 +99,10 @@
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\CharacterAttack.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\ClimbingSystem.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Script\Thinh&apos;s Scripts\SpinEffect.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\TornadoControl.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\VFXActivation.cs" />
      <Compile Include="Assets\Script\UI\UIManager.cs" />
-     <Compile Include="Assets\WeaponHitDetector.cs" />
      <None Include="Assets\ProCore\Polybrush\Shader\z_TextureBlender_SfSrc.shader" />
      <None Include="Assets\ProCore\Polybrush\ThirdPartyLicenses.txt" />
      <None Include="Assets\ProCore\Polybrush\Shader\Example\z_UnlitTextureBlendAndSnow.shader" />

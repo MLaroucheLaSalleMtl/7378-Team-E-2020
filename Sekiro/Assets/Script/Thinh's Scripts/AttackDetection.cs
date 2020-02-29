@@ -30,4 +30,9 @@ public class AttackDetection : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
 }

@@ -5,8 +5,7 @@ using UnityEngine;
 public class AttackCollisionControl : MonoBehaviour
 {
 
-    [SerializeField] private GameObject leftArmAttackCol, rightArmAttackCol, leftLegAttackCol, rightLegAttackCol;
-    [SerializeField] private GameObject[] swordAttackCols = null;
+    [SerializeField] private GameObject leftArmAttackCol = null, rightArmAttackCol = null, leftLegAttackCol= null, rightLegAttackCol=null, swordAttackCol=null;
 
     public void ActivateLeftArmCollision()
     {
@@ -62,20 +61,14 @@ public class AttackCollisionControl : MonoBehaviour
 
     public void ActivateSwordAttackCollision()
     {
-        foreach(GameObject col in swordAttackCols)
-        {
-            col.SetActive(true);
-        }
+        swordAttackCol.SetActive(true);
     }
 
     public void DeactivateSwordAttackCollision()
     {
-        foreach(GameObject col in swordAttackCols)
+        if (swordAttackCol.activeInHierarchy)
         {
-            if (col.activeInHierarchy)
-            {
-                col.SetActive(false);
-            }
+            swordAttackCol.SetActive(false);
         }
     }
 }

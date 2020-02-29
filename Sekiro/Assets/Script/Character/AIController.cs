@@ -12,7 +12,7 @@ public class AIController : MonoBehaviour
     private NPCHitDetector myHitDetector;
     private NavMeshAgent agent;
     [SerializeField]
-    private ParticleSystem swordTrail;
+    private GameObject swordTrail;
     [SerializeField]
     private WeaponHitDetector myWeaponHitDetector;
     [SerializeField]
@@ -294,6 +294,17 @@ public class AIController : MonoBehaviour
         }
     }
 
+    IEnumerator OnDie()
+    {
+        target = null;
+        while(true)
+        {
+            myController.ExcuteTriggerAnimation("Die");
+            yield return new WaitForSeconds(5f);
+            yield return null;
+        }
+    }
+
     IEnumerator FSM()
     {
         while (myStat.alive)
@@ -321,6 +332,11 @@ public class AIController : MonoBehaviour
                     isAttacking = true;
                     yield return StartCoroutine(OnAttack());
                     break;
+            }
+            if(!myStat.alive)
+            {
+                state = NPCState.Die;
+                break;
             }
             yield return null;
         }

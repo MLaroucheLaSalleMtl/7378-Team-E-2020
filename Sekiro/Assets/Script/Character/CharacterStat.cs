@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-
+using UnityEngine.UI;
 public class CharacterStat : MonoBehaviour
 {
     [SerializeField]
     private int maxHealth;
 
-    //[SerializeField]
-    //private Slider healthBar;
+    public Slider healthBar;
 
     public int currentHealth { get; set; }
 
@@ -20,7 +18,7 @@ public class CharacterStat : MonoBehaviour
 
     private void Start()
     {
-        //healthBar.value = maxHealth;
+        healthBar.value = maxHealth;
         alive = true;
     }
 
@@ -41,6 +39,9 @@ public class CharacterStat : MonoBehaviour
         if (currentHealth <= 0)
             Die();
     }
+
+    public virtual void SetHealthBar(Slider slider)
+        => healthBar = slider;
 
     public virtual void Die()
     {

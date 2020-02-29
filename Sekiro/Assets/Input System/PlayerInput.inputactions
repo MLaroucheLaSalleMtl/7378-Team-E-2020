@@ -54,9 +54,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Effect",
+                    "name": "Heal",
                     "type": "Button",
-                    "id": "179e8e1d-6423-4e17-8c0e-596bf0be1f65",
+                    "id": "7ba4ce90-f339-42a1-baa9-a7786f5e28ca",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Skill 1",
+                    "type": "Button",
+                    "id": "fd8f431b-a641-4043-a511-c7fc3f809e90",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -350,68 +358,46 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "PowerUp",
-                    "id": "32d0b41c-f10c-46ce-947b-639ea01c43e3",
+                    "name": "",
+                    "id": "adb83814-2371-472f-ba07-3789d38634e1",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Tornado",
+                    "id": "414f34d2-87de-4a14-9a5e-65e28a6a51e4",
                     "path": "ButtonWithOneModifier",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Effect",
+                    "action": "Skill 1",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "modifier",
-                    "id": "3d857c3c-1566-4312-ac08-e72e6e3cee15",
+                    "id": "3d8828fa-5a3f-46e6-9d94-ab6cc3c4b410",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Effect",
+                    "action": "Skill 1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "button",
-                    "id": "3214852f-40b4-4dd6-9b1b-d330c51a626c",
+                    "id": "15eff53e-217c-4d9b-aa6d-1604b40a2d3a",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Effect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "PowerUp(GP)",
-                    "id": "121188bd-487d-49b3-af31-fbd8e1ee1a9c",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Effect",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "d649bf36-0da4-46a7-8b8c-4b4aef7ff363",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Effect",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "0f875085-81ce-42a3-9dde-fc3e87422725",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Effect",
+                    "action": "Skill 1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

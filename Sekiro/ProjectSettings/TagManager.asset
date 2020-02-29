@@ -9,6 +9,9 @@ TagManager:
   - Weapon
   - WeaponHand
   - Grass
+  - Climbable
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -19,8 +22,8 @@ TagManager:
   - 
   - 
   - Post Processing
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 

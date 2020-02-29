@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyStat : CharacterStat
 {
@@ -9,6 +10,10 @@ public class EnemyStat : CharacterStat
         yield return new WaitForSeconds(5);
 
         gameObject.SetActive(false);
+    }
+    public override void SetHealthBar(Slider slider)
+    {
+        base.SetHealthBar(slider);
     }
 
 

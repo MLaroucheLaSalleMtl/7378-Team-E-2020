@@ -22,6 +22,12 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetFloat("Speed", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
     }
 
+    public void MoveAnimationBlendTree(float h, float v)
+    {
+        anim.SetFloat("H", h);
+        anim.SetFloat("V", v);
+    }
+
     public void StateAnimation(bool isUnarmed)
     {
         anim.SetBool("isUnarmed", isUnarmed);
@@ -37,6 +43,7 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetTrigger("Jump");
     }
 
+    
     public void DeflectAnimation(bool isDeflecting)
     {
         anim.SetBool("Defend", isDeflecting);
@@ -47,20 +54,52 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
     }
 
+    #region(Combo Attack)
+    //public void AnimationAttack1()
+    //{
+    //    anim.SetTrigger("Attack 1");
+    //}
 
-    public void AnimationAttack1()
+    //public void AnimationAttack2()
+    //{
+    //    anim.SetTrigger("Attack 2");
+    //}
+
+    //public void AnimationAttack3()
+    //{
+    //    anim.SetTrigger("Attack 3");
+    //}
+
+    //public void AnimationAttack(int index)
+    //{
+    //    if(index == 0)
+    //    {
+    //        anim.SetTrigger("Attack 1");
+    //    }
+    //    else if(index == 1)
+    //    {
+    //        anim.SetTrigger("Attack 2");
+    //    }
+    //    else if(index == 2)
+    //    {
+    //        anim.SetTrigger("Attack 3");
+    //    }
+    //}
+    #endregion
+
+   public void AnimationAttack1(bool check)
+   {
+        anim.SetBool("Attack 1", check);
+   }
+
+    public void AnimationAttack2(bool check)
     {
-        anim.SetTrigger("Attack 1");
+        anim.SetBool("Attack 2", check);
     }
 
-    public void AnimationAttack2()
+    public void AnimationAttack3(bool check)
     {
-        anim.SetTrigger("Attack 2");
-    }
-
-    public void AnimationAttack3()
-    {
-        anim.SetTrigger("Attack 3");
+        anim.SetBool("Attack 3", check);
     }
 
     public void AnimationPowerUp()

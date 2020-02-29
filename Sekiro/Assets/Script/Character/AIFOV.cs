@@ -19,7 +19,7 @@ public class AIFOV : MonoBehaviour
     [Range(0, 360)]
     private float viewAngle;
     [SerializeField]
-    [Range(0, 20)]
+    [Range(0, 40f)]
     private float viewRadius;
 
     private void OnDrawGizmos()
