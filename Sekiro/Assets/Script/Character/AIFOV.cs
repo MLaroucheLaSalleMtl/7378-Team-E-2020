@@ -35,12 +35,13 @@ public class AIFOV : MonoBehaviour
         Gizmos.DrawRay(transform.position, fovLine1);
         Gizmos.DrawRay(transform.position, fovLine2);
 
+
         //Gizmos.color = (!isPlayerInFOV) ? Gizmos.color = Color.green : Gizmos.color = Color.red;
 
         if (player != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * viewRadius);
+            Gizmos.DrawRay(transform.TransformPoint(0, 1.6f, 0), (player.transform.TransformPoint(0, 1.6f, 0) - transform.TransformPoint(0, 1.6f, 0)).normalized * viewRadius);
         }
 
         if (suspectedObject != null)
@@ -55,15 +56,15 @@ public class AIFOV : MonoBehaviour
 
     public void InFOV()
     {
-        Collider[] objInRadiusView = Physics.OverlapSphere(transform.position, viewRadius);
 
+        Collider[] objInRadiusView = Physics.OverlapSphere(transform.position, viewRadius);
         for (int i = 0; i < objInRadiusView.Length; i++)
         {
             GameObject obj = objInRadiusView[i].gameObject;
             Vector3 dirToTarget = (obj.transform.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) >= -viewAngle && Vector3.Angle(transform.forward, dirToTarget) <= viewAngle)
             {
-                Ray ray = new Ray(transform.position, obj.transform.position - transform.position);
+                Ray ray = new Ray(transform.TransformPoint(0f, 1.6f, 0f), obj.transform.TransformPoint(0f, 1.6f, 0f) - transform.TransformPoint(0, 1.6f, 0));
                 //float disTarget = Vector3.Distance(transform.position, obj.position);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, viewRadius))

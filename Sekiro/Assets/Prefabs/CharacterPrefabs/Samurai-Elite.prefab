@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 4575857296709092604}
   - component: {fileID: 1348984558066227763}
   - component: {fileID: 1348984558066227772}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Samurai-Elite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -383,6 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1000
   healthBar: {fileID: 8296598046322861566}
+  controller: {fileID: 0}
   damage:
     baseValue: 100
   armor:
@@ -405,6 +406,9 @@ MonoBehaviour:
   smthInFOV: 0
   isPlayerInFOV: 0
   suspectedObject: {fileID: 0}
+  attackableLayer:
+    serializedVersion: 2
+    m_Bits: 512
   viewAngle: 40
   viewRadius: 10
 --- !u!114 &5011239055331644742

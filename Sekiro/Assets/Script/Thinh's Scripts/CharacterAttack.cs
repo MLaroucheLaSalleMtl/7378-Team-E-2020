@@ -23,7 +23,7 @@ public class CharacterAttack : MonoBehaviour
     private bool isAttacking = false;
     private AttackState attack_state;
 
-    [SerializeField] private int noOfClicks = 0;
+    private int noOfClicks = 0;
     private float lastClick = 0f;
     [Range(0, 3f)]public float comboAttackDelay = 0.9f;
 

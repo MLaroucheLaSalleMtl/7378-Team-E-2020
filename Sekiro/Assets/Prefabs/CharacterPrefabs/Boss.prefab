@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 3750060971982968244}
   - component: {fileID: 1815758982525356923}
   - component: {fileID: 1815758982525356916}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -367,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   healthBar: {fileID: 829633281987713276}
+  controller: {fileID: 4530089865337873784}
   damage:
     baseValue: 50
   armor:
@@ -389,6 +390,9 @@ MonoBehaviour:
   smthInFOV: 0
   isPlayerInFOV: 0
   suspectedObject: {fileID: 0}
+  attackableLayer:
+    serializedVersion: 2
+    m_Bits: 512
   viewAngle: 40
   viewRadius: 10
 --- !u!114 &5620824648149828622

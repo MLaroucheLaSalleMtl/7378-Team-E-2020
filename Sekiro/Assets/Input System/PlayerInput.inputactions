@@ -369,6 +369,39 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "GamePad",
+                    "id": "f9766435-31e1-4d10-b8df-e5786a695139",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "ad367da2-65eb-4722-9612-9da60808d98b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "2d80afc6-61d2-476b-bd79-86c27e5c705c",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Heal",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "Tornado",
                     "id": "414f34d2-87de-4a14-9a5e-65e28a6a51e4",
                     "path": "ButtonWithOneModifier",

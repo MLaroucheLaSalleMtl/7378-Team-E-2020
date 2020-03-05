@@ -772,8 +772,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: SwordTrailOn
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.31521738
         functionName: ActivateSwordAttackCollision
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9070505
+        functionName: ReturnAttack1
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -786,8 +800,8 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.9148936
-        functionName: ReturnAttack1
+      - time: 0.5555555
+        functionName: SwordTrailOff
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

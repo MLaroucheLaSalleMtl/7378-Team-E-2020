@@ -12,11 +12,13 @@ public class NPCHitDetector : MonoBehaviour
         {
             numberOfHits += 1;
             isHit = true;
+            print("Enemy is hit");
         }
-        else
-        {
-            numberOfHits = 0;
-            isHit = false;
-        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        isHit = false;
+        numberOfHits = 0;
     }
 }

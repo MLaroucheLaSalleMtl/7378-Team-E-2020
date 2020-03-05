@@ -1435,7 +1435,7 @@ GameObject:
   - component: {fileID: 6051860799857179298}
   - component: {fileID: 9134633666342216813}
   - component: {fileID: 9134633666342216802}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Samurai-Grunt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1580,6 +1580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   healthBar: {fileID: 1892363146788724436}
+  controller: {fileID: 0}
   damage:
     baseValue: 50
   armor:
@@ -1602,6 +1603,9 @@ MonoBehaviour:
   smthInFOV: 0
   isPlayerInFOV: 0
   suspectedObject: {fileID: 0}
+  attackableLayer:
+    serializedVersion: 2
+    m_Bits: 512
   viewAngle: 40
   viewRadius: 10
 --- !u!114 &3023971420557011736

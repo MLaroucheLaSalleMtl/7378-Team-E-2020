@@ -208,7 +208,7 @@ public class AIController : MonoBehaviour
         myController.ExcuteBoolAnimation("Attack", false);
         myController.Move(agent.desiredVelocity, false, false);
         agent.SetDestination(transform.position);
-
+        myController.FaceTarget(target.transform.position);
         while (state == NPCState.Attack)
         {
             if (Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
@@ -234,23 +234,23 @@ public class AIController : MonoBehaviour
         }
     }
 
-    IEnumerator OnDefend()
-    {
-        myWeaponHitDetector.numberOfHits = 0;
-        myWeaponHitDetector.isHit = false;
+    //IEnumerator OnDefend()
+    //{
+    //    myWeaponHitDetector.numberOfHits = 0;
+    //    myWeaponHitDetector.isHit = false;
 
-        myController.Move(agent.desiredVelocity, false, false);
-        agent.SetDestination(transform.position);
-        
-        while (state == NPCState.Defend)
-        {
+    //    myController.Move(agent.desiredVelocity, false, false);
+    //    agent.SetDestination(transform.position);
+    //    while (state == NPCState.Defend)
+    //    {
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
 
     IEnumerator OnFight()
     {
+        myController.FaceTarget(target.transform.position);
         agent.speed = patrolSpeed;
         myController.ExcuteBoolAnimation("InFight", true);
         agent.stoppingDistance = 1f;
@@ -283,12 +283,12 @@ public class AIController : MonoBehaviour
                     break;
                 }
 
-                if (myHitDetector.isHit)
-                {
-                    state = NPCState.Defend;
-                    yield return new WaitForSeconds(.1f);
-                    break;
-                }
+                //if (myHitDetector.isHit)
+                //{
+                //    state = NPCState.Defend;
+                //    yield return new WaitForSeconds(.1f);
+                //    break;
+                //}
             }
             yield return null;
         }
@@ -296,9 +296,11 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnDie()
     {
-        target = null;
         while(true)
         {
+            target = null;
+            agent.stoppingDistance = 0f;
+            agent.SetDestination(transform.position);
             myController.ExcuteTriggerAnimation("Die");
             yield return new WaitForSeconds(5f);
             yield return null;

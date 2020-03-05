@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: 0d2f50a8e0bb841a5aaa90ae55db8849
+=======
+<<<<<<< HEAD:Sekiro/Assets/Script/Thinh's Scripts/SpinEffect.cs.meta
+guid: d97b7462548199d4fa556a8d4d68a054
+=======
+guid: 0d2f50a8e0bb841a5aaa90ae55db8849
+>>>>>>> ccf69c730b06467ab995883c10f35f84c5c9d8f9:Sekiro/Assets/Standard Assets/Environment/Water (Basic)/Scripts/WaterBasic.cs.meta
+>>>>>>> ccf69c730b06467ab995883c10f35f84c5c9d8f9
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 

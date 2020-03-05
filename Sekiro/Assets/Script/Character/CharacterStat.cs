@@ -11,6 +11,8 @@ public class CharacterStat : MonoBehaviour
 
     public int currentHealth { get; set; }
 
+    public NPCController controller;
+
     public Stat damage;
     public Stat armor;
 
@@ -18,6 +20,8 @@ public class CharacterStat : MonoBehaviour
 
     private void Start()
     {
+        controller = GetComponent<NPCController>();
+        healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
         alive = true;
     }
@@ -34,7 +38,7 @@ public class CharacterStat : MonoBehaviour
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
         currentHealth -= damage;
-        //healthBar.value = currentHealth;
+        healthBar.value = currentHealth;
 
         if (currentHealth <= 0)
             Die();
@@ -47,5 +51,6 @@ public class CharacterStat : MonoBehaviour
     {
         alive = false;
         Debug.Log("Die");
+        controller.ExcuteTriggerAnimation("Die");
     }
 }
