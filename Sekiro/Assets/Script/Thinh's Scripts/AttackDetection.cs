@@ -7,14 +7,12 @@ public class AttackDetection : MonoBehaviour
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private float radius = 1f;
     [SerializeField] private CharacterCombat combat;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
+    [SerializeField]
+    private CharacterStat targetStat;
+    [SerializeField]
+    private NPCState state;
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         DetectCollision();
     }
@@ -27,8 +25,26 @@ public class AttackDetection : MonoBehaviour
         {
             foreach (Collider h in hit)
             {
-                combat.Attack(h.GetComponent<CharacterStat>());
-                print("Hit the " + h.gameObject.name);
+                targetStat = h.GetComponent<CharacterStat>();
+
+                //Update this one
+                //if (h.tag == "Player")
+                //    //state = h.GetComponent<PlayerController>().g
+                //    //Put your defend state here
+                //else
+                //    state = h.GetComponent<AIController>().GetCurrentState();
+
+
+                //Temporary update the one above then remove this one
+                state = h.GetComponent<AIController>().GetCurrentState();
+
+
+                if (state == NPCState.Defend)
+                    combat.Attack(null);
+                else
+                    combat.Attack(targetStat);
+                // combat.Attack(h.GetComponent<CharacterStat>());
+                // print("Hit the " + h.gameObject.name);
             }
 
             gameObject.SetActive(false);

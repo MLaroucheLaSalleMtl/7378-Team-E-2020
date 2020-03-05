@@ -203,22 +203,6 @@ Transform:
   m_Father: {fileID: 5968902146179068910}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1348984556596818505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348984556437668826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bada9ad61c114944a13d437883b3f30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 1348984558066227772}
-  targetStat: {fileID: 0}
-  numberOfHits: 0
-  isHit: 0
 --- !u!1 &1348984558066227762
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,9 +390,6 @@ MonoBehaviour:
   smthInFOV: 0
   isPlayerInFOV: 0
   suspectedObject: {fileID: 0}
-  attackableLayer:
-    serializedVersion: 2
-    m_Bits: 512
   viewAngle: 40
   viewRadius: 10
 --- !u!114 &5011239055331644742
@@ -424,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordTrail: {fileID: 0}
-  myWeaponHitDetector: {fileID: 1348984556596818505}
+  myWeaponHitDetector: {fileID: 0}
   state: 0
   pathHolder: {fileID: 0}
   waypoints: []
@@ -432,6 +413,7 @@ MonoBehaviour:
   target: {fileID: 0}
   stoppingDistance: 0.1
   patrolSpeed: 0.5
+  playerLastPosition: {x: 0, y: 0, z: 0}
   chaseSpeed: 1
   waitTime: 3
   isAttacking: 0
@@ -1946,15 +1928,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2d2af1a31aea914f8d61a068e79455e, type: 3}
---- !u!1 &7032761525199153537 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: f2d2af1a31aea914f8d61a068e79455e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1348984558309666952}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6323681150293334930 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f2d2af1a31aea914f8d61a068e79455e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1348984558309666952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7032761525199153537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: f2d2af1a31aea914f8d61a068e79455e,
     type: 3}
   m_PrefabInstance: {fileID: 1348984558309666952}
   m_PrefabAsset: {fileID: 0}

@@ -14,9 +14,11 @@ public class NPCHitDetector : MonoBehaviour
             isHit = true;
             print("Enemy is hit");
         }
+        
+        Invoke("ResetValue", 3f);
     }
 
-    private void OnTriggerExit(Collider other)
+    void ResetValue()
     {
         isHit = false;
         numberOfHits = 0;

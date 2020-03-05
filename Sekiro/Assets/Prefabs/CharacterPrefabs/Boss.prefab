@@ -390,9 +390,6 @@ MonoBehaviour:
   smthInFOV: 0
   isPlayerInFOV: 0
   suspectedObject: {fileID: 0}
-  attackableLayer:
-    serializedVersion: 2
-    m_Bits: 512
   viewAngle: 40
   viewRadius: 10
 --- !u!114 &5620824648149828622
@@ -408,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swordTrail: {fileID: 2665314439245742088}
-  myWeaponHitDetector: {fileID: 1815758983736107777}
+  myWeaponHitDetector: {fileID: 0}
   state: 0
   pathHolder: {fileID: 0}
   waypoints: []
@@ -416,6 +413,7 @@ MonoBehaviour:
   target: {fileID: 2665314439245742091}
   stoppingDistance: 0.1
   patrolSpeed: 0.5
+  playerLastPosition: {x: 0, y: 0, z: 0}
   chaseSpeed: 1
   waitTime: 3
   isAttacking: 0
@@ -468,22 +466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da416a1d34f65324cbc0a7906caf22ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1815758983736107777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1815758984113869458}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bada9ad61c114944a13d437883b3f30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  combat: {fileID: 1815758982525356916}
-  targetStat: {fileID: 0}
-  numberOfHits: 0
-  isHit: 0
 --- !u!1 &2497189358429971835
 GameObject:
   m_ObjectHideFlags: 0
