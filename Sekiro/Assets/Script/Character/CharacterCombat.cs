@@ -13,8 +13,11 @@ public class CharacterCombat : MonoBehaviour
 
     public virtual void Attack(CharacterStat targetStats)
     {
-        if (targetStats.alive)
-            DoDamage(targetStats);
+        if (targetStats != null)
+        {
+            if (targetStats.alive)
+                DoDamage(targetStats);
+        }
     }
 
     //public void Defend()

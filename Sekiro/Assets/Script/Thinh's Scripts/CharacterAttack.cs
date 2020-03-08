@@ -4,41 +4,37 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
-public enum AttackState
-{
-    none,
-    attack1,
-    attack2,
-    attack3
-}
+
 
 
 public class CharacterAttack : MonoBehaviour
 {
 
     private CharacterAnimation char_anim;
-    private float default_combo_timer = 0.4f;
-    private float current_combo_timer = 0f;
-    private bool combo_timer_reset;
     private bool isAttacking = false;
-    private AttackState attack_state;
-
+    private bool isReadyToAttack = true;
     private int noOfClicks = 0;
     private float lastClick = 0f;
     [Range(0, 3f)]public float comboAttackDelay = 0.9f;
+    [Range(0, 3f)] public float resetAttack = 1.1f;
 
 
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            lastClick = Time.time;
-            noOfClicks++;
-            if (noOfClicks == 1)
+            if (isReadyToAttack)
             {
-                char_anim.AnimationAttack1(true);
+                lastClick = Time.time;
+                noOfClicks++;
+                if (noOfClicks == 1)
+                {
+                    char_anim.AnimationAttack1(true);
+                    isAttacking = true;
+                }
+                noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
+                gameObject.GetComponent<PlayerController>().StopMoveSpeed();
             }
-            noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
         }
     }
 
@@ -46,8 +42,6 @@ public class CharacterAttack : MonoBehaviour
     void Start()
     {
         char_anim = GetComponent<CharacterAnimation>();
-        attack_state = AttackState.none;
-        current_combo_timer = default_combo_timer;
     }
 
     // Update is called once per frame
@@ -102,13 +96,24 @@ public class CharacterAttack : MonoBehaviour
     //}
     #endregion
 
+    public bool CheckIsAttacking()
+    {
+        return isAttacking;
+    }
+
     private void PlayerAttack()
     {
         if(Time.time - lastClick > comboAttackDelay)
         {
-            noOfClicks = 0;
+            noOfClicks=0;
+            isAttacking = false;
+            gameObject.GetComponent<PlayerController>().ResetMoveSpeed();
         }
-
+        if(Time.time - lastClick > resetAttack)
+        {
+            ReturnAttack3();
+        }
+        
     }
 
     public void ReturnAttack1()
@@ -143,5 +148,15 @@ public class CharacterAttack : MonoBehaviour
         char_anim.AnimationAttack2(false);
         char_anim.AnimationAttack3(false);
         noOfClicks = 0;
+    }
+
+    public void AbleToAttack()
+    {
+        isReadyToAttack = true;
+    }
+
+    public void UnableToAttack()
+    {
+        isReadyToAttack = false;
     }
 }

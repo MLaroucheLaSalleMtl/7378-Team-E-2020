@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public enum State
 {
     SwordAttaching,
-    Unarmed
+    Unarmed,
 }
 
 [RequireComponent(typeof(UnityEngine.CharacterController))]
@@ -54,6 +54,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed = 0f;
     [SerializeField] private float gravityForce = 0f;
     [SerializeField] private float jumpForce = 0f;
+    [SerializeField] private float fallMultiplier = 0f;
+    [SerializeField] private float lowJumpMultiplier = 0f;
 
     [Space]
     [Header("Katana")]
@@ -68,10 +70,13 @@ public class PlayerController : MonoBehaviour
     private UnityEngine.CharacterController character_controller;
     private Vector3 player_velocity;
     private bool isEquipingSword = false;
+    private bool isAttacking = false;
     private bool isDeflecting = false;
     private bool isFalling = false;
+    private bool isJumping = false;
     private State player_state = State.Unarmed;
     private bool is_unarmed_anim = true;
+    [SerializeField] private NPCState npcState;
 
     private ControlSpamClick equipControl = new ControlSpamClick(0f, 1.5f);
     private ControlSpamClick jumpControl = new ControlSpamClick(0f, .5f);
@@ -93,19 +98,21 @@ public class PlayerController : MonoBehaviour
         {
             jumpControl.StartTimer();
         }
+        isJumping = context.performed;
 
     }
 
     public void OnHoldLShift(InputAction.CallbackContext context)
     {
-        if (context.performed)
-        {
-            isDeflecting = true;
-        }
-        else if (context.canceled)
-        {
-            isDeflecting = false;
-        }
+        //if (context.performed)
+        //{
+        //    isDeflecting = true;
+        //}
+        //else if (context.canceled)
+        //{
+        //    isDeflecting = false;
+        //}
+        isDeflecting = context.performed;
     }
 
     public void OnHeal(InputAction.CallbackContext context)
@@ -122,7 +129,10 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            equipControl.StartTimer();
+            if (!isAttacking)
+            {
+                equipControl.StartTimer();
+            }
         }
 
     }
@@ -134,8 +144,6 @@ public class PlayerController : MonoBehaviour
         char_anim = GetComponent<CharacterAnimation>();
         character_controller = GetComponent<UnityEngine.CharacterController>();
         rb = GetComponent<Rigidbody>();
-        //katana.transform.position = katanaSpotInCover.position;
-        Cursor.lockState = CursorLockMode.Locked;
         UpdateState();
     }
 
@@ -144,6 +152,7 @@ public class PlayerController : MonoBehaviour
     {
         PlayerMove();
         UpdateState();
+        ChangeNPCState();
         equipControl.ResetTimer();
         jumpControl.ResetTimer();
     }
@@ -168,14 +177,17 @@ public class PlayerController : MonoBehaviour
         {
             if (player_state == State.SwordAttaching)
             {
+                moveSpeed = 2f;
                 char_anim.AnimationWithdrawSword();
             }
 
             else if (player_state == State.Unarmed)
             {
+                moveSpeed = 1.2f;
                 char_anim.AnimationWithdrawSword();
             }
         }
+        isAttacking = gameObject.GetComponent<CharacterAttack>().CheckIsAttacking();
     }
 
     public void Sword_Equip()
@@ -197,6 +209,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 player_move = transform.right * h + transform.forward * v;
         //Vector3 player_move = new Vector3(h, 0, v);
+        BetterJump();
         if (player_velocity.y <= 0 && character_controller.isGrounded)
         {
             player_velocity.y = -2f;
@@ -228,6 +241,48 @@ public class PlayerController : MonoBehaviour
         character_controller.Move(player_velocity * Time.deltaTime);
 
         AnimationControl();
+    }
+
+    private void BetterJump()
+    {
+        if(player_velocity.y < 0)
+        {
+            player_velocity += Vector3.up * gravityForce * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if(player_velocity.y >0 && !isJumping)
+        {
+            player_velocity += Vector3.up * gravityForce * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
+    private void ChangeNPCState()
+    {
+        if (isDeflecting)
+        {
+            npcState = NPCState.Defend;
+        }
+        else
+        {
+            npcState = NPCState.Idle;
+        }
+    }
+
+    public NPCState GetCurrentState() => npcState;
+
+    public void StopMoveSpeed()
+    {
+        if(moveSpeed > 0)
+        {
+            moveSpeed = 0f;
+        }
+    }
+
+    public void ResetMoveSpeed()
+    {
+        if(moveSpeed <= 0)
+        {
+            moveSpeed = 2f;
+        }
     }
 
     public void AnimationControl()

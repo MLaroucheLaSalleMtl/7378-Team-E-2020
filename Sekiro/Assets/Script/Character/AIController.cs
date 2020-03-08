@@ -98,7 +98,7 @@ public class AIController : MonoBehaviour
                 myController.FaceTarget(target.transform.position);
                 agent.SetDestination(target.transform.position);
 
-                if (Vector3.Distance(transform.position, target.transform.position) <= 3f)
+                if (Vector3.Distance(transform.position, target.transform.position) <= 2f)
                 {
                     state = NPCState.Fight;
                     yield return new WaitForSeconds(.1f);
@@ -130,7 +130,7 @@ public class AIController : MonoBehaviour
             if (!mySight.CanSeePlayer())
             {
                 myController.Move(agent.desiredVelocity, false, false);
-
+                myController.FaceTarget(playerLastPosition);
                 agent.SetDestination(playerLastPosition);
 
                 if (agent.remainingDistance < .1f)
@@ -212,11 +212,9 @@ public class AIController : MonoBehaviour
     {
         myController.ExcuteBoolAnimation("Attack", false);
         myController.Move(agent.desiredVelocity, false, false);
-        agent.SetDestination(transform.position);
-        myController.FaceTarget(target.transform.position);
         while (state == NPCState.Attack)
         {
-            if (Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
+            if (Vector3.Distance(transform.position, target.transform.position) > 2f || !mySight.CanSeePlayer())
             {
                 state = NPCState.Chase;
             }
@@ -224,6 +222,9 @@ public class AIController : MonoBehaviour
             {
                 if (!myHitDetector.isHit)
                 {
+                    myController.FaceTarget(target.transform.position);
+                    agent.SetDestination(transform.position);
+                    myController.FaceTarget(target.transform.position);
                     myController.ExcuteBoolAnimation("Attack", true);
                     yield return new WaitForSeconds(0.1f);
                     swordTrail.gameObject.SetActive(true);
@@ -247,10 +248,12 @@ public class AIController : MonoBehaviour
         {
             myController.Stop();
             agent.SetDestination(transform.position);
-            if (Vector3.Distance(transform.position, target.transform.position) > 3f || !mySight.CanSeePlayer())
+            if (Vector3.Distance(transform.position, target.transform.position) > 2f || !mySight.CanSeePlayer())
             { state = NPCState.Chase; }
             else
             {
+                myController.FaceTarget(target.transform.position);
+                agent.SetDestination(transform.position);
                 myController.ExcuteBoolAnimation("Block", true);
                 yield return new WaitForSeconds(3f);
                 myController.ExcuteBoolAnimation("Block", false);
@@ -274,7 +277,7 @@ public class AIController : MonoBehaviour
             //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
             //if (Vector3.Distance(transform.position, target.transform.position) > 2f)
             Debug.Log(agent.remainingDistance);
-            if (agent.remainingDistance > 1.5f)
+            if (agent.remainingDistance > 2)
             {
                 state = NPCState.Chase;
                 //yield return new WaitForSeconds(.1f);
