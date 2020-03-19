@@ -52,10 +52,17 @@ public class PlayerController : MonoBehaviour
     }
 
     [SerializeField] private float moveSpeed = 0f;
+
+    [Space]
+    [Header("Jump")]
     [SerializeField] private float gravityForce = 0f;
     [SerializeField] private float jumpForce = 0f;
     [SerializeField] private float fallMultiplier = 0f;
     [SerializeField] private float lowJumpMultiplier = 0f;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Transform checkGroundPos = null;
+    [SerializeField] private float checkGroundRadius = 0f;
+    private bool isGrounded;
 
     [Space]
     [Header("Katana")]
@@ -79,7 +86,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private NPCState npcState;
 
     private ControlSpamClick equipControl = new ControlSpamClick(0f, 1.5f);
-    private ControlSpamClick jumpControl = new ControlSpamClick(0f, .5f);
+    private ControlSpamClick jumpControl = new ControlSpamClick(0f, .3f);
+    private ControlSpamClick throwControl = new ControlSpamClick(0f, 0.8f);
 
 
     #region(Input System)
@@ -104,14 +112,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnHoldLShift(InputAction.CallbackContext context)
     {
-        //if (context.performed)
-        //{
-        //    isDeflecting = true;
-        //}
-        //else if (context.canceled)
-        //{
-        //    isDeflecting = false;
-        //}
         isDeflecting = context.performed;
     }
 
@@ -136,6 +136,17 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+
+    public void OnSkill2(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (!isAttacking)
+            {
+                throwControl.StartTimer();
+            }
+        }
+    }
     #endregion //Input System
 
     // Start is called before the first frame update
@@ -153,8 +164,10 @@ public class PlayerController : MonoBehaviour
         PlayerMove();
         UpdateState();
         ChangeNPCState();
+        ThrowShuriken();
         equipControl.ResetTimer();
         jumpControl.ResetTimer();
+        CheckIsGrounded();
     }
 
 
@@ -177,13 +190,13 @@ public class PlayerController : MonoBehaviour
         {
             if (player_state == State.SwordAttaching)
             {
-                moveSpeed = 2f;
+                moveSpeed = .2f;
                 char_anim.AnimationWithdrawSword();
             }
 
             else if (player_state == State.Unarmed)
             {
-                moveSpeed = 1.2f;
+                moveSpeed = .2f;
                 char_anim.AnimationWithdrawSword();
             }
         }
@@ -204,7 +217,16 @@ public class PlayerController : MonoBehaviour
         is_unarmed_anim = true;
     }
 
-    
+    private void CheckIsGrounded()
+    {
+        isGrounded = Physics.CheckSphere(checkGroundPos.position, checkGroundRadius, whatIsGround);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(checkGroundPos.position, checkGroundRadius);
+    }
+
     private void PlayerMove()
     {
         Vector3 player_move = transform.right * h + transform.forward * v;
@@ -281,8 +303,19 @@ public class PlayerController : MonoBehaviour
     {
         if(moveSpeed <= 0)
         {
-            moveSpeed = 2f;
+            moveSpeed = .2f;
         }
+    }
+
+    private void ThrowShuriken()
+    {
+        if (throwControl.CheckTimer())
+        {
+            char_anim.AnimationThrowShuriken();
+            Debug.Log("Throw");
+        }
+        throwControl.ResetTimer();
+
     }
 
     public void AnimationControl()
@@ -291,7 +324,7 @@ public class PlayerController : MonoBehaviour
         char_anim.StateAnimation(is_unarmed_anim);
         char_anim.FallAnimation(isFalling);
         char_anim.DeflectAnimation(isDeflecting);
-        char_anim.IdleAnimation(character_controller.isGrounded);
+        char_anim.IdleAnimation(isGrounded);
         char_anim.MoveAnimation(h, v);
     }
 }

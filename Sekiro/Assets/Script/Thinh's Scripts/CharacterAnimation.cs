@@ -119,4 +119,16 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetLayerWeight(1, 0);
     }
 
+    public void AnimationThrowShuriken()
+    {
+        anim.SetLayerWeight(2, 1f);
+        anim.SetTrigger("Throw");
+        Invoke("ResetSkillLayer", 3f);
+    }
+
+    private void ResetSkillLayer()
+    {
+        anim.SetLayerWeight(2, 0);
+    }
+
 }

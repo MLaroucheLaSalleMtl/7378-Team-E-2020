@@ -786,7 +786,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6736111
+      - time: 0.57027775
         functionName: SwordTrailOff
         data: 
         objectReferenceParameter: {instanceID: 0}

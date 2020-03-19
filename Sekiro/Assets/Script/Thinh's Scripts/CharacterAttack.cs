@@ -108,8 +108,9 @@ public class CharacterAttack : MonoBehaviour
             noOfClicks=0;
             isAttacking = false;
             gameObject.GetComponent<PlayerController>().ResetMoveSpeed();
+            gameObject.GetComponent<VFXActivation>().SwordTrailOff();
         }
-        if(Time.time - lastClick > resetAttack)
+        if(!isAttacking)
         {
             ReturnAttack3();
         }

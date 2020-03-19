@@ -786,6 +786,13 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.4622222
+        functionName: SwordTrailOff
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.9070505
         functionName: ReturnAttack1
         data: 
@@ -795,13 +802,6 @@ ModelImporter:
         messageOptions: 0
       - time: 0.91133004
         functionName: DeactivateSwordAttackCollision
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.5555555
-        functionName: SwordTrailOff
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

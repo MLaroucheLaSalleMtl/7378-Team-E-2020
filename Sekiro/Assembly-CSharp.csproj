@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/Tools/RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.sh</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -11,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7FDD528A-9F27-B29C-C3C8-25C1A15DE99B}</ProjectGuid>
+    <ProjectGuid>{8a52dd7f-279f-9cb2-c3c8-25c1a15de99b}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -47,15 +45,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="UnityEngine">
-      <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-     <Compile Include="Assets\HealthBarRotate.cs" />
+     <Compile Include="Assets\Explosion.cs" />
      <Compile Include="Assets\Input System\MyInput.cs" />
      <Compile Include="Assets\ProCore\Polybrush\Code\Enum\z_BrushMirror.cs" />
      <Compile Include="Assets\ProCore\Polybrush\Code\Enum\z_ComponentIndex.cs" />
@@ -112,9 +102,12 @@
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\CharacterAttack.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\ClimbingSystem.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Script\Thinh&apos;s Scripts\Shuriken.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\SpinEffect.cs" />
+     <Compile Include="Assets\Script\Thinh&apos;s Scripts\ThrowShuriken.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\TornadoControl.cs" />
      <Compile Include="Assets\Script\Thinh&apos;s Scripts\VFXActivation.cs" />
+     <Compile Include="Assets\Script\UI\HealthBarRotate.cs" />
      <Compile Include="Assets\Script\UI\MenuManager.cs" />
      <Compile Include="Assets\Script\UI\SettingsMenu.cs" />
      <Compile Include="Assets\Scripts\LoadLevel.cs" />
@@ -200,41 +193,8 @@
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Sprite.shader" />
      <None Include="Assets\ProCore\Polybrush\Shader\z_TextureBlendModulate_SfSrc.shader" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
- <Reference Include="Unity.Timeline.Editor">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.VSCode.Editor">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.InputSystem">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.InputSystem.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.UI">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Timeline">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
- </Reference>
- <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Editor">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Rider.Editor">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
- </Reference>
- <Reference Include="Unity.Postprocessing.Runtime">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
- </Reference>
- <Reference Include="Unity.TextMeshPro">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.UI">
- <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <Reference Include="UnityEngine">
+ <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -412,6 +372,9 @@
  </Reference>
  <Reference Include="UnityEngine.XRModule">
  <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor">
+ <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>/Applications/Unity/Hub/Editor/2019.3.0f5/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -770,12 +733,60 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{D3A1AA21-255B-8F55-B968-51697515FDD2}</Project>
+      <Project>{21aaa1d3-5b25-558f-b968-51697515fdd2}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.Editor.csproj">
+      <Project>{dfd95cae-29df-fb27-9a1f-44580ee7927d}</Project>
+      <Name>Unity.Timeline.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.VSCode.Editor.csproj">
+      <Project>{ae514e96-6985-6163-aef3-9d03dcfab5bc}</Project>
+      <Name>Unity.VSCode.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.InputSystem.csproj">
+      <Project>{d6173c17-4a06-7939-665c-eef4a91d8494}</Project>
+      <Name>Unity.InputSystem</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.Editor.csproj">
+      <Project>{22d84807-ccda-29ad-41cb-fec68a91b27a}</Project>
+      <Name>Unity.TextMeshPro.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.UI.csproj">
+      <Project>{1a337eae-c725-b885-0fdd-3d2d584cff42}</Project>
+      <Name>UnityEngine.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Timeline.csproj">
+      <Project>{5b50383f-5cd2-7ec5-2d55-f826cd021006}</Project>
+      <Name>Unity.Timeline</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.CollabProxy.Editor.csproj">
+      <Project>{8f82d445-7036-9568-319b-5f92533bc716}</Project>
+      <Name>Unity.CollabProxy.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Editor.csproj">
+      <Project>{ab84a70f-1cde-2628-a497-790f130ca13f}</Project>
+      <Name>Unity.Postprocessing.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Rider.Editor.csproj">
+      <Project>{6f8bdde6-a16f-ddde-0e98-a9f7036de9bc}</Project>
+      <Name>Unity.Rider.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.Postprocessing.Runtime.csproj">
+      <Project>{3070d47d-cb9e-d670-85f9-2b3b263126ee}</Project>
+      <Name>Unity.Postprocessing.Runtime</Name>
+    </ProjectReference>
+    <ProjectReference Include="Unity.TextMeshPro.csproj">
+      <Project>{a373b4ce-74c3-1846-3559-84227064092e}</Project>
+      <Name>Unity.TextMeshPro</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEditor.UI.csproj">
+      <Project>{1e082e7a-1d77-e646-4969-c49b7695418e}</Project>
+      <Name>UnityEditor.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

@@ -7,15 +7,24 @@ public class AttackDetection : MonoBehaviour
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private float radius = 1f;
     [SerializeField] private CharacterCombat combat;
-    [SerializeField]
     private CharacterStat targetStat;
-    [SerializeField]
-    private NPCState state;
+    [SerializeField] private NPCState state;
+
+    [Space]
+    [Header("VFX")]
+    [SerializeField] private GameObject hitSwordVFX = null;
+    [SerializeField] private GameObject bloodEffect = null;
     // Update is called once per frame
     private void FixedUpdate()
     {
         DetectCollision();
     }
+
+    private void Start()
+    {
+        combat = gameObject.GetComponentInParent<CharacterCombat>();
+    }
+
     private void DetectCollision()
     {
         Collider[] hit = Physics.OverlapSphere(transform.position, radius, attackableLayer);
@@ -27,25 +36,34 @@ public class AttackDetection : MonoBehaviour
                 if(h != null)
                     targetStat = h.GetComponent<CharacterStat>();
 
-                //Update this one
-                if (h.tag == "Player")
+                if (h.gameObject.CompareTag("Player"))
+                {
                     state = h.GetComponent<PlayerController>().GetCurrentState();
-                //Put your defend state here
-                else
+                    print("Hit the player");
+                }
+               
+                else if(h.gameObject.CompareTag("Enemy"))
+                {
                     state = h.GetComponent<AIController>().GetCurrentState();
-
-
-                //Temporary update the one above then remove this one
-                //state = h.GetComponent<AIController>().GetCurrentState();
-
+                    if (bloodEffect != null)
+                    {
+                        Destroy(Instantiate(bloodEffect, transform.position, transform.rotation) as GameObject, 1f);
+                    }
+                    //print("Hit the enemy");
+                }
 
                 if (state == NPCState.Defend)
+                {
                     combat.Attack(null);
+                    if (hitSwordVFX != null)
+                    {
+                        Destroy(Instantiate(hitSwordVFX, h.transform.position, Quaternion.identity) as GameObject, 1f);
+                    }
+                }
                 else
                 {
                     combat.Attack(targetStat);
                 }
-                // combat.Attack(h.GetComponent<CharacterStat>());
                 print("Hit the " + h.gameObject.name);
             }
 

@@ -8,11 +8,12 @@ public class NPCHitDetector : MonoBehaviour
     public bool isHit;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.gameObject.CompareTag("Weapon"))
         {
             numberOfHits += 1;
             isHit = true;
             print("Enemy is hit");
+            print("Hit is detected");
         }
         
         Invoke("ResetValue", 3f);

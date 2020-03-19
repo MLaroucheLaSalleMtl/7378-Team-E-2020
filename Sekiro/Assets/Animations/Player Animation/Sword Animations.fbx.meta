@@ -68,8 +68,22 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
+      - time: 0
+        functionName: UnableToAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.31561756
         functionName: Sword_Equip
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.33365002
+        functionName: AbleToAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
@@ -106,6 +120,20 @@ ModelImporter:
       events:
       - time: 0.5121484
         functionName: Sword_Unequip
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: UnableToAttack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.52100843
+        functionName: AbleToAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
