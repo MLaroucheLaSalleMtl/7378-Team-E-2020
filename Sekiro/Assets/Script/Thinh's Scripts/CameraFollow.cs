@@ -14,19 +14,13 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float maxViewAngle = 0f;
     [SerializeField] private float minViewAngle = 0f;
     private Vector2 deltamouse = new Vector2(0, 0);
-    private Transform defaultPivotPos;
-    private bool isFreeLook = false;
+    private Transform defaultPivotPos;    
    
 
     //Input System Methods
     public void OnLook(InputAction.CallbackContext context)
     {
         deltamouse = context.ReadValue<Vector2>();
-    }
-
-    public void OnFreeLook(InputAction.CallbackContext context)
-    {
-        isFreeLook = context.performed;
     }
 
     // Start is called before the first frame update
@@ -48,8 +42,10 @@ public class CameraFollow : MonoBehaviour
     {
         //Rotate the player horizontally
         float horizontal = deltamouse.x;
-        player.Rotate(0, horizontal, 0);
-        
+        if (player.GetComponent<PlayerStat>().alive)
+        {
+            player.Rotate(0, horizontal, 0);
+        }
         //Rotate the pivot vertically
         float vertical = deltamouse.y;
         pivot.Rotate(-vertical, 0, 0);
@@ -80,4 +76,5 @@ public class CameraFollow : MonoBehaviour
         transform.LookAt(lookAtPoint);
         
     }
+    
 }

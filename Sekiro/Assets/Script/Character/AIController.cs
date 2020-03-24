@@ -76,7 +76,7 @@ public class AIController : MonoBehaviour
         state = NPCState.Patrol;
 
         //Wait a little bit before moving
-        Invoke("ActivateFSM", 1f);
+        Invoke("ActivateFSM", .1f);
     }
 
     void ActivateFSM() => StartCoroutine("FSM");
@@ -165,14 +165,22 @@ public class AIController : MonoBehaviour
         {
             myController.Move(agent.desiredVelocity, false, false);
 
+            if (myHitDetector.isHit)
+            {
+                target = GameObject.FindGameObjectWithTag("Player");
+                agent.SetDestination(transform.position);
+                myController.Stop();
+                myController.FaceTarget(target.transform.position);
+                yield return new WaitForSeconds(1.5f);
+            }
+
             if (mySight.CanSeePlayer())
             {
                 myController.Stop();
                 agent.SetDestination(transform.position);
                 myController.WithdrawWeapon();
 
-                state = NPCState.Chase;
-                yield return new WaitForSeconds(.1f);
+                state = NPCState.Fight;
                 break;
             }
 
@@ -226,14 +234,14 @@ public class AIController : MonoBehaviour
                     agent.SetDestination(transform.position);
                     myController.FaceTarget(target.transform.position);
                     myController.ExcuteBoolAnimation("Attack", true);
-                    yield return new WaitForSeconds(0.1f);
+                    yield return new WaitForSeconds(.1f);
                     swordTrail.gameObject.SetActive(true);
                     float delayTime = Random.Range(1, 3f);
                     yield return new WaitForSeconds(delayTime);
                     if (myHitDetector.isHit)
                         state = NPCState.Defend;
                     myController.ExcuteBoolAnimation("Attack", false);
-                    yield return new WaitForSeconds(1f);
+                    yield return new WaitForSeconds(.1f);
                     swordTrail.gameObject.SetActive(false);
                     state = NPCState.Fight;
                 }
@@ -265,10 +273,11 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnFight()
     {
+        transform.Rotate(target.transform.position);
         myController.FaceTarget(target.transform.position);
         agent.speed = patrolSpeed;
         myController.ExcuteBoolAnimation("InFight", true);
-        agent.stoppingDistance = 1f;
+        agent.stoppingDistance = 0.5f;
         myController.useStrafeControl = true;
         //int decision = Random.Range(0, 2);
         //target.gameObject.GetComponent<PlayerStat>().isAlive -- While condition later on

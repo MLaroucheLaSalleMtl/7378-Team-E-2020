@@ -107,6 +107,21 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetTrigger("PowerUp");
     }
 
+    public void AnimationDie()
+    {
+        anim.SetTrigger("Die");
+    }
+
+    //public void AnimationFaint(bool check)
+    //{
+    //    anim.SetBool("Faint", check);
+    //}
+
+    public void AnimationFaint()
+    {
+        anim.SetTrigger("Faint");
+    }
+
     public void AnimationWithdrawSword()
     {
         anim.SetLayerWeight(1, 1f);

@@ -7,6 +7,11 @@ public class EnemyStat : CharacterStat
 {
     IEnumerator WaitToBeDisable()
     {
+        SpawnItem spawn = gameObject.GetComponent<SpawnItem>();
+        if (spawn != null)
+        {
+            spawn.DropItem();
+        }
         yield return new WaitForSeconds(5);
 
         gameObject.SetActive(false);
@@ -20,6 +25,7 @@ public class EnemyStat : CharacterStat
     public override void Die()
     {
         base.Die();
+       
         StartCoroutine(WaitToBeDisable());
     }
 }

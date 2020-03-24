@@ -5,19 +5,10 @@ using UnityEngine.InputSystem;
 
 public class ThrowShuriken : MonoBehaviour
 {
-    [SerializeField] private GameObject shuriken;
-    [SerializeField] private Transform throwPos;
+    [SerializeField] private GameObject explosiveShuriken=null;
+    [SerializeField] private Transform throwPos=null;
     [SerializeField] private float throwForce = 0;
-
-    public void OnThrow(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-          GameObject go =  Instantiate(shuriken, throwPos.position, throwPos.rotation);
-          Rigidbody rb = go.GetComponent<Rigidbody>();
-          rb.velocity = go.transform.up * throwForce;
-        }
-    }
+   
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +24,7 @@ public class ThrowShuriken : MonoBehaviour
 
     public void ThrowKunai()
     {
-        GameObject go = Instantiate(shuriken, throwPos.position, throwPos.rotation);
+        GameObject go = Instantiate(explosiveShuriken, throwPos.position, throwPos.rotation);
         Rigidbody rb = go.GetComponent<Rigidbody>();
         rb.velocity = go.transform.up * throwForce;
     }

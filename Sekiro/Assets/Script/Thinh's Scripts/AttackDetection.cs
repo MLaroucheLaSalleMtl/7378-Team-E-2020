@@ -45,10 +45,7 @@ public class AttackDetection : MonoBehaviour
                 else if(h.gameObject.CompareTag("Enemy"))
                 {
                     state = h.GetComponent<AIController>().GetCurrentState();
-                    if (bloodEffect != null)
-                    {
-                        Destroy(Instantiate(bloodEffect, transform.position, transform.rotation) as GameObject, 1f);
-                    }
+                   
                     //print("Hit the enemy");
                 }
 
@@ -63,6 +60,10 @@ public class AttackDetection : MonoBehaviour
                 else
                 {
                     combat.Attack(targetStat);
+                    if (bloodEffect != null)
+                    {
+                        Destroy(Instantiate(bloodEffect, transform.position, transform.rotation) as GameObject, 1f);
+                    }
                 }
                 print("Hit the " + h.gameObject.name);
             }

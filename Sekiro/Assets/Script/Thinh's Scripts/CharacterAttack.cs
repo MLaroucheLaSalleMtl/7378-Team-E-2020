@@ -16,7 +16,6 @@ public class CharacterAttack : MonoBehaviour
     private int noOfClicks = 0;
     private float lastClick = 0f;
     [Range(0, 3f)]public float comboAttackDelay = 0.9f;
-    [Range(0, 3f)] public float resetAttack = 1.1f;
 
 
     public void OnAttack(InputAction.CallbackContext context)

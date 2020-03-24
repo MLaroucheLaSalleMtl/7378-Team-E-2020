@@ -18,7 +18,7 @@ public class CharacterStat : MonoBehaviour
 
     public bool alive;
 
-    private void Start()
+    public void Start()
     {
         controller = GetComponent<NPCController>();
         healthBar.maxValue = maxHealth;
@@ -34,18 +34,26 @@ public class CharacterStat : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= armor.GetValue();
-        damage = Mathf.Clamp(damage, 0, int.MaxValue);
+        if (alive)
+        {
+            currentHealth -= armor.GetValue();
+            damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
-        currentHealth -= damage;
-        healthBar.value = currentHealth;
+            currentHealth -= damage;
+            healthBar.value = currentHealth;
 
-        if (currentHealth <= 0)
-            Die();
+            if (currentHealth <= 0)
+                Die();
+        }
     }
 
     public virtual void SetHealthBar(Slider slider)
         => healthBar = slider;
+
+    public void RefillHealthBar()
+    {
+        healthBar.value = currentHealth;
+    }
 
     public virtual void Die()
     {

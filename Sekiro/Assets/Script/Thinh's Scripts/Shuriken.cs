@@ -5,9 +5,11 @@ using UnityEngine;
 public class Shuriken : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 0f;
+    [SerializeField] private int damage = 0;
     private Vector3 shootDir;
     private Rigidbody rb;
     private bool hitSth = false;
+    private bool dealDame = true;
 
     public void GetShootDir(Vector3 shootDir)
     {
@@ -30,6 +32,12 @@ public class Shuriken : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player"))
         {
+            CharacterStat stat = collision.gameObject.GetComponent<CharacterStat>();
+            if (stat != null && dealDame)
+            {
+                dealDame = false;
+                stat.TakeDamage(damage);
+            }
             hitSth = true;
             Stick(collision.transform);
             gameObject.GetComponent<TrailRenderer>().enabled = false;
@@ -40,7 +48,7 @@ public class Shuriken : MonoBehaviour
 
     private void Stick(Transform parent)
     {
-        transform.LookAt(parent);
+        //transform.LookAt(parent);
         rb.constraints = RigidbodyConstraints.FreezeAll;
         transform.parent = parent;
     }

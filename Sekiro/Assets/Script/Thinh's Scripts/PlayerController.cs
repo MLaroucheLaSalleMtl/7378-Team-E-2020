@@ -190,13 +190,11 @@ public class PlayerController : MonoBehaviour
         {
             if (player_state == State.SwordAttaching)
             {
-                moveSpeed = .2f;
                 char_anim.AnimationWithdrawSword();
             }
 
             else if (player_state == State.Unarmed)
             {
-                moveSpeed = .2f;
                 char_anim.AnimationWithdrawSword();
             }
         }
@@ -248,7 +246,7 @@ public class PlayerController : MonoBehaviour
         if (character_controller.isGrounded)
         {
             player_velocity.y = 0f;
-            if (jumpControl.CheckTimer())
+            if (jumpControl.CheckTimer() && !gameObject.GetComponent<CharacterAttack>().CheckIsAttacking())
             {    
                 player_velocity.y = jumpForce;
                 char_anim.JumpAnimation();
