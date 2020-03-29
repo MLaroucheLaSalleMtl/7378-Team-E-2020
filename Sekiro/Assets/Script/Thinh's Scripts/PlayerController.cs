@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -115,15 +114,6 @@ public class PlayerController : MonoBehaviour
         isDeflecting = context.performed;
     }
 
-    public void OnHeal(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            char_anim.AnimationPowerUp();
-        }
-
-    }
-
 
     public void OnEquip(InputAction.CallbackContext context)
     {
@@ -164,7 +154,6 @@ public class PlayerController : MonoBehaviour
         PlayerMove();
         UpdateState();
         ChangeNPCState();
-        ThrowShuriken();
         equipControl.ResetTimer();
         jumpControl.ResetTimer();
         CheckIsGrounded();
@@ -289,6 +278,8 @@ public class PlayerController : MonoBehaviour
 
     public NPCState GetCurrentState() => npcState;
 
+    public State GetCurrentPlayerState() => player_state;
+
     public void StopMoveSpeed()
     {
         if(moveSpeed > 0)
@@ -305,16 +296,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ThrowShuriken()
+    public bool HealSkill()
     {
-        if (throwControl.CheckTimer())
+        if (GetComponent<PlayerStat>().CanHeal())
         {
-            char_anim.AnimationThrowShuriken();
-            Debug.Log("Throw");
+            char_anim.AnimationPowerUp();
+            return true;
         }
-        throwControl.ResetTimer();
-
+        else { return false; }
     }
+
 
     public void AnimationControl()
     {

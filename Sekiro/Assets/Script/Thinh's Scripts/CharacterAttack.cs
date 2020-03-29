@@ -46,54 +46,10 @@ public class CharacterAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //ComboAttack();
-        //ResetAttackCombo();
+
         PlayerAttack();
     }
 
-    #region(Combo Attack)
-    //private void ComboAttack()
-    //{
-    //    if (isAttacking)
-    //    {
-
-    //         if(attack_state == AttackState.attack3)
-    //        {
-    //            return;
-    //        }
-    //        isAttacking = false;
-    //        attack_state++;
-    //        combo_timer_reset = true;
-    //        current_combo_timer = default_combo_timer;
-    //        if(attack_state == AttackState.attack1)
-    //        {
-    //            char_anim.AnimationAttack1();
-    //        }
-    //        if (attack_state == AttackState.attack2)
-    //        {
-    //            char_anim.AnimationAttack2();
-    //        }
-    //        if (attack_state == AttackState.attack3)
-    //        {
-    //            char_anim.AnimationAttack3();
-    //        }
-    //    }
-    //}
-
-    //private void ResetAttackCombo()
-    //{
-    //    if (combo_timer_reset)
-    //    {
-    //        current_combo_timer -= Time.deltaTime;
-    //        if (current_combo_timer <= 0f)
-    //        {
-    //            attack_state = AttackState.none;
-    //            combo_timer_reset = false;
-    //            current_combo_timer = default_combo_timer;
-    //        }
-    //    }
-    //}
-    #endregion
 
     public bool CheckIsAttacking()
     {
@@ -108,6 +64,7 @@ public class CharacterAttack : MonoBehaviour
             isAttacking = false;
             gameObject.GetComponent<PlayerController>().ResetMoveSpeed();
             gameObject.GetComponent<VFXActivation>().SwordTrailOff();
+            gameObject.GetComponent<AttackCollisionControl>().DeactivateSwordAttackCollision();
         }
         if(!isAttacking)
         {

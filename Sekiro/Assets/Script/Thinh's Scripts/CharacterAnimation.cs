@@ -54,39 +54,6 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
     }
 
-    #region(Combo Attack)
-    //public void AnimationAttack1()
-    //{
-    //    anim.SetTrigger("Attack 1");
-    //}
-
-    //public void AnimationAttack2()
-    //{
-    //    anim.SetTrigger("Attack 2");
-    //}
-
-    //public void AnimationAttack3()
-    //{
-    //    anim.SetTrigger("Attack 3");
-    //}
-
-    //public void AnimationAttack(int index)
-    //{
-    //    if(index == 0)
-    //    {
-    //        anim.SetTrigger("Attack 1");
-    //    }
-    //    else if(index == 1)
-    //    {
-    //        anim.SetTrigger("Attack 2");
-    //    }
-    //    else if(index == 2)
-    //    {
-    //        anim.SetTrigger("Attack 3");
-    //    }
-    //}
-    #endregion
-
    public void AnimationAttack1(bool check)
    {
         anim.SetBool("Attack 1", check);
@@ -102,6 +69,11 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetBool("Attack 3", check);
     }
 
+    public void AnimationThrowKunai(bool check)
+    {
+        anim.SetBool("hasKunai", check);
+    }
+
     public void AnimationPowerUp()
     {
         anim.SetTrigger("PowerUp");
@@ -111,11 +83,6 @@ public class CharacterAnimation : MonoBehaviour
     {
         anim.SetTrigger("Die");
     }
-
-    //public void AnimationFaint(bool check)
-    //{
-    //    anim.SetBool("Faint", check);
-    //}
 
     public void AnimationFaint()
     {
@@ -132,18 +99,6 @@ public class CharacterAnimation : MonoBehaviour
     private void ResetSwordLayerAnimation()
     {
         anim.SetLayerWeight(1, 0);
-    }
-
-    public void AnimationThrowShuriken()
-    {
-        anim.SetLayerWeight(2, 1f);
-        anim.SetTrigger("Throw");
-        Invoke("ResetSkillLayer", 3f);
-    }
-
-    private void ResetSkillLayer()
-    {
-        anim.SetLayerWeight(2, 0);
     }
 
 }

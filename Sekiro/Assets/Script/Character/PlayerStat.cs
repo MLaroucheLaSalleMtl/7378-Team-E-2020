@@ -59,6 +59,24 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
         RefillHealthBar();
     }
 
+    public void Heal()
+    {
+        SetHp();
+        RefillHealthBar();
+    }
+
+    public bool CanHeal()
+    {
+        if(currentHealth < GetMaxHealth())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private void Refill()
     {
         reviveHealthBar.SetActive(true);
@@ -77,4 +95,5 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
         isReviving = false;
         gameObject.GetComponent<PlayerController>().enabled = true;
     }
+
 }

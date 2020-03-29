@@ -26,6 +26,8 @@ public class AIController : MonoBehaviour
     [SerializeField]
     private GameObject target;
     [SerializeField]
+    private ParticleSystem skillFX;
+    [SerializeField]
     private float stoppingDistance = .1f;
     [SerializeField]
     [Range(0.0f, 1.0f)] private float patrolSpeed = 0.5f;
@@ -57,6 +59,9 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
+        if (this.tag != "Boss")
+            skillFX = null;
+
         swordTrail.gameObject.SetActive(false);
         waypoints = new Vector3[pathHolder.childCount];
 
@@ -169,13 +174,13 @@ public class AIController : MonoBehaviour
             {
                 target = GameObject.FindGameObjectWithTag("Player");
                 agent.SetDestination(transform.position);
-                myController.Stop();
-                myController.FaceTarget(target.transform.position);
-                yield return new WaitForSeconds(1.5f);
+                state = NPCState.Fight;
+                break;
             }
 
             if (mySight.CanSeePlayer())
             {
+                target = mySight.GetPlayer();
                 myController.Stop();
                 agent.SetDestination(transform.position);
                 myController.WithdrawWeapon();
@@ -283,6 +288,13 @@ public class AIController : MonoBehaviour
         //target.gameObject.GetComponent<PlayerStat>().isAlive -- While condition later on
         while (true)
         {
+            if (mySight.CanSeePlayer())
+            {
+                myController.Stop();
+                agent.SetDestination(transform.position);
+                myController.WithdrawWeapon();
+            }
+
             //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
             //if (Vector3.Distance(transform.position, target.transform.position) > 2f)
             Debug.Log(agent.remainingDistance);

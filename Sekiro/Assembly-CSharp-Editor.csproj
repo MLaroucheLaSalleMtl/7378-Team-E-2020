@@ -143,6 +143,9 @@
     <Reference Include="Unity.Rider.Editor">
       <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>

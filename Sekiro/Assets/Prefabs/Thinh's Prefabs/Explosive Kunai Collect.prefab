@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 805707321078066088}
   - component: {fileID: 805707321081504348}
   - component: {fileID: 805707321080494276}
-  - component: {fileID: 1108814139478582134}
   m_Layer: 0
   m_Name: Kunai
   m_TagString: Untagged
@@ -81,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1108814139478582134
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 805707321078279526}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.056848526, y: 0.50119674, z: 0.14197412}
-  m_Center: {x: 0, y: 0.078178585, z: 0}
 --- !u!1 &1252149672036748830
 GameObject:
   m_ObjectHideFlags: 0
@@ -4948,8 +4934,9 @@ GameObject:
   - component: {fileID: 1253955961794919584}
   - component: {fileID: 1253955961794919599}
   - component: {fileID: 7460956605408311969}
+  - component: {fileID: 64875415976527498}
   m_Layer: 0
-  m_Name: Kunai Collect
+  m_Name: Explosive Kunai Collect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4997,6 +4984,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &64875415976527498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253955961794919585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da39d70fc5c813c4aa116eaf7c352e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemIcon: {fileID: 21300000, guid: acc2b07bee1cc2749b3bf82ab7da2539, type: 3}
 --- !u!1 &8102805001388041609
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,8 @@ public class CharacterStat : MonoBehaviour
     private void Awake()
         => SetHp();
 
+    public int GetMaxHealth() => maxHealth;
+
     public void TakeDamage(int damage)
     {
         if (alive)
@@ -55,9 +57,11 @@ public class CharacterStat : MonoBehaviour
         healthBar.value = currentHealth;
     }
 
+
     public virtual void Die()
     {
         alive = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         Debug.Log("Die");
         controller.ExcuteTriggerAnimation("Die");
     }

@@ -107,8 +107,10 @@
     <Compile Include="Assets\Script\Character\PlayerStat.cs" />
     <Compile Include="Assets\Script\Character\Stat.cs" />
     <Compile Include="Assets\Script\Character\WeaponHitDetector.cs" />
+    <Compile Include="Assets\Script\LoadLevel.cs" />
     <Compile Include="Assets\Script\Managers\EnemyManager.cs" />
     <Compile Include="Assets\Script\Managers\GameManager.cs" />
+    <Compile Include="Assets\Script\MenuController.cs" />
     <Compile Include="Assets\Script\New Folder\btnFX.cs" />
     <Compile Include="Assets\Script\Systems\HealthSystem.cs" />
     <Compile Include="Assets\Script\Systems\PostureSystem.cs" />
@@ -120,6 +122,10 @@
     <Compile Include="Assets\Script\Thinh's Scripts\ClimbingSystem.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Collectables.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Explosion.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\Inventory.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\InventorySlot.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\InventoryUI.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\Item.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\PlayerController.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Shuriken.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\SpawnItem.cs" />
@@ -127,11 +133,10 @@
     <Compile Include="Assets\Script\Thinh's Scripts\ThrowShuriken.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\TornadoControl.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\VFXActivation.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\WeaponUI.cs" />
     <Compile Include="Assets\Script\UI\HealthBarRotate.cs" />
     <Compile Include="Assets\Script\UI\MenuManager.cs" />
     <Compile Include="Assets\Script\UI\SettingsMenu.cs" />
-    <Compile Include="Assets\Scripts\LoadLevel.cs" />
-    <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
@@ -239,6 +244,9 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Postprocessing.Runtime">
       <HintPath>/Volumes/SamsungT5/7378-Team-E-2020/Sekiro/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>

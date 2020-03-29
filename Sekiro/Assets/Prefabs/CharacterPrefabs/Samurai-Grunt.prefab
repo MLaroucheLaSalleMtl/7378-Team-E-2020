@@ -1623,7 +1623,7 @@ MonoBehaviour:
   pathHolder: {fileID: 0}
   waypoints: []
   currentWaypoint: 0
-  target: {fileID: 4831089839501127453}
+  target: {fileID: 0}
   stoppingDistance: 0.1
   patrolSpeed: 0.5
   playerLastPosition: {x: 0, y: 0, z: 0}
@@ -2076,12 +2076,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5355c8bf2cd3b9f4cb2c6e3b3ef8968f, type: 3}
---- !u!1 &4831089839501127453 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4453996744565239292, guid: 5355c8bf2cd3b9f4cb2c6e3b3ef8968f,
-    type: 3}
-  m_PrefabInstance: {fileID: 9134633667085730529}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &4831089839501127454 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 4453996744565239295, guid: 5355c8bf2cd3b9f4cb2c6e3b3ef8968f,

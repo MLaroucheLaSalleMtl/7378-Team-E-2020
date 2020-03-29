@@ -5,11 +5,12 @@ using UnityEngine;
 public class TornadoControl : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 0f;
+    [SerializeField] private Vector3 moveDir;
     
     // Update is called once per frame
     void Update()
     {
-            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

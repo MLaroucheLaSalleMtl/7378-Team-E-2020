@@ -12,6 +12,7 @@ TagManager:
   - Climbable
   - Enemy
   - Boss
+  - SKILLFX
   layers:
   - Default
   - TransparentFX

@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class Shuriken : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 0f;
     [SerializeField] private int damage = 0;
     private Vector3 shootDir;
     private Rigidbody rb;
-    private bool hitSth = false;
     private bool dealDame = true;
+    private bool hitSth = false;
 
     public void GetShootDir(Vector3 shootDir)
     {
@@ -26,6 +25,10 @@ public class Shuriken : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hitSth)
+        {
+            Destroy(gameObject, 3f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -38,10 +41,9 @@ public class Shuriken : MonoBehaviour
                 dealDame = false;
                 stat.TakeDamage(damage);
             }
-            hitSth = true;
             Stick(collision.transform);
             gameObject.GetComponent<TrailRenderer>().enabled = false;
-            
+            hitSth = true;
         }
         gameObject.GetComponent<Explosion>().Explode();
     }
