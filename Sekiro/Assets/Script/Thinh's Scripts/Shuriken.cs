@@ -45,7 +45,11 @@ public class Shuriken : MonoBehaviour
             gameObject.GetComponent<TrailRenderer>().enabled = false;
             hitSth = true;
         }
-        gameObject.GetComponent<Explosion>().Explode();
+        Explosion explosion = gameObject.GetComponent<Explosion>();
+        if (explosion != null)
+        {
+            explosion.Explode();
+        }
     }
 
     private void Stick(Transform parent)

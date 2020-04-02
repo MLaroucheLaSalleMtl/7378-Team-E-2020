@@ -98,6 +98,7 @@
     <Compile Include="Assets\Script\Character\AIController.cs" />
     <Compile Include="Assets\Script\Character\AIFOV.cs" />
     <Compile Include="Assets\Script\Character\AIStat.cs" />
+    <Compile Include="Assets\Script\Character\CharacterAudio.cs" />
     <Compile Include="Assets\Script\Character\CharacterCombat.cs" />
     <Compile Include="Assets\Script\Character\CharacterStat.cs" />
     <Compile Include="Assets\Script\Character\EnemyStat.cs" />
@@ -121,9 +122,9 @@
     <Compile Include="Assets\Script\Thinh's Scripts\CharacterAttack.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\ClimbingSystem.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Collectables.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\EquipItem.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Explosion.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Inventory.cs" />
-    <Compile Include="Assets\Script\Thinh's Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\InventoryUI.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Item.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\PlayerController.cs" />

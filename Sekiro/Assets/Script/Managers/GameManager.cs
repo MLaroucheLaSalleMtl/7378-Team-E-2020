@@ -23,20 +23,13 @@ public class GameManager : BaseSingleton<GameManager>
         {
             if (isOpeningInventory)
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
                 inventoryPanel.SetActive(false);
                 isOpeningInventory = false;
-                playerInput.SetActive(true);
-
             }
             else
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
                 inventoryPanel.SetActive(true);
                 isOpeningInventory = true;
-                playerInput.SetActive(false);
             }
         }
     }

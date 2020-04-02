@@ -7,7 +7,9 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance = null;
     private List<Item> itemList;
-    [SerializeField] private int space = 0;
+    private int potionCount = 0;
+    private int kunaiCount = 0;
+    private int shurikenCount = 0;
 
     private void Awake()
     {
@@ -18,38 +20,54 @@ public class Inventory : MonoBehaviour
         instance = this;
     }
 
-    public delegate void OnItemChange();
-    public OnItemChange onItemChangeCallBack;
-
     public List<Item> GetItemList() => itemList;
+    public int GetPotionCount() => potionCount;
+    public int GetKunaiCount() => kunaiCount;
+    public int GetShurikenCount() => shurikenCount;
 
     public Inventory()
     {
         itemList = new List<Item>();
     }
 
-    public bool AddItem(Item item)
+    public void AddItem(Item item)
     {
-        if (itemList.Count >= space)
+        itemList.Add(item);
+        if (item.GetItemType() == Item.ItemType.Kunai)
         {
-            Debug.Log("Inventory is full!");
-            return false;
+            kunaiCount+=1;
         }
-        
-            itemList.Add(item);
-        if (onItemChangeCallBack != null)
-            {
-                onItemChangeCallBack.Invoke();
-            }
-            return true;
-        
-        
+        else if (item.GetItemType() == Item.ItemType.Shuriken)
+        {
+            shurikenCount+=1;
+        }
+        else if (item.GetItemType() == Item.ItemType.HealthPotion)
+        {
+            potionCount+=1;
+        }
     }
 
-    public void RemoveItem(Item item)
+    public void RemoveKunai()
     {
-        itemList.Remove(item);
+        if(kunaiCount > 0)
+        {
+            kunaiCount -= 1;
+        }
     }
 
+    public void RemoveShuriken()
+    {
+        if (shurikenCount > 0)
+        {
+            shurikenCount -= 1;
+        }
+    }
 
+    public void RemovePotion()
+    {
+        if (potionCount > 0)
+        {
+            potionCount -= 1;
+        }
+    }
 }

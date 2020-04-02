@@ -1,39 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class InventoryUI : MonoBehaviour
 {
-    [SerializeField] private Transform itemParent = null;
+    [SerializeField] private TextMeshProUGUI potionAmount;
+    [SerializeField] private TextMeshProUGUI kunaiAmount;
+    [SerializeField] private TextMeshProUGUI shurikenAmount;
+    
     private Inventory inventory;
-    private InventorySlot[] slots;
     
 
     // Start is called before the first frame update
     void Start()
     {
         inventory = Inventory.instance;
-        inventory.onItemChangeCallBack += UpdateUI;
-        slots = itemParent.GetComponentsInChildren<InventorySlot>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        UpdateUI();
     }
     void UpdateUI()
     {
-        for(int i =0;i < slots.Length; i++)
-        {
-            if (i < inventory.GetItemList().Count)
-            {
-                slots[i].AddItem(inventory.GetItemList()[i]);
-            }
-            else
-            {
-                slots[i].ClearSlot();
-            }
-        }
+        potionAmount.text = inventory.GetPotionCount().ToString();
+        kunaiAmount.text = inventory.GetKunaiCount().ToString();
+        shurikenAmount.text = inventory.GetShurikenCount().ToString();
     }
 }

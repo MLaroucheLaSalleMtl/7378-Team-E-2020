@@ -22,8 +22,8 @@ public class ThrowShuriken : MonoBehaviour
     [SerializeField] private Sprite aimCrossHair = null;
     [SerializeField] private Image crossHair = null;
     private CharacterAnimation char_anim;
-    private Item currentItem = null;
     private GameObject throwObject = null;
+    private EquipItem equipItem;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +31,7 @@ public class ThrowShuriken : MonoBehaviour
         char_anim = GetComponent<CharacterAnimation>();
         char_anim.AnimationThrowKunai(false);
         crossHair.sprite = defaultCrossHair;
+        equipItem = GetComponent<EquipItem>();
     }
 
     // Update is called once per frame
@@ -39,6 +40,7 @@ public class ThrowShuriken : MonoBehaviour
         Aiming();
         EnableCrossHair();
         SetWeaponPos();
+        Equip();
     }
 
     private void SetWeaponPos()
@@ -105,44 +107,34 @@ public class ThrowShuriken : MonoBehaviour
     }
 
 
-    public bool Equip(Item newItem)
+    public void Equip()
     {
-        currentItem = newItem;
-        bool check=false;
-        if (currentItem.GetItemType() == Item.ItemType.Shuriken)
+        if (equipItem.GetCurrentEquip() == EquipItem.CurrentEquip.None)
         {
-            if (shurikenHold.activeInHierarchy)
-            {
-                check = false; 
-            }
-            else
-            {
-                kunaiHold.SetActive(false);
-                shurikenHold.SetActive(true);
-                check = true;
-            }
+            shurikenHold.SetActive(false);
+            kunaiHold.SetActive(false);
+            char_anim.AnimationThrowKunai(false);
         }
-        else if (currentItem.GetItemType() == Item.ItemType.Kunai)
+        else if(equipItem.GetCurrentEquip() == EquipItem.CurrentEquip.Shuriken)
         {
-            if (kunaiHold.activeInHierarchy)
-            {
-                check = false;
-            }
-            else
-            {
-                shurikenHold.SetActive(false);
-                kunaiHold.SetActive(true);
-                check = true;
-            }
+            shurikenHold.SetActive(true);
+            kunaiHold.SetActive(false);
+            char_anim.AnimationThrowKunai(true);
         }
-        char_anim.AnimationThrowKunai(true);
-        return check;
+        else if(equipItem.GetCurrentEquip() == EquipItem.CurrentEquip.Kunai)
+        {
+            kunaiHold.SetActive(true);
+            shurikenHold.SetActive(false);
+            char_anim.AnimationThrowKunai(true);
+        }
+
     }
 
     public void ThrowFinish()
     {
         kunaiHold.SetActive(false);
         shurikenHold.SetActive(false);
+        equipItem.UseEquip();
         char_anim.AnimationThrowKunai(false);
     }
 }

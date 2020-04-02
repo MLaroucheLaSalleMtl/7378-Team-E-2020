@@ -18,13 +18,5 @@ public class Item : MonoBehaviour
 
     public Sprite GetItemIcon() => itemIcon;
 
-    public virtual void Use()
-    {
-        Debug.Log("Use " + itemType);
-    }
 
-    public void RemoveFromInventory()
-    {
-        Inventory.instance.RemoveItem(this);
-    }
 }

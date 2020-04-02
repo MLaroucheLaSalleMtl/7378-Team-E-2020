@@ -35,10 +35,7 @@ public class Collectables : MonoBehaviour
 
     public virtual void PickUp()
     {
-        bool wasPickedUp = Inventory.instance.AddItem(item);
-        if (wasPickedUp)
-        {
-            Destroy(gameObject);
-        }
+        Inventory.instance.AddItem(item);
+        Destroy(gameObject);
     }
 }

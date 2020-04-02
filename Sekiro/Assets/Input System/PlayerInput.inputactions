@@ -54,9 +54,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Heal",
+                    "name": "Inventory",
                     "type": "Button",
-                    "id": "7ba4ce90-f339-42a1-baa9-a7786f5e28ca",
+                    "id": "d19f7cf0-4e8c-4f73-bef5-dc8d26a13f51",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -64,7 +64,15 @@
                 {
                     "name": "Skill 1",
                     "type": "Button",
-                    "id": "fd8f431b-a641-4043-a511-c7fc3f809e90",
+                    "id": "c45c5c9f-30ee-4a20-b422-bbc5be1298bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Skill 2",
+                    "type": "Button",
+                    "id": "4738fbf7-e46f-4785-9059-b6263af454cc",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -315,80 +323,69 @@
                 },
                 {
                     "name": "",
-                    "id": "adb83814-2371-472f-ba07-3789d38634e1",
-                    "path": "<Keyboard>/1",
+                    "id": "b6827aff-f110-465a-8e2b-cd839737d3ca",
+                    "path": "<Keyboard>/i",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Heal",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "GamePad",
-                    "id": "f9766435-31e1-4d10-b8df-e5786a695139",
-                    "path": "ButtonWithOneModifier",
+                    "name": "",
+                    "id": "32d9b6fd-683b-48be-a844-0cdc81c78735",
+                    "path": "<Gamepad>/dpad/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Heal",
-                    "isComposite": true,
+                    "groups": "Gamepad",
+                    "action": "Inventory",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "ad367da2-65eb-4722-9612-9da60808d98b",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heal",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "button",
-                    "id": "2d80afc6-61d2-476b-bd79-86c27e5c705c",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Heal",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Tornado",
-                    "id": "414f34d2-87de-4a14-9a5e-65e28a6a51e4",
-                    "path": "ButtonWithOneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skill 1",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "3d8828fa-5a3f-46e6-9d94-ab6cc3c4b410",
+                    "name": "",
+                    "id": "1acb66d6-8fe9-4458-a729-fc4741d1b032",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Skill 1",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 },
                 {
-                    "name": "button",
-                    "id": "15eff53e-217c-4d9b-aa6d-1604b40a2d3a",
+                    "name": "",
+                    "id": "6c8a2b19-3bbe-423d-ba2d-6f42f6f96b9b",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Skill 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4f555b0-c0f5-4460-9683-d4d2731075fe",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Skill 1",
+                    "action": "Skill 2",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9af7be69-3e8f-43b2-8a41-c54c06bedb4c",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Skill 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -456,14 +453,6 @@
                     "name": "RightClick",
                     "type": "PassThrough",
                     "id": "7c187b59-1d7b-4cab-8430-da113cbaf95f",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Inventory",
-                    "type": "Button",
-                    "id": "204743ca-3d0f-4c75-aeda-58d280a531b5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
@@ -819,17 +808,6 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "RightClick",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "429ed3c8-e9e2-4ebd-9840-119fd6f4b82d",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

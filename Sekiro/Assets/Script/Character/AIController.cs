@@ -306,9 +306,9 @@ public class AIController : MonoBehaviour
             else
             {
                 Debug.Log("Oh My God");
-                agent.speed = patrolSpeed;
-                myController.Stop();
+                agent.speed = chaseSpeed;
                 agent.SetDestination(transform.position);
+                myController.Stop();
                 agent.autoBraking = true;
 
                 if (!myHitDetector.isHit)
