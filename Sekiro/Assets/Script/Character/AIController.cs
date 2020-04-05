@@ -26,8 +26,6 @@ public class AIController : MonoBehaviour
     [SerializeField]
     private GameObject target;
     [SerializeField]
-    private ParticleSystem skillFX;
-    [SerializeField]
     private float stoppingDistance = .1f;
     [SerializeField]
     [Range(0.0f, 1.0f)] private float patrolSpeed = 0.5f;
@@ -59,9 +57,6 @@ public class AIController : MonoBehaviour
 
     private void Start()
     {
-        if (this.tag != "Boss")
-            skillFX = null;
-
         swordTrail.gameObject.SetActive(false);
         waypoints = new Vector3[pathHolder.childCount];
 
@@ -185,7 +180,7 @@ public class AIController : MonoBehaviour
                 agent.SetDestination(transform.position);
                 myController.WithdrawWeapon();
 
-                state = NPCState.Fight;
+                state = NPCState.Chase;
                 break;
             }
 
@@ -278,7 +273,6 @@ public class AIController : MonoBehaviour
 
     IEnumerator OnFight()
     {
-        transform.Rotate(target.transform.position);
         myController.FaceTarget(target.transform.position);
         agent.speed = patrolSpeed;
         myController.ExcuteBoolAnimation("InFight", true);

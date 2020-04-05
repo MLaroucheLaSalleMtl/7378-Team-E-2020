@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
 
     private ControlSpamClick equipControl = new ControlSpamClick(0f, 1.5f);
     private ControlSpamClick jumpControl = new ControlSpamClick(0f, .3f);
-    private ControlSpamClick throwControl = new ControlSpamClick(0f, 0.8f);
 
 
     #region(Input System)
@@ -122,20 +121,10 @@ public class PlayerController : MonoBehaviour
             if (!isAttacking)
             {
                 equipControl.StartTimer();
+                GetComponent<EquipItem>().ReturnToNone();
             }
         }
 
-    }
-
-    public void OnSkill2(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            if (!isAttacking)
-            {
-                throwControl.StartTimer();
-            }
-        }
     }
     #endregion //Input System
 

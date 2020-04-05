@@ -14,7 +14,7 @@ public class GameManager : BaseSingleton<GameManager>
     // [SerializeField] private GameObject lose;
     [SerializeField] private GameObject inventoryPanel = null;
     [SerializeField] private GameObject playerInput = null;
-    private bool isOpeningInventory = false;
+    private bool isOpeningInventory = true;
 
 
     public void OnOpenInventory(InputAction.CallbackContext context)

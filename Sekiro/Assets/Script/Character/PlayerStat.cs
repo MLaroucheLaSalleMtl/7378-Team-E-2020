@@ -7,10 +7,12 @@ using UnityEngine.UI;
 public class PlayerStat : CharacterStat //Player Revive and Die handle
 {
     private int playerLife = 2;
-    [SerializeField] private GameObject xStroke1 = null;
-    [SerializeField] private GameObject xStroke2 = null;
     [SerializeField] private float delayRevive = 5f;
     [SerializeField] private GameObject reviveHealthBar = null;
+    [SerializeField] private Image life1 = null;
+    [SerializeField] private Image life2 = null;
+    [SerializeField] private Sprite death1 = null;
+    [SerializeField] private Sprite death2 =null;
     private bool isReviving = false;
 
    
@@ -31,18 +33,12 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
         playerLife--;
         if (playerLife >= 1)
         {
-            if (xStroke1 != null)
-            {
-                xStroke1.SetActive(true);
-            }
+            life1.sprite = death1;
             StartCoroutine("Revive");
         }
         else if(playerLife < 1 && !isReviving)
         {
-            if (xStroke2 != null)
-            {
-                xStroke2.SetActive(true);
-            }
+            life2.sprite = death2;
             gameObject.GetComponent<CharacterAnimation>().AnimationDie();
             alive = false;
         }

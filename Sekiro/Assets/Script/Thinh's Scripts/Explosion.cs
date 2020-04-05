@@ -11,13 +11,11 @@ public class Explosion : MonoBehaviour
     [SerializeField] private GameObject explosionEffect = null;
     public void Explode()
     {
-        StartCoroutine("BombTimer");
+        Invoke("BombTimer", delay);
     }
 
-    IEnumerator BombTimer()
+    private void BombTimer()
     {
-        yield return new WaitForSeconds(delay);
-
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRad);
 

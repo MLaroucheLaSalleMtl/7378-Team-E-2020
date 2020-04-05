@@ -101,4 +101,12 @@ public class EquipItem : MonoBehaviour
             inventory.RemoveKunai();
         }
     }
+
+    public void ReturnToNone()
+    {
+        if(currentEquip != CurrentEquip.None)
+        {
+            currentEquip = CurrentEquip.None;
+        }
+    }
 }
