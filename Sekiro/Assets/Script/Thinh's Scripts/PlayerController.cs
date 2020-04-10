@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
     private ControlSpamClick equipControl = new ControlSpamClick(0f, 1.5f);
     private ControlSpamClick jumpControl = new ControlSpamClick(0f, .3f);
 
-
+    CharacterAudio char_audio;
     #region(Input System)
  
     //Input System Methods
@@ -112,8 +112,6 @@ public class PlayerController : MonoBehaviour
     {
         isDeflecting = context.performed;
     }
-
-
     public void OnEquip(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -124,7 +122,6 @@ public class PlayerController : MonoBehaviour
                 GetComponent<EquipItem>().ReturnToNone();
             }
         }
-
     }
     #endregion //Input System
 
@@ -135,6 +132,7 @@ public class PlayerController : MonoBehaviour
         character_controller = GetComponent<UnityEngine.CharacterController>();
         rb = GetComponent<Rigidbody>();
         UpdateState();
+        char_audio = GetComponent<CharacterAudio>();
     }
 
     // Update is called once per frame
@@ -181,6 +179,7 @@ public class PlayerController : MonoBehaviour
 
     public void Sword_Equip()
     {
+        char_audio.WithDrawSwordSFX();
         isEquipingSword = true;
         player_state = State.SwordAttaching;
         is_unarmed_anim = false;
@@ -225,7 +224,8 @@ public class PlayerController : MonoBehaviour
         {
             player_velocity.y = 0f;
             if (jumpControl.CheckTimer() && !gameObject.GetComponent<CharacterAttack>().CheckIsAttacking())
-            {    
+            {
+                char_audio.JumpSFX();
                 player_velocity.y = jumpForce;
                 char_anim.JumpAnimation();
             }

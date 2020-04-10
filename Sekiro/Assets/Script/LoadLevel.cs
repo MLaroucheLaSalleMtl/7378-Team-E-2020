@@ -10,28 +10,33 @@ using UnityEngine.UI;
 //Loading scene
 public class LoadLevel : MonoBehaviour
 {
-    
-    public GameObject loadingWindow; //Refered to the loading screen
-    public Slider loadingBar; //Refered to the loading bar
-
-    public void Load(int sceneToLoad)
+    //public GameObject loadingWindow; //Refered to the loading screen
+    //public Image loadingImage; //Refered to the loading image
+    public void Load()
     {
-        StartCoroutine(LoadNewScene(sceneToLoad)); //Load the scene
+        StartCoroutine(LoadNewScene()); //Load the scene
     }
 
-    IEnumerator LoadNewScene(int sceneToLoad)
+    IEnumerator LoadNewScene()
     {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad); //Load the scene asynchronously in the background. 
-                                                                             //Keep all the behaviours in the running while loading a new scene.
-                                                                             //AsyncOperation is an object that keep tracks on how the operation is going.
-        loadingWindow.SetActive(true); //The loading window appears 
+        AsyncOperation operation = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1); 
+
+        operation.allowSceneActivation = false;
 
         while(!operation.isDone) //Run until the process is done.
         {
+            if(operation.progress >= .9f && !operation.allowSceneActivation)
+            {
+                operation.allowSceneActivation = true;
+            }
             float progress = operation.progress; //Progess is the float that goes from 0 to 1 that indicates the current states of the process.
                                                                       //While the operation is running, continuingly update the UI to reflect this variable.
-            loadingBar.value = progress; //The loadingBar's value = progess.
             yield return null; //Wait for a frame
         }
     }
+
+    //private void Update()
+    //{
+    //    loadingWindow.SetActive(true);
+    //}
 }

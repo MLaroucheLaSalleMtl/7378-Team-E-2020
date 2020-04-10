@@ -10,7 +10,7 @@ public class TornadoControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(moveDir * moveSpeed * Time.deltaTime);
+        transform.Rotate(moveDir * moveSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -18,8 +18,8 @@ public class TornadoControl : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             GameObject enemy = other.gameObject;
-            enemy.GetComponent<Rigidbody>().AddForce(transform.up*5f, ForceMode.Impulse);
-            
+            enemy.GetComponent<Rigidbody>().AddForce(transform.up * 5f, ForceMode.Impulse);
+
         }
     }
 }

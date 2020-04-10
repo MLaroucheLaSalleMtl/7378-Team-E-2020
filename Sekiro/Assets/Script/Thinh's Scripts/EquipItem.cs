@@ -61,7 +61,7 @@ public class EquipItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inventory = Inventory.instance;
+        inventory = Inventory.Instance;
         pc = GetComponent<PlayerController>();
     }
 

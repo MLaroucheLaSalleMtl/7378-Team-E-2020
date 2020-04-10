@@ -25,7 +25,9 @@ public class EnemyStat : CharacterStat
     public override void Die()
     {
         base.Die();
-       
+        alive = false;
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        controller.ExcuteTriggerAnimation("Die");
         StartCoroutine(WaitToBeDisable());
     }
 }

@@ -2,102 +2,97 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
+//(2) Create an enum for different menu windows
+public enum MenuWindows { Play, MainMenu, Settings, Null }
 public class MenuController : MonoBehaviour
 {
     //Gia Khanh, Le
     //Menu-State Machine
     //Main Menu, Settings and Pause
-    
 
+    public GameObject fadeImage;
+    public Animator fadeAnim;
+    public GameObject loadingWindow;
 
     //(1)Create game objects that are refered to 3 windows
 
-    [SerializeField] GameObject MainMenu;
-    [SerializeField] GameObject Settings;
-    [SerializeField] GameObject Pause;
-    //(2) Create an enum for different menu windows
-    enum MenuWindows { Play, MainMenu, Pause, Settings }
-    MenuWindows currentWindow; // Get the current windown
+    [SerializeField] private GameObject MainMenuWindow;
+    [SerializeField] private GameObject SetingsWindow;
+
+    public MenuWindows currentWindow; // Get the current window
     private void Awake()
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
             currentWindow = MenuWindows.MainMenu;
-        }
         else
-        {
             currentWindow = MenuWindows.Play;
-        }
+        Invoke("DeactivateFade", 2);    
+    }
+    public void DeactivateFade()
+    {
+        fadeImage.SetActive(false);
+    }
+    public void Activate()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
     private void Update()
     {
-        //(4) Detect if pause has been pressed or not and if user are playing or pausing.
-        if(Input.GetKeyDown(KeyCode.Escape) && currentWindow == MenuWindows.Play) //If playing, pause the game when pressed esc.
-        {   
-            currentWindow = MenuWindows.Pause;           
-        }
-        else if (Input.GetKeyDown(KeyCode.Escape) && currentWindow == MenuWindows.Pause) //If pausing, resume the game when pressed esc.
-        {
-            currentWindow = MenuWindows.Play;           
-        }
         //(3) State machine
 
         switch (currentWindow) 
         {
             case MenuWindows.MainMenu:
                 currentWindow = MenuWindows.MainMenu;
-                MainMenu.SetActive(true); //Enable only this window, hide others windows.
-                Settings.SetActive(false);
-                Pause.SetActive(false);
+                MainMenuWindow.SetActive(true); 
+                SetingsWindow.SetActive(false);
                 break;
 
-            case MenuWindows.Play: //If the user is playing, set all windows to inactive
+            case MenuWindows.Play:
                 currentWindow = MenuWindows.Play;
-                MainMenu.SetActive(false); 
-                Settings.SetActive(false);
-                Pause.SetActive(false);
+                SetingsWindow.SetActive(false);
+                MainMenuWindow.SetActive(false);
                 Time.timeScale = 1f; //Unfreeze the time.
                 break;
 
-            case MenuWindows.Pause: //If the user pause the game, freeze the time and enable only PauseWindow.
-                Pause.SetActive(true);//Enable only this window, hide others windows.
-                MainMenu.SetActive(false);
-                Settings.SetActive(false);
-                Time.timeScale = 0; //Freeze the time.
-                Debug.Log("Pause");
+            case MenuWindows.Settings: 
+                currentWindow = MenuWindows.Settings;
+                SetingsWindow.SetActive(true);
+                MainMenuWindow.SetActive(false);
                 break;
-
-            case MenuWindows.Settings: //If the user is in Settings, disable everything except for the SettingWindow.
-                Settings.SetActive(true);//Enable only this window, hide others windows.
-                MainMenu.SetActive(false);
-                Pause.SetActive(false);
-                Time.timeScale = 0; //Freeze the time.
+            case MenuWindows.Null:
+                SetingsWindow.SetActive(false);
+                MainMenuWindow.SetActive(false);
                 break;
-        }
+        } 
     }
     //(5) Create functions for the buttons
     public void Begin()
     {
+        currentWindow = MenuWindows.Null;
+        //SceneManager.LoadScene(1);
+        Invoke("Activate", 5f);
+        loadingWindow.SetActive(true);
+        fadeImage.SetActive(true);
+        fadeAnim.SetTrigger("isFade");
         //SceneManager.LoadScene(1); //Load level 1
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); //Load the current scene + 1
     }
     public void Setting()
     {
         currentWindow = MenuWindows.Settings;
-        Debug.Log("Setting");
     }
-
     public void Exit()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
     }
     public void Back()
     {
         currentWindow = MenuWindows.MainMenu;
-    }
-    public void Resume()
-    {
-        SceneManager.LoadScene(1);
     }
 }

@@ -10,6 +10,13 @@ public class CharacterAudio : MonoBehaviour
     [SerializeField] private AudioMixerSnapshot fightingSnapshot;
     [SerializeField] private LayerMask enemyMask;
     bool enemyIsNear;
+    public AudioClip[] throwSFX;
+    public AudioClip withdrawSwordSFX;
+    public AudioClip normalAttackSFX;
+    public AudioClip dieSFX;
+    public AudioClip swordSFX;
+    public AudioClip hitSFX;
+    public AudioClip jumpingSFX;
     private void Update()
     {
         RaycastHit[] rays = Physics.SphereCastAll(transform.position, 6f, transform.forward, 0f, enemyMask);
@@ -26,7 +33,35 @@ public class CharacterAudio : MonoBehaviour
             enemyIsNear = false;
             themeSnapshot.TransitionTo(4f);
         }
-        
+    }
 
+    public void WithDrawSwordSFX()
+    {
+        audioSource.PlayOneShot(withdrawSwordSFX);
+    }
+    public void ThrowingSFX()
+    {
+        audioSource.clip = throwSFX[Random.Range(0, throwSFX.Length)];
+        audioSource.Play();
+    }
+    public void NormalAttackSFX()
+    {
+        audioSource.PlayOneShot(normalAttackSFX);
+    }
+    public void DieSFX()
+    {
+        audioSource.PlayOneShot(dieSFX);
+    }
+    public void SwordAttackSFX()
+    {
+        audioSource.PlayOneShot(swordSFX);
+    }
+    public void DamageSFX()
+    {
+        audioSource.PlayOneShot(hitSFX);
+    }
+    public void JumpSFX()
+    {
+        audioSource.PlayOneShot(jumpingSFX);
     }
 }

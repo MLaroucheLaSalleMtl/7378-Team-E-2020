@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4237931229958460427}
   - component: {fileID: 7758246768088993758}
   - component: {fileID: 4546925839847754678}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Shuriken (throw)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

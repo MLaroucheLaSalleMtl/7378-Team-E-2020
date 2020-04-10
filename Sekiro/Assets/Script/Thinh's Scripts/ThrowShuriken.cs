@@ -68,7 +68,7 @@ public class ThrowShuriken : MonoBehaviour
     private void Aiming()
     {
         RaycastHit hit;
-        if (Physics.Raycast(throwPos.position, throwPos.up, out hit , aimDistance, enemyLayer))
+        if (Physics.Raycast(throwPos.position, throwPos.forward, out hit , aimDistance, enemyLayer))
         {
             crossHair.sprite = aimCrossHair;
         }
@@ -78,9 +78,21 @@ public class ThrowShuriken : MonoBehaviour
         }
     }
 
-    private void EnableCrossHair()
+    public bool CheckWeapons()
     {
         if(kunaiHold.activeInHierarchy || shurikenHold.activeInHierarchy)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void EnableCrossHair()
+    {
+        if(CheckWeapons())
         {
             crossHair.gameObject.SetActive(true);
         }
@@ -102,7 +114,7 @@ public class ThrowShuriken : MonoBehaviour
             throwObject = Instantiate(shurikenThrow, throwPos.position, throwPos.rotation);
         }
         Rigidbody rb = throwObject.GetComponent<Rigidbody>();
-        rb.velocity = throwObject.transform.up * throwForce;
+        rb.velocity = throwObject.transform.forward * throwForce;
         throwObject = null;
     }
 

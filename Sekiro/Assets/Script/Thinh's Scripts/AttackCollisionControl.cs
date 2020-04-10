@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackCollisionControl : MonoBehaviour
-{
+{ 
 
     [SerializeField] private GameObject leftArmAttackCol = null, rightArmAttackCol = null, leftLegAttackCol= null, rightLegAttackCol=null, swordAttackCol=null;
 
+    CharacterAudio char_audio;
+    private void Start()
+    {
+        char_audio = GetComponent<CharacterAudio>();
+    }
     public void ActivateLeftArmCollision()
     {
+        char_audio.NormalAttackSFX();
         leftArmAttackCol.SetActive(true);
     }
 
@@ -22,6 +28,7 @@ public class AttackCollisionControl : MonoBehaviour
 
     public void ActivateRightArmCollision()
     {
+        char_audio.NormalAttackSFX();
         rightArmAttackCol.SetActive(true);
     }
 
@@ -35,6 +42,7 @@ public class AttackCollisionControl : MonoBehaviour
 
     public void ActivateLeftLegCollision()
     {
+        char_audio.NormalAttackSFX();
         leftLegAttackCol.SetActive(true);
     }
 
@@ -48,6 +56,7 @@ public class AttackCollisionControl : MonoBehaviour
 
     public void ActivateRightLegCollision()
     {
+        char_audio.NormalAttackSFX();
         rightLegAttackCol.SetActive(true);
     }
 
@@ -61,6 +70,7 @@ public class AttackCollisionControl : MonoBehaviour
 
     public void ActivateSwordAttackCollision()
     {
+        char_audio.SwordAttackSFX();
         swordAttackCol.SetActive(true);
     }
 

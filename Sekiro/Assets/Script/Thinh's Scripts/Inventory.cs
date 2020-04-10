@@ -3,45 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour
+public class Inventory : BaseSingleton<Inventory>
 {
-    public static Inventory instance = null;
-    private List<Item> itemList;
+    private List<Item> itemList = new List<Item>();
     private int potionCount = 0;
     private int kunaiCount = 0;
     private int shurikenCount = 0;
-
-    private void Awake()
-    {
-        if (instance != null)
-        {
-            return;
-        }
-        instance = this;
-    }
 
     public List<Item> GetItemList() => itemList;
     public int GetPotionCount() => potionCount;
     public int GetKunaiCount() => kunaiCount;
     public int GetShurikenCount() => shurikenCount;
-
-    public Inventory()
-    {
-        itemList = new List<Item>();
-    }
-
+    
     public void AddItem(Item item)
     {
         itemList.Add(item);
         if (item.GetItemType() == Item.ItemType.Kunai)
         {
-            kunaiCount+=1;
+            kunaiCount +=1;
         }
-        else if (item.GetItemType() == Item.ItemType.Shuriken)
+
+        if (item.GetItemType() == Item.ItemType.Shuriken)
         {
             shurikenCount+=1;
         }
-        else if (item.GetItemType() == Item.ItemType.HealthPotion)
+
+        if (item.GetItemType() == Item.ItemType.HealthPotion)
         {
             potionCount+=1;
         }

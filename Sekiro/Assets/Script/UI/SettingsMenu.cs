@@ -15,6 +15,8 @@ public class SettingsMenu : MonoBehaviour
     public Toggle fullscreenToggle;
 
     public Slider[] volSliders;
+
+    public Toggle autoLockToggle;
     
     Resolution[] resolutions;
 
@@ -51,8 +53,8 @@ public class SettingsMenu : MonoBehaviour
         LoadResolution();
         LoadGFX();
 
-        audioMixer.SetFloat("masterVol", PlayerPrefs.GetFloat("masterVol"));
-        volSliders[0].value = PlayerPrefs.GetFloat("masterVol");
+        audioMixer.SetFloat("themeVol", PlayerPrefs.GetFloat("themeVol"));
+        volSliders[0].value = PlayerPrefs.GetFloat("themeVol");
         audioMixer.SetFloat("sfxVol", PlayerPrefs.GetFloat("sfxVol"));
         volSliders[1].value = PlayerPrefs.GetFloat("sfxVol");
         //LoadGFX();
@@ -73,8 +75,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("masterVol", volume);
-        PlayerPrefs.SetFloat("masterVol", volume);
+        audioMixer.SetFloat("themeVol", volume);
+        PlayerPrefs.SetFloat("themeVol", volume);
         SaveSetting();
     }
 
@@ -84,7 +86,11 @@ public class SettingsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("sfxVol", volume);
         SaveSetting();
     }
-
     public void SetFullScreen(bool isFullScreen)
         => Screen.fullScreen = isFullScreen;
+
+    public void SetAutoLock(bool isAutoLocked)
+    {
+
+    }
 }

@@ -14,8 +14,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float maxViewAngle = 0f;
     [SerializeField] private float minViewAngle = 0f;
     private Vector2 deltamouse = new Vector2(0, 0);
-    private Transform defaultPivotPos;    
-   
+    private Transform defaultPivotPos;   
 
     //Input System Methods
     public void OnLook(InputAction.CallbackContext context)
@@ -27,7 +26,6 @@ public class CameraFollow : MonoBehaviour
     void Start()
     {
         offset = player.position - transform.position;
-        
     }
 
     // Update is called once per frame
@@ -36,7 +34,6 @@ public class CameraFollow : MonoBehaviour
         CameraLook();
        
     }
-
     
     private void CameraLook()
     {
@@ -50,7 +47,7 @@ public class CameraFollow : MonoBehaviour
         float vertical = deltamouse.y;
         pivot.Rotate(-vertical, 0, 0);
 
-        //Limit the up/ down rotation
+        //Limit the up/down rotation
         if (pivot.rotation.eulerAngles.x > maxViewAngle && pivot.rotation.eulerAngles.x < 180f)
         {
             pivot.rotation = Quaternion.Euler(maxViewAngle, 0, 0);
@@ -73,8 +70,6 @@ public class CameraFollow : MonoBehaviour
             transform.position = new Vector3(transform.position.x, player.position.y + 1f, transform.position.z);
         }
 
-        transform.LookAt(lookAtPoint);
-        
+        transform.LookAt(lookAtPoint);        
     }
-    
 }

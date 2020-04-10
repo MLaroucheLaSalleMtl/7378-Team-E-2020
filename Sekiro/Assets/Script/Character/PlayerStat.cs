@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerStat : CharacterStat //Player Revive and Die handle
 {
-    private int playerLife = 2;
+    public int playerLife = 2;
     [SerializeField] private float delayRevive = 5f;
     [SerializeField] private GameObject reviveHealthBar = null;
     [SerializeField] private Image life1 = null;
@@ -15,8 +15,6 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
     [SerializeField] private Sprite death2 =null;
     private bool isReviving = false;
 
-   
-   
 
     public override void SetHealthBar(Slider slider)
     {
@@ -25,6 +23,7 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
 
     public override void Die()
     {
+        base.Die();
         PlayerDie();
     }
 
@@ -36,7 +35,8 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
             life1.sprite = death1;
             StartCoroutine("Revive");
         }
-        else if(playerLife < 1 && !isReviving)
+        
+        if(playerLife < 1 && !isReviving)
         {
             life2.sprite = death2;
             gameObject.GetComponent<CharacterAnimation>().AnimationDie();
@@ -46,6 +46,7 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
 
     IEnumerator Revive()
     {
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
         gameObject.GetComponent<CharacterAnimation>().AnimationFaint();
         DisableOnDie();
         Invoke("Refill", 3f);
@@ -53,6 +54,8 @@ public class PlayerStat : CharacterStat //Player Revive and Die handle
         reviveHealthBar.SetActive(false);
         SetHp();
         RefillHealthBar();
+        yield return new WaitForSeconds(1f);
+        gameObject.GetComponent<CapsuleCollider>().enabled = true;
     }
 
     public void Heal()

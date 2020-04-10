@@ -35,7 +35,7 @@ public class Collectables : MonoBehaviour
 
     public virtual void PickUp()
     {
-        Inventory.instance.AddItem(item);
+        Inventory.Instance.AddItem(item);
         Destroy(gameObject);
     }
 }

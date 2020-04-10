@@ -7,8 +7,6 @@ public class CharacterAnimation : MonoBehaviour
 {
     private Animator anim;
     private PlayerController player;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +14,6 @@ public class CharacterAnimation : MonoBehaviour
         player = GetComponent<PlayerController>();
     }
 
-    
     public void MoveAnimation(float horizontal, float vertical)
     {
         anim.SetFloat("Speed", Mathf.Abs(horizontal) + Mathf.Abs(vertical));
@@ -42,8 +39,6 @@ public class CharacterAnimation : MonoBehaviour
     {
         anim.SetTrigger("Jump");
     }
-
-    
     public void DeflectAnimation(bool isDeflecting)
     {
         anim.SetBool("Defend", isDeflecting);

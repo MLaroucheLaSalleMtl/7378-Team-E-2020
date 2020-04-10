@@ -2,11 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-
-
-
-
 public class CharacterAttack : MonoBehaviour
 {
 
@@ -16,8 +11,6 @@ public class CharacterAttack : MonoBehaviour
     private int noOfClicks = 0;
     private float lastClick = 0f;
     [Range(0, 3f)]public float comboAttackDelay = 0.9f;
-
-
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -58,7 +51,7 @@ public class CharacterAttack : MonoBehaviour
 
     private void PlayerAttack()
     {
-        if(Time.time - lastClick > comboAttackDelay)
+        if (Time.time - lastClick > comboAttackDelay)
         {
             noOfClicks=0;
             isAttacking = false;

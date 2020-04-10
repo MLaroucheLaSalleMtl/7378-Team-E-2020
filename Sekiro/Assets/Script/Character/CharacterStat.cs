@@ -18,8 +18,10 @@ public class CharacterStat : MonoBehaviour
 
     public bool alive;
 
+    public CharacterAudio char_audio;
     public void Start()
     {
+        char_audio = GetComponent<CharacterAudio>();
         controller = GetComponent<NPCController>();
         healthBar.maxValue = maxHealth;
         healthBar.value = maxHealth;
@@ -38,6 +40,7 @@ public class CharacterStat : MonoBehaviour
     {
         if (alive)
         {
+            char_audio.DamageSFX();
             currentHealth -= armor.GetValue();
             damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
@@ -56,13 +59,12 @@ public class CharacterStat : MonoBehaviour
     {
         healthBar.value = currentHealth;
     }
-
-
     public virtual void Die()
     {
-        alive = false;
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        char_audio.DieSFX();
+        //alive = false;
+        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
         Debug.Log("Die");
-        controller.ExcuteTriggerAnimation("Die");
+        //controller.ExcuteTriggerAnimation("Die");
     }
 }

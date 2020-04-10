@@ -90,7 +90,7 @@ public class NPCController : MonoBehaviour
         ExcuteBoolAnimation("ShealthSword", false);
         ExcuteBoolAnimation("WithdrawingSword", true);
         ExcuteBoolAnimation("SuspectedObject", true);
-        StartCoroutine(WaitABit(0.6f, true, false));
+        StartCoroutine(WaitABit(0.6f, true, false)); 
     }
 
     public void ShealthSword()

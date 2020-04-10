@@ -12,11 +12,9 @@ public class Item : MonoBehaviour
     }
 
     [SerializeField] private ItemType itemType;
-    [SerializeField] private Sprite itemIcon;
 
     public ItemType GetItemType() => itemType;
 
-    public Sprite GetItemIcon() => itemIcon;
 
 
 }

@@ -19,7 +19,6 @@ public class AttackDetection : MonoBehaviour
     {
         DetectCollision();
     }
-
     private void Start()
     {
         combat = gameObject.GetComponentInParent<CharacterCombat>();
@@ -42,7 +41,7 @@ public class AttackDetection : MonoBehaviour
                     print("Hit the player");
                 }
                
-                else if(h.gameObject.CompareTag("Enemy"))
+                if(h.gameObject.CompareTag("Enemy") || h.gameObject.CompareTag("Boss"))
                 {
                     state = h.GetComponent<AIController>().GetCurrentState();
                    
