@@ -18,7 +18,7 @@ public class CharacterStat : MonoBehaviour
 
     public bool alive;
 
-    public CharacterAudio char_audio;
+     CharacterAudio char_audio;
     public void Start()
     {
         char_audio = GetComponent<CharacterAudio>();
@@ -62,9 +62,12 @@ public class CharacterStat : MonoBehaviour
     public virtual void Die()
     {
         char_audio.DieSFX();
-        //alive = false;
-        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
         Debug.Log("Die");
-        //controller.ExcuteTriggerAnimation("Die");
+    }
+
+    public virtual void ExecutionDie()
+    {
+        currentHealth -= maxHealth/2;
+        healthBar.value = currentHealth;
     }
 }

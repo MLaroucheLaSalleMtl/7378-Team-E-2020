@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HealthBarRotate : MonoBehaviour
 {
+    [SerializeField] private Camera myCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +14,9 @@ public class HealthBarRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.eulerAngles = new Vector3(Camera.main.transform.eulerAngles.x, Camera.main.transform.eulerAngles.y, transform.eulerAngles.z);
+        if (myCamera !=null)
+        {
+            transform.eulerAngles = new Vector3(myCamera.transform.eulerAngles.x, myCamera.transform.eulerAngles.y, transform.eulerAngles.z);
+        }
     }
 }

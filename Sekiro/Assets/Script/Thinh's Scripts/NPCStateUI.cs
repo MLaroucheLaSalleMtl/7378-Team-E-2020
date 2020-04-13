@@ -7,6 +7,7 @@ public class NPCStateUI : MonoBehaviour
     [SerializeField] private GameObject pCautionUI = null;
     [SerializeField] private GameObject pChaseUI = null;
     [SerializeField] private Transform pos = null;
+    [SerializeField] private GameObject executionArea = null;
 
     private AIController state;
     private GameObject cautionUI;
@@ -38,6 +39,22 @@ public class NPCStateUI : MonoBehaviour
         {
             cautionUI.SetActive(false);
             chaseUI.SetActive(false);
+        }
+        ToggleExecutionArea();
+    }
+
+    void ToggleExecutionArea()
+    {
+        if (state.GetCurrentState() == NPCState.Idle || state.GetCurrentState() == NPCState.Patrol)
+        {
+            executionArea.SetActive(true);
+        }
+        else
+        {
+            if (executionArea.activeInHierarchy)
+            {
+                executionArea.SetActive(false);
+            }
         }
     }
 }

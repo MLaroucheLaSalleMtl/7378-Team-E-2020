@@ -22,16 +22,17 @@ public class ThrowShuriken : MonoBehaviour
     [SerializeField] private Sprite aimCrossHair = null;
     [SerializeField] private Image crossHair = null;
     private CharacterAnimation char_anim;
+    private CharacterAudio char_audio;
     private GameObject throwObject = null;
     private EquipItem equipItem;
 
     // Start is called before the first frame update
     void Start()
     {
+        equipItem = gameObject.GetComponent<EquipItem>();
         char_anim = GetComponent<CharacterAnimation>();
-        char_anim.AnimationThrowKunai(false);
+        char_audio = GetComponent<CharacterAudio>();
         crossHair.sprite = defaultCrossHair;
-        equipItem = GetComponent<EquipItem>();
     }
 
     // Update is called once per frame
@@ -78,17 +79,6 @@ public class ThrowShuriken : MonoBehaviour
         }
     }
 
-    public bool CheckWeapons()
-    {
-        if(kunaiHold.activeInHierarchy || shurikenHold.activeInHierarchy)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
 
     private void EnableCrossHair()
     {
@@ -99,6 +89,18 @@ public class ThrowShuriken : MonoBehaviour
         else
         {
             crossHair.gameObject.SetActive(false);
+        }
+    }
+
+    public bool CheckWeapons()
+    {
+        if (kunaiHold.activeInHierarchy || shurikenHold.activeInHierarchy)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -115,31 +117,31 @@ public class ThrowShuriken : MonoBehaviour
         }
         Rigidbody rb = throwObject.GetComponent<Rigidbody>();
         rb.velocity = throwObject.transform.forward * throwForce;
+        char_audio.ThrowingSFX();
         throwObject = null;
     }
 
 
     public void Equip()
     {
-        if (equipItem.GetCurrentEquip() == EquipItem.CurrentEquip.None)
-        {
-            shurikenHold.SetActive(false);
-            kunaiHold.SetActive(false);
-            char_anim.AnimationThrowKunai(false);
-        }
-        else if(equipItem.GetCurrentEquip() == EquipItem.CurrentEquip.Shuriken)
+        if(equipItem.currentEquip == EquipItem.CurrentEquip.Shuriken)
         {
             shurikenHold.SetActive(true);
             kunaiHold.SetActive(false);
             char_anim.AnimationThrowKunai(true);
         }
-        else if(equipItem.GetCurrentEquip() == EquipItem.CurrentEquip.Kunai)
+        else if(equipItem.currentEquip == EquipItem.CurrentEquip.Kunai)
         {
             kunaiHold.SetActive(true);
             shurikenHold.SetActive(false);
             char_anim.AnimationThrowKunai(true);
         }
-
+        else
+        {
+            shurikenHold.SetActive(false);
+            kunaiHold.SetActive(false);
+            char_anim.AnimationThrowKunai(false);
+        }
     }
 
     public void ThrowFinish()

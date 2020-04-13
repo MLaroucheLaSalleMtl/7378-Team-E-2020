@@ -13,20 +13,20 @@ public class AutoAim : MonoBehaviour
     private Quaternion targetRotation;
     private Quaternion lookAt;
     private bool isAiming = false;
+    private ThrowShuriken weapon;
 
     public void OnAim(InputAction.CallbackContext context)
     {
         isAiming = context.performed;
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void SetTarget(GameObject tar)
     {
         target = tar;
+    }
+
+    private void Start()
+    {
+        weapon = GetComponentInParent<ThrowShuriken>();
     }
 
     // Update is called once per frame
@@ -52,14 +52,19 @@ public class AutoAim : MonoBehaviour
             targetRotation = Quaternion.Euler(0, 0, 0);
             transform.localRotation = Quaternion.RotateTowards(transform.localRotation, targetRotation, Time.deltaTime * lookSpeed);
         }
-        if (FieldofView(fovStartPoint))
+
+        if (weapon.CheckWeapons())
         {
-            GetComponentInParent<AimManager>().ActiveAim();
+            if (FieldofView(fovStartPoint))
+            {
+                GetComponentInParent<AimManager>().ActiveAim();
+            }
         }
         else
         {
             GetComponentInParent<AimManager>().DeactiveAim();
         }
+        
     }
 
     private bool FieldofView(GameObject looker)

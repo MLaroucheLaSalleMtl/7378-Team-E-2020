@@ -10,7 +10,7 @@ public class EquipItem : MonoBehaviour
         Shuriken
     }
 
-    private CurrentEquip currentEquip = CurrentEquip.None;
+    public CurrentEquip currentEquip = CurrentEquip.None;
     private Inventory inventory;
     private PlayerController pc;
 
@@ -44,6 +44,7 @@ public class EquipItem : MonoBehaviour
             {
                 currentEquip = CurrentEquip.None;
             }
+            
         }
     }
 
@@ -53,8 +54,10 @@ public class EquipItem : MonoBehaviour
         {
             if (inventory.GetPotionCount() > 0)
             {
-                pc.HealSkill();
-                inventory.RemovePotion();
+                if (pc.HealSkill())
+                {
+                    inventory.RemovePotion();
+                }
             }
         }
     }
@@ -62,6 +65,7 @@ public class EquipItem : MonoBehaviour
     void Start()
     {
         inventory = Inventory.Instance;
+        currentEquip = CurrentEquip.None;
         pc = GetComponent<PlayerController>();
     }
 

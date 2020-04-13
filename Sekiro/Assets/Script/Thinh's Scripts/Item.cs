@@ -5,7 +5,6 @@ public class Item : MonoBehaviour
 {
     public enum ItemType
     {
-        Katana,
         Kunai,
         Shuriken,
         HealthPotion

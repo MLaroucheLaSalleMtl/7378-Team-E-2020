@@ -292,7 +292,10 @@ public class PlayerController : MonoBehaviour
             char_anim.AnimationPowerUp();
             return true;
         }
-        else { return false; }
+        else
+        {
+            return false ;
+        }
     }
 
 

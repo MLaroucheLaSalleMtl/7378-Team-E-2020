@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Blinking.cs" />
     <Compile Include="Assets\Input System\MyInput.cs" />
     <Compile Include="Assets\ProCore\Polybrush\Code\Enum\z_BrushMirror.cs" />
     <Compile Include="Assets\ProCore\Polybrush\Code\Enum\z_ComponentIndex.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="Assets\Script\Managers\GameManager.cs" />
     <Compile Include="Assets\Script\MenuController.cs" />
     <Compile Include="Assets\Script\New Folder\btnFX.cs" />
+    <Compile Include="Assets\Script\SwitchCamera.cs" />
     <Compile Include="Assets\Script\Systems\HealthSystem.cs" />
     <Compile Include="Assets\Script\Systems\PostureSystem.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\AimManager.cs" />
@@ -131,10 +133,12 @@
     <Compile Include="Assets\Script\Thinh's Scripts\InventoryUI.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Item.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\NPCStateUI.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\PlaySoundDestroy.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\PlayerController.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\Shuriken.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\SpawnItem.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\SpinEffect.cs" />
+    <Compile Include="Assets\Script\Thinh's Scripts\StealthKill.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\ThrowShuriken.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\TornadoControl.cs" />
     <Compile Include="Assets\Script\Thinh's Scripts\VFXActivation.cs" />
@@ -209,7 +213,6 @@
     <None Include="Assets\ProCore\Polybrush\Shader\z_TextureBlendHeight_SfSrc.shader" />
     <None Include="Assets\ProCore\Polybrush\Shader\z_TriPlanarBlend.shader" />
     <None Include="Assets\ProCore\Polybrush\Shader\z_Overlay.shader" />
-    <None Include="Assets\SkySerie Freebie\Hdri setup.txt" />
     <None Include="Assets\ProCore\Polybrush\Shader\Example\z_UnlitTextureBlend_WithMetaData.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_Bitmap-Mobile.shader" />

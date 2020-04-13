@@ -6,6 +6,7 @@ public class CharacterAttack : MonoBehaviour
 {
 
     private CharacterAnimation char_anim;
+    private StealthKill sk;
     private bool isAttacking = false;
     private bool isReadyToAttack = true;
     private int noOfClicks = 0;
@@ -15,17 +16,25 @@ public class CharacterAttack : MonoBehaviour
     {
         if (context.started)
         {
-            if (isReadyToAttack)
+            if (sk.canTakeDown)
             {
-                lastClick = Time.time;
-                noOfClicks++;
-                if (noOfClicks == 1)
+                sk.TakeDown();
+                isAttacking = true;
+            }
+            else
+            {
+                if (isReadyToAttack)
                 {
-                    char_anim.AnimationAttack1(true);
-                    isAttacking = true;
+                    lastClick = Time.time;
+                    noOfClicks++;
+                    if (noOfClicks == 1)
+                    {
+                        char_anim.AnimationAttack1(true);
+                        isAttacking = true;
+                    }
+                    noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
+                    gameObject.GetComponent<PlayerController>().StopMoveSpeed();
                 }
-                noOfClicks = Mathf.Clamp(noOfClicks, 0, 3);
-                gameObject.GetComponent<PlayerController>().StopMoveSpeed();
             }
         }
     }
@@ -34,6 +43,7 @@ public class CharacterAttack : MonoBehaviour
     void Start()
     {
         char_anim = GetComponent<CharacterAnimation>();
+        sk = GetComponent<StealthKill>();
     }
 
     // Update is called once per frame

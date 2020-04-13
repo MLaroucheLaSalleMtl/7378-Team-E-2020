@@ -11,7 +11,7 @@ ModelImporter:
     second: root|mp_FallingBackDealth
   - first:
       74: -492900180375109784
-    second: root|mp_FrontStabbedDealth
+    second: Execution Death
   - first:
       74: 6517961477417306116
     second: root|mp_InwardAttack
@@ -68,7 +68,7 @@ ModelImporter:
     second: root|mp_SwordWalk
   - first:
       74: -8950912892244285403
-    second: root|mp_ThrustSlash
+    second: Take Down
   - first:
       74: 7238861628987229041
     second: root|mp_TurnHalfLeft
@@ -117,18 +117,23 @@ ModelImporter:
     animationImportWarnings: "\nClip 'root|mp_BreathingIdle' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation
       DOF on avatar to improve retargeting quality.\n\t'spine_02.x' has translation
-      animation that will be discarded.\n\t'shoulder.l' has translation animation
-      that will be discarded.\n\t'shoulder.r' has translation animation that will
-      be discarded.\n\nClip 'root|mp_FallingBackDealth' has import animation warnings
-      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'foot.l' has scale animation that will be
-      discarded.\n\t'toes_01.l' has translation animation that will be discarded.\n\nClip
-      'root|mp_FrontStabbedDealth' has import animation warnings that might lower
-      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
-      quality.\n\t'toes_01.l' has translation animation that will be discarded.\n\t'toes_01.r'
-      has translation animation that will be discarded.\n\nClip 'root|mp_InwardAttack'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'shoulder.l'
+      animation that will be discarded.\n\t'spine_02.x' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'shoulder.l' has translation
+      animation that will be discarded.\n\t'shoulder.r' has translation animation
+      that will be discarded.\n\nClip 'root|mp_FallingBackDealth' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'foot.l'
+      has scale animation that will be discarded.\n\t'toes_01.l' has translation
+      animation that will be discarded.\n\nClip 'root|mp_FrontStabbedDealth' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is
+      inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'toes_01.l'
+      has translation animation that will be discarded.\n\t'toes_01.r' has translation
+      animation that will be discarded.\n\nClip 'root|mp_InwardAttack' has import
+      animation warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'shoulder.l'
       has translation animation that will be discarded.\n\t'forearm_stretch.l' has
       translation animation that will be discarded.\n\t'ring2.l' has translation
       animation that will be discarded.\n\t'shoulder.r' has translation animation
@@ -136,31 +141,36 @@ ModelImporter:
       discarded.\n\t'ring1.r' has translation animation that will be discarded.\n\t'foot.r'
       has scale animation that will be discarded.\n\nClip 'root|mp_OutwardAttack'
       has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'shoulder.l'
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'shoulder.l'
       has translation animation that will be discarded.\n\t'forearm_stretch.l' has
       translation animation that will be discarded.\n\t'shoulder.r' has translation
       animation that will be discarded.\n\t'index1.r' has translation animation that
       will be discarded.\n\t'ring1.r' has translation animation that will be discarded.\n\nClip
       'root|mp_Run' has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'foot.l'
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'foot.l'
       has scale animation that will be discarded.\n\nClip 'root|mp_RunLeftTurn' has
       import animation warnings that might lower retargeting quality:\nNote: Activate
-      translation DOF on avatar to improve retargeting quality.\n\t'middle2.l' has
-      translation animation that will be discarded.\n\t'pinky2.l' has translation
+      translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is
+      inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'middle2.l'
+      has translation animation that will be discarded.\n\t'pinky2.l' has translation
       animation that will be discarded.\n\t'thumb3.l' has translation animation that
       will be discarded.\n\t'middle2.r' has translation animation that will be discarded.\n\t'pinky2.r'
       has translation animation that will be discarded.\n\t'thumb3.r' has translation
       animation that will be discarded.\n\t'foot.l' has scale animation that will
       be discarded.\n\nClip 'root|mp_RunRightTurn' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'middle2.l' has translation animation that
-      will be discarded.\n\t'pinky2.l' has translation animation that will be discarded.\n\t'thumb3.l'
-      has translation animation that will be discarded.\n\t'middle2.r' has translation
-      animation that will be discarded.\n\t'pinky2.r' has translation animation that
-      will be discarded.\n\t'thumb3.r' has translation animation that will be discarded.\n\t'foot.l'
-      has scale animation that will be discarded.\n\nClip 'root|mp_ShealthSword'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'middle2.l'
+      to improve retargeting quality.\n\t'spine_02.x' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'middle2.l' has translation
+      animation that will be discarded.\n\t'pinky2.l' has translation animation that
+      will be discarded.\n\t'thumb3.l' has translation animation that will be discarded.\n\t'middle2.r'
+      has translation animation that will be discarded.\n\t'pinky2.r' has translation
+      animation that will be discarded.\n\t'thumb3.r' has translation animation that
+      will be discarded.\n\t'foot.l' has scale animation that will be discarded.\n\nClip
+      'root|mp_ShealthSword' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'middle2.l'
       has translation animation that will be discarded.\n\t'pinky2.l' has translation
       animation that will be discarded.\n\t'thumb3.l' has translation animation that
       will be discarded.\n\t'middle2.r' has translation animation that will be discarded.\n\t'pinky2.r'
@@ -168,24 +178,37 @@ ModelImporter:
       animation that will be discarded.\n\t'foot.l' has scale animation that will
       be discarded.\n\nClip 'root|mp_Stance' has import animation warnings that might
       lower retargeting quality:\nNote: Activate translation DOF on avatar to improve
-      retargeting quality.\n\t'foot.l' has scale animation that will be discarded.\n\t'foot.r'
-      has scale animation that will be discarded.\n\nClip 'root|mp_SwordAirSlash'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'hand.l'
+      retargeting quality.\n\t'spine_02.x' is inbetween humanoid transforms and has
+      rotation animation that will be discarded.\n\t'foot.l' has scale animation
+      that will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
+      'root|mp_SwordAirSlash' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'hand.l'
       has translation animation that will be discarded.\n\t'foot.l' has scale animation
       that will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
       'root|mp_SwordBackward' has import animation warnings that might lower retargeting
       quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'foot.l'
       has scale animation that will be discarded.\n\t'foot.r' has scale animation
-      that will be discarded.\n\nClip 'root|mp_SwordIdle' has import animation warnings
+      that will be discarded.\n\nClip 'root|mp_SwordBlocking' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'root|mp_SwordBlockingReact' has import animation warnings that might lower
+      retargeting quality:\nNote: Activate translation DOF on avatar to improve retargeting
+      quality.\n\t'spine_02.x' is inbetween humanoid transforms and has rotation
+      animation that will be discarded.\n\nClip 'root|mp_SwordIdle' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'foot.l'
+      has scale animation that will be discarded.\n\t'foot.r' has scale animation
+      that will be discarded.\n\nClip 'root|mp_SwordRun' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
-      to improve retargeting quality.\n\t'foot.l' has scale animation that will be
-      discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
-      'root|mp_SwordRun' has import animation warnings that might lower retargeting
-      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'foot.l'
-      has scale animation that will be discarded.\n\nClip 'root|mp_SwordRunTurnLeft'
-      has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'middle2.l'
+      to improve retargeting quality.\n\t'spine_02.x' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'foot.l' has scale animation
+      that will be discarded.\n\nClip 'root|mp_SwordRunTurnLeft' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'middle2.l'
       has translation animation that will be discarded.\n\t'pinky2.l' has translation
       animation that will be discarded.\n\t'thumb3.l' has translation animation that
       will be discarded.\n\t'middle2.r' has translation animation that will be discarded.\n\t'pinky2.r'
@@ -211,36 +234,59 @@ ModelImporter:
       has scale animation that will be discarded.\n\t'foot.r' has scale animation
       that will be discarded.\n\nClip 'root|mp_ThrustSlash' has import animation
       warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'shoulder.l' has translation
-      animation that will be discarded.\n\t'forearm_stretch.l' has translation animation
-      that will be discarded.\n\t'shoulder.r' has translation animation that will
-      be discarded.\n\t'index1.r' has translation animation that will be discarded.\n\t'ring1.r'
-      has translation animation that will be discarded.\n\t'foot.r' has scale animation
-      that will be discarded.\n\nClip 'root|mp_TurnHalfRight' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'foot.l' has translation animation
-      that will be discarded.\n\nClip 'root|mp_UpwardThrust' has import animation
-      warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'shoulder.l' has translation
-      animation that will be discarded.\n\t'forearm_stretch.l' has translation animation
-      that will be discarded.\n\t'shoulder.r' has translation animation that will
-      be discarded.\n\t'index1.r' has translation animation that will be discarded.\n\t'middle2.r'
-      has translation animation that will be discarded.\n\t'pinky2.r' has translation
-      animation that will be discarded.\n\t'ring1.r' has translation animation that
-      will be discarded.\n\t'thumb3.r' has translation animation that will be discarded.\n\t'foot.r'
-      has scale animation that will be discarded.\n\nClip 'root|mp_WalkTurnLeft'
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'shoulder.l'
+      has translation animation that will be discarded.\n\t'forearm_stretch.l' has
+      translation animation that will be discarded.\n\t'shoulder.r' has translation
+      animation that will be discarded.\n\t'index1.r' has translation animation that
+      will be discarded.\n\t'ring1.r' has translation animation that will be discarded.\n\t'foot.r'
+      has scale animation that will be discarded.\n\nClip 'root|mp_TurnHalfLeft'
       has import animation warnings that might lower retargeting quality:\nNote:
-      Activate translation DOF on avatar to improve retargeting quality.\n\t'middle2.l'
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'root|mp_TurnHalfRight' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'foot.l'
+      has translation animation that will be discarded.\n\nClip 'root|mp_TurnQuarterRight'
+      has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'root|mp_TurnQuaterLeft' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'root|mp_UpwardThrust' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'shoulder.l'
+      has translation animation that will be discarded.\n\t'forearm_stretch.l' has
+      translation animation that will be discarded.\n\t'shoulder.r' has translation
+      animation that will be discarded.\n\t'index1.r' has translation animation that
+      will be discarded.\n\t'middle2.r' has translation animation that will be discarded.\n\t'pinky2.r'
+      has translation animation that will be discarded.\n\t'ring1.r' has translation
+      animation that will be discarded.\n\t'thumb3.r' has translation animation that
+      will be discarded.\n\t'foot.r' has scale animation that will be discarded.\n\nClip
+      'root|mp_Walk' has import animation warnings that might lower retargeting quality:\nNote:
+      Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'root|mp_WalkBackward' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'root|mp_WalkTurnLeft' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'middle2.l'
       has translation animation that will be discarded.\n\t'pinky2.l' has translation
       animation that will be discarded.\n\t'thumb3.l' has translation animation that
       will be discarded.\n\t'middle2.r' has translation animation that will be discarded.\n\t'pinky2.r'
       has translation animation that will be discarded.\n\t'thumb3.r' has translation
-      animation that will be discarded.\n\nClip 'root|mp_WithdrawingSword' has import
+      animation that will be discarded.\n\nClip 'root|mp_WalkTurnRight' has import
       animation warnings that might lower retargeting quality:\nNote: Activate translation
-      DOF on avatar to improve retargeting quality.\n\t'shoulder.l' has translation
-      animation that will be discarded.\n\t'middle2.l' has translation animation
-      that will be discarded.\n\t'pinky2.l' has translation animation that will be
-      discarded.\n\t'thumb3.l' has translation animation that will be discarded.\n\t'shoulder.r'
+      DOF on avatar to improve retargeting quality.\n\t'spine_02.x' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\nClip
+      'root|mp_WithdrawingSword' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'spine_02.x'
+      is inbetween humanoid transforms and has rotation animation that will be discarded.\n\t'shoulder.l'
+      has translation animation that will be discarded.\n\t'middle2.l' has translation
+      animation that will be discarded.\n\t'pinky2.l' has translation animation that
+      will be discarded.\n\t'thumb3.l' has translation animation that will be discarded.\n\t'shoulder.r'
       has translation animation that will be discarded.\n\t'middle2.r' has translation
       animation that will be discarded.\n\t'pinky2.r' has translation animation that
       will be discarded.\n\t'thumb3.r' has translation animation that will be discarded.\n\t'foot.l'
@@ -344,11 +390,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: root|mp_FrontStabbedDealth
+      name: Execution Death
       takeName: root|mp_FrontStabbedDealth
       internalID: 0
       firstFrame: 0
-      lastFrame: 117
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -357,13 +403,13 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
-      heightFromFeet: 1
+      heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
@@ -895,7 +941,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: root|mp_ThrustSlash
+      name: Take Down
       takeName: root|mp_ThrustSlash
       internalID: 0
       firstFrame: 0
@@ -908,17 +954,45 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.66304344
+        functionName: StopTakeDown
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.2826087
+        functionName: ExecutionKill1
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.51086956
+        functionName: ExecutionKill2
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.054347828
+        functionName: StartTakeDown
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -1678,57 +1752,49 @@ ModelImporter:
         value: {x: 0, y: 0, z: 0}
         length: 0
         modified: 0
-    - boneName: spine_02.x
-      humanName: Chest
-      limit:
-        min: {x: 0, y: 0, z: 0}
-        max: {x: 0, y: 0, z: 0}
-        value: {x: 0, y: 0, z: 0}
-        length: 0
-        modified: 0
     skeleton:
-    - name: Character 2(Clone)
+    - name: Ninja(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Character_Geisha
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Character_Ninja
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Character_Samurai_Grunt
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Character_Samurai_Warrior
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Character_Sensei
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Character_Village_Man
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Character_Village_Woman
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0.00000008146034, y: 0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: root
-      parentName: Character 2(Clone)
+      parentName: Ninja(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 1, y: 1, z: 1}

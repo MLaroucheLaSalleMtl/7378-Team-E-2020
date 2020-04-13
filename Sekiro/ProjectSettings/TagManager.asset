@@ -15,6 +15,7 @@ TagManager:
   - SKILLFX
   - Button
   - AimPoint
+  - ExecutionArea
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - Post Processing
   - Player
   - Enemy
-  - Interaction
+  - 
   - Shuriken
   - 
   - 

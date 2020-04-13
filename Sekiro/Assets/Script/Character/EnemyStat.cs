@@ -30,4 +30,18 @@ public class EnemyStat : CharacterStat
         controller.ExcuteTriggerAnimation("Die");
         StartCoroutine(WaitToBeDisable());
     }
+
+    public void ExecutionDie1()
+    {
+        base.ExecutionDie();
+        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        controller.AnimExeDie1();
+    }
+
+    public void ExecutionDie2()
+    {
+        base.ExecutionDie();
+        controller.AnimExeDie2();
+        StartCoroutine(WaitToBeDisable());
+    }
 }

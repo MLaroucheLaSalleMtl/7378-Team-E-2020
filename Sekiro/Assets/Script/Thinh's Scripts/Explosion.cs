@@ -9,6 +9,13 @@ public class Explosion : MonoBehaviour
     [SerializeField] private int damage = 0;
     [SerializeField] private float delay = 0;
     [SerializeField] private GameObject explosionEffect = null;
+    [SerializeField] private AudioClip exPlosionSFX = null;
+    private PlaySoundDestroy playDestroyAudio;
+
+    private void Start()
+    {
+        playDestroyAudio = GetComponentInChildren<PlaySoundDestroy>();
+    }
     public void Explode()
     {
         Invoke("BombTimer", delay);
@@ -19,7 +26,7 @@ public class Explosion : MonoBehaviour
         Vector3 explosionPos = transform.position;
         Collider[] colliders = Physics.OverlapSphere(explosionPos, explosionRad);
 
-        foreach(Collider hit in colliders)
+        foreach (Collider hit in colliders)
         {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             CharacterStat es = hit.GetComponent<CharacterStat>();
@@ -32,8 +39,9 @@ public class Explosion : MonoBehaviour
                 es.TakeDamage(damage);
             }
         }
-        Destroy(gameObject);
-        Destroy(Instantiate(explosionEffect, transform.position, transform.rotation) as GameObject,2f) ;
+        playDestroyAudio.PlayOnDestroy(exPlosionSFX, delay);
+        //Destroy(gameObject);
+        Destroy(Instantiate(explosionEffect, transform.position, transform.rotation) as GameObject,3f) ;
     }
 
     private void OnDrawGizmos()

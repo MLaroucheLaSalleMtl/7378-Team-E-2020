@@ -292,7 +292,7 @@ public class AIController : MonoBehaviour
             //Debug.Log(Vector3.Distance(transform.position, target.transform.position));
             //if (Vector3.Distance(transform.position, target.transform.position) > 2f)
             Debug.Log(agent.remainingDistance);
-            if (agent.remainingDistance > 2)
+            if (agent.remainingDistance > 3)
             {
                 state = NPCState.Chase;
                 //yield return new WaitForSeconds(.1f);

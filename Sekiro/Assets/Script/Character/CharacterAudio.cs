@@ -17,6 +17,8 @@ public class CharacterAudio : MonoBehaviour
     public AudioClip swordSFX;
     public AudioClip hitSFX;
     public AudioClip jumpingSFX;
+    public AudioClip explodeSFX;
+    public AudioClip swordCut;
     private void Update()
     {
         RaycastHit[] rays = Physics.SphereCastAll(transform.position, 6f, transform.forward, 0f, enemyMask);
@@ -46,7 +48,7 @@ public class CharacterAudio : MonoBehaviour
     }
     public void NormalAttackSFX()
     {
-        audioSource.PlayOneShot(normalAttackSFX);
+        audioSource.PlayOneShot(normalAttackSFX,1);
     }
     public void DieSFX()
     {
@@ -63,5 +65,14 @@ public class CharacterAudio : MonoBehaviour
     public void JumpSFX()
     {
         audioSource.PlayOneShot(jumpingSFX);
+    }
+    public void ExplodeSFX()
+    {
+        audioSource.PlayOneShot(explodeSFX);
+    }
+
+    public void SwordCut()
+    {
+        audioSource.PlayOneShot(swordCut);
     }
 }

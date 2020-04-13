@@ -149,4 +149,14 @@ public class NPCController : MonoBehaviour
 
         UpdateAnimator(move);
     }
+
+    public void AnimExeDie1()
+    {
+        animator.SetTrigger("Execution 1");
+    }
+
+    public void AnimExeDie2()
+    {
+        animator.SetTrigger("Execution 2");
+    }
 }

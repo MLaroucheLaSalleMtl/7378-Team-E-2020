@@ -16,7 +16,7 @@ public class SettingsMenu : MonoBehaviour
 
     public Slider[] volSliders;
 
-    public Toggle autoLockToggle;
+    //public Toggle autoLockToggle;
     
     Resolution[] resolutions;
 
@@ -89,8 +89,8 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
         => Screen.fullScreen = isFullScreen;
 
-    public void SetAutoLock(bool isAutoLocked)
-    {
+    //public void SetAutoLock(bool isAutoLocked)
+    //{
 
-    }
+    //}
 }

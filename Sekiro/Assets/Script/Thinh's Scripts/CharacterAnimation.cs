@@ -96,4 +96,8 @@ public class CharacterAnimation : MonoBehaviour
         anim.SetLayerWeight(1, 0);
     }
 
+    public void TakeDown(bool check)
+    {
+        anim.SetBool("TakeDown", check);
+    }
 }

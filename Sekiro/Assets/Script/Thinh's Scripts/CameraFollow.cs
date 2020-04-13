@@ -32,14 +32,13 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         CameraLook();
-       
     }
     
     private void CameraLook()
     {
         //Rotate the player horizontally
         float horizontal = deltamouse.x;
-        if (player.GetComponent<PlayerStat>().alive)
+        if (player.GetComponent<PlayerStat>().alive || player.GetComponent<StealthKill>().GetisFinish())
         {
             player.Rotate(0, horizontal, 0);
         }

@@ -28,25 +28,21 @@ public class MenuController : MonoBehaviour
             currentWindow = MenuWindows.MainMenu;
         else
             currentWindow = MenuWindows.Play;
-        Invoke("DeactivateFade", 2);    
+        Invoke("DeactivateFade", 2);
     }
-    public void DeactivateFade()
-    {
+    public void DeactivateFade() =>
         fadeImage.SetActive(false);
-    }
-    public void Activate()
-    {
+    public void Activate() =>
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
-    }
     private void Update()
     {
         //(3) State machine
 
-        switch (currentWindow) 
+        switch (currentWindow)
         {
             case MenuWindows.MainMenu:
                 currentWindow = MenuWindows.MainMenu;
-                MainMenuWindow.SetActive(true); 
+                MainMenuWindow.SetActive(true);
                 SetingsWindow.SetActive(false);
                 break;
 
@@ -57,7 +53,7 @@ public class MenuController : MonoBehaviour
                 Time.timeScale = 1f; //Unfreeze the time.
                 break;
 
-            case MenuWindows.Settings: 
+            case MenuWindows.Settings:
                 currentWindow = MenuWindows.Settings;
                 SetingsWindow.SetActive(true);
                 MainMenuWindow.SetActive(false);
@@ -66,33 +62,35 @@ public class MenuController : MonoBehaviour
                 SetingsWindow.SetActive(false);
                 MainMenuWindow.SetActive(false);
                 break;
-        } 
+        }
     }
     //(5) Create functions for the buttons
-    public void Begin()
+    public void Begin() =>
+        Invoke("DelayButtonBegin", 1.3f);
+    public void Setting() =>
+        Invoke("Delay", .3f);
+    public void Exit() =>
+        Invoke("DelayButtonExit", .3f);
+    public void Back() =>
+        Invoke("DelayButtonBack", .3f);
+    public void Delay() =>
+        currentWindow = MenuWindows.Settings;
+    public void DelayButtonBack() =>
+        currentWindow = MenuWindows.MainMenu;
+    public void DelayButtonBegin()
     {
-        currentWindow = MenuWindows.Null;
-        //SceneManager.LoadScene(1);
         Invoke("Activate", 5f);
         loadingWindow.SetActive(true);
         fadeImage.SetActive(true);
         fadeAnim.SetTrigger("isFade");
-        //SceneManager.LoadScene(1); //Load level 1
+        currentWindow = MenuWindows.Null;
     }
-    public void Setting()
-    {
-        currentWindow = MenuWindows.Settings;
-    }
-    public void Exit()
+    public void DelayButtonExit()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
                 Application.Quit();
 #endif
-    }
-    public void Back()
-    {
-        currentWindow = MenuWindows.MainMenu;
     }
 }
