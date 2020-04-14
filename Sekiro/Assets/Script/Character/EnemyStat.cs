@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyStat : CharacterStat
 {
+    [SerializeField] private GameObject executionArea = null;
     IEnumerator WaitToBeDisable()
     {
         SpawnItem spawn = gameObject.GetComponent<SpawnItem>();
@@ -35,6 +36,7 @@ public class EnemyStat : CharacterStat
     {
         base.ExecutionDie();
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        executionArea.SetActive(false);
         controller.AnimExeDie1();
     }
 

@@ -6,23 +6,24 @@ using UnityEngine.Audio;
 public class CharacterAudio : MonoBehaviour
 {
     public AudioSource audioSource;
-    [SerializeField] private AudioMixerSnapshot themeSnapshot;
     [SerializeField] private AudioMixerSnapshot fightingSnapshot;
+    [SerializeField] private AudioMixerSnapshot ambientSnapshot;
     [SerializeField] private LayerMask enemyMask;
-    bool enemyIsNear;
-    public AudioClip[] throwSFX;
-    public AudioClip withdrawSwordSFX;
-    public AudioClip normalAttackSFX;
-    public AudioClip dieSFX;
-    public AudioClip swordSFX;
-    public AudioClip hitSFX;
-    public AudioClip jumpingSFX;
-    public AudioClip explodeSFX;
-    public AudioClip swordCut;
+    private bool enemyIsNear;
+    [SerializeField] private AudioClip[] throwSFX;
+    [SerializeField] private AudioClip withdrawSwordSFX;
+    [SerializeField] private AudioClip normalAttackSFX;
+    [SerializeField] private AudioClip dieSFX;
+    [SerializeField] private AudioClip swordSFX;
+    [SerializeField] private AudioClip hitSFX;
+    [SerializeField] private AudioClip jumpingSFX;
+    [SerializeField] private AudioClip explodeSFX;
+    [SerializeField] private AudioClip swordCut;
+    [SerializeField] private AudioClip footstepSFX;
     private void Update()
     {
-        RaycastHit[] rays = Physics.SphereCastAll(transform.position, 6f, transform.forward, 0f, enemyMask);
-        if(rays.Length >0)
+        RaycastHit[] rays = Physics.SphereCastAll(transform.position, 4f, transform.forward, 0f, enemyMask);
+        if (rays.Length > 0)
         {
             if (!enemyIsNear)
             {
@@ -32,47 +33,36 @@ public class CharacterAudio : MonoBehaviour
         }
         else
         {
+            if(enemyIsNear)
+            ambientSnapshot.TransitionTo(4f);
             enemyIsNear = false;
-            themeSnapshot.TransitionTo(4f);
         }
+
     }
 
-    public void WithDrawSwordSFX()
-    {
+    public void WithDrawSwordSFX() =>
         audioSource.PlayOneShot(withdrawSwordSFX);
-    }
     public void ThrowingSFX()
     {
         audioSource.clip = throwSFX[Random.Range(0, throwSFX.Length)];
         audioSource.Play();
     }
-    public void NormalAttackSFX()
-    {
+    public void NormalAttackSFX() =>
         audioSource.PlayOneShot(normalAttackSFX,1);
-    }
-    public void DieSFX()
-    {
+    public void DieSFX() =>
         audioSource.PlayOneShot(dieSFX);
-    }
-    public void SwordAttackSFX()
-    {
+    public void SwordAttackSFX() =>
         audioSource.PlayOneShot(swordSFX);
-    }
-    public void DamageSFX()
-    {
+    public void DamageSFX() =>
         audioSource.PlayOneShot(hitSFX);
-    }
-    public void JumpSFX()
-    {
+    public void JumpSFX() =>
         audioSource.PlayOneShot(jumpingSFX);
-    }
-    public void ExplodeSFX()
-    {
+    public void ExplodeSFX() =>
         audioSource.PlayOneShot(explodeSFX);
-    }
 
-    public void SwordCut()
-    {
+    public void SwordCut() =>
         audioSource.PlayOneShot(swordCut);
-    }
+
+    private void FootStep() =>
+        audioSource.PlayOneShot(footstepSFX);
 }

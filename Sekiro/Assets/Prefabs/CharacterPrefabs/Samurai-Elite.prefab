@@ -454,6 +454,7 @@ MonoBehaviour:
   armor:
     baseValue: 0
   alive: 0
+  executionArea: {fileID: 586334786812724145}
 --- !u!114 &3587651051762747874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +557,7 @@ AudioSource:
   m_GameObject: {fileID: 1348984558066227762}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 4454015077895647191, guid: fd8dda45766a3394784818d3fa93c38d,
+  OutputAudioMixerGroup: {fileID: -6834689723027527905, guid: fd8dda45766a3394784818d3fa93c38d,
     type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
@@ -657,8 +658,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 3845855895484569067}
-  themeSnapshot: {fileID: 24500006, guid: fd8dda45766a3394784818d3fa93c38d, type: 2}
   fightingSnapshot: {fileID: 7404624194208258299, guid: fd8dda45766a3394784818d3fa93c38d,
+    type: 2}
+  ambientSnapshot: {fileID: -1071580597101293665, guid: fd8dda45766a3394784818d3fa93c38d,
     type: 2}
   enemyMask:
     serializedVersion: 2
@@ -671,6 +673,8 @@ MonoBehaviour:
   hitSFX: {fileID: 8300000, guid: b27f0eb999e000d4aac10c44781394a9, type: 3}
   jumpingSFX: {fileID: 8300000, guid: fe22df8494a1fa24b90baf5432908763, type: 3}
   explodeSFX: {fileID: 8300000, guid: b64cab2c5a4a1584291cd848046b9bd5, type: 3}
+  swordCut: {fileID: 8300000, guid: b27f0eb999e000d4aac10c44781394a9, type: 3}
+  footstepSFX: {fileID: 8300000, guid: 3ae822c40037a2b45b93876edb1ab15f, type: 3}
 --- !u!114 &6631719048517767851
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ public class btnFX : MonoBehaviour
     }
     public void ClickSound()
     {
-        myFX.PlayOneShot(clickFX);
+        Time.timeScale = 1f;
+        AudioSource.PlayClipAtPoint(clickFX, Camera.main.transform.position, 1f);
+        //myFX.PlayOneShot(clickFX);
     }
 }

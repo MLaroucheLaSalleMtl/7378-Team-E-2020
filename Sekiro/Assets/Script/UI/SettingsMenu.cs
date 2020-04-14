@@ -53,8 +53,8 @@ public class SettingsMenu : MonoBehaviour
         LoadResolution();
         LoadGFX();
 
-        audioMixer.SetFloat("themeVol", PlayerPrefs.GetFloat("themeVol"));
-        volSliders[0].value = PlayerPrefs.GetFloat("themeVol");
+        audioMixer.SetFloat("ambientVol", PlayerPrefs.GetFloat("ambientVol"));
+        volSliders[0].value = PlayerPrefs.GetFloat("ambientVol");
         audioMixer.SetFloat("sfxVol", PlayerPrefs.GetFloat("sfxVol"));
         volSliders[1].value = PlayerPrefs.GetFloat("sfxVol");
         //LoadGFX();
@@ -75,8 +75,8 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetVolume(float volume)
     {
-        audioMixer.SetFloat("themeVol", volume);
-        PlayerPrefs.SetFloat("themeVol", volume);
+        audioMixer.SetFloat("ambientVol", volume);
+        PlayerPrefs.SetFloat("ambientVol", volume);
         SaveSetting();
     }
 

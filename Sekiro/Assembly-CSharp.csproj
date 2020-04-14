@@ -63,7 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Blinking.cs" />
     <Compile Include="Assets\Input System\MyInput.cs" />
     <Compile Include="Assets\ProCore\Polybrush\Code\Enum\z_BrushMirror.cs" />
     <Compile Include="Assets\ProCore\Polybrush\Code\Enum\z_ComponentIndex.cs" />
@@ -95,6 +94,7 @@
     <Compile Include="Assets\ProCore\Polybrush\Code\Scripts\Utility\z_Vector.cs" />
     <Compile Include="Assets\Script\Base\BaseSingleton.cs" />
     <Compile Include="Assets\Script\Base\HitDetectorBase.cs" />
+    <Compile Include="Assets\Script\Blinking.cs" />
     <Compile Include="Assets\Script\Character\AICombat.cs" />
     <Compile Include="Assets\Script\Character\AIController.cs" />
     <Compile Include="Assets\Script\Character\AIFOV.cs" />

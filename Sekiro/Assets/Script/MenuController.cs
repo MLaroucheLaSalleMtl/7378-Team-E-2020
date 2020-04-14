@@ -69,8 +69,16 @@ public class MenuController : MonoBehaviour
         Invoke("DelayButtonBegin", 1.3f);
     public void Setting() =>
         Invoke("Delay", .3f);
-    public void Exit() =>
-        Invoke("DelayButtonExit", .3f);
+    public void Exit()
+    {
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+                Application.Quit();
+#endif
+        }
+    }
     public void Back() =>
         Invoke("DelayButtonBack", .3f);
     public void Delay() =>
@@ -84,13 +92,5 @@ public class MenuController : MonoBehaviour
         fadeImage.SetActive(true);
         fadeAnim.SetTrigger("isFade");
         currentWindow = MenuWindows.Null;
-    }
-    public void DelayButtonExit()
-    {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-                Application.Quit();
-#endif
     }
 }

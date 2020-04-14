@@ -59,6 +59,11 @@ public class AutoAim : MonoBehaviour
             {
                 GetComponentInParent<AimManager>().ActiveAim();
             }
+            else
+            {
+                GetComponentInParent<AimManager>().DeactiveAim();
+            }
+
         }
         else
         {

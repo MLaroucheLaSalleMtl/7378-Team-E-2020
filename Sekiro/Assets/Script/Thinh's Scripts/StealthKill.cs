@@ -7,7 +7,6 @@ public class StealthKill : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private GameObject playerInput = null;
-    [SerializeField] private GameObject text = null;
     private CharacterAnimation char_anim;
     private PlayerController player;
     private CharacterAudio char_audio;
@@ -29,14 +28,7 @@ public class StealthKill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canTakeDown)
-        {
-            text.SetActive(true);
-        }
-        else
-        {
-            text.SetActive(false);
-        }
+  
     }
     #region(Check Collision)
     private void OnTriggerEnter(Collider other)

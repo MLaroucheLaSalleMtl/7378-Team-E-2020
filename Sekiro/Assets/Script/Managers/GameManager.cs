@@ -54,7 +54,7 @@ public class GameManager : BaseSingleton<GameManager>
             }
         }
     }
-    enum InGameWindows {Null, Pause, Victory, Death, Settings}
+    enum InGameWindows { Null, Pause, Victory, Death, Settings }
     InGameWindows currentWindow;
     // Start is called before the first frame update
     private void Start()
@@ -74,22 +74,25 @@ public class GameManager : BaseSingleton<GameManager>
                 PauseWindow.SetActive(true);
                 VictoryWindow.SetActive(false);
                 DeathWindow.SetActive(false);
-                SettingWindow.SetActive(false);    
-                Time.timeScale = 1f;
+                SettingWindow.SetActive(false);
+                Time.timeScale = 0f;
                 break;
             case InGameWindows.Death:
+                cameraFollow.enabled = false;
                 DeathWindow.SetActive(true);
                 PauseWindow.SetActive(false);
                 VictoryWindow.SetActive(false);
                 SettingWindow.SetActive(false);
-                Invoke("DelayActive", 5f);
+                Invoke("DelayActive", 7f);
                 Time.timeScale = 1f;
                 break;
             case InGameWindows.Victory:
+                cameraFollow.enabled = false;
                 VictoryWindow.SetActive(true);
                 DeathWindow.SetActive(false);
                 PauseWindow.SetActive(false);
                 SettingWindow.SetActive(false);
+                Invoke("DelayActive", 7f);
                 Time.timeScale = 1f;
                 break;
             case InGameWindows.Settings:
@@ -97,7 +100,7 @@ public class GameManager : BaseSingleton<GameManager>
                 VictoryWindow.SetActive(false);
                 PauseWindow.SetActive(false);
                 DeathWindow.SetActive(false);
-                Time.timeScale = 1f;
+                Time.timeScale = 0f;
                 break;
             case InGameWindows.Null:
                 SettingWindow.SetActive(false);
@@ -110,26 +113,34 @@ public class GameManager : BaseSingleton<GameManager>
         if (!enemyManager.BossIsAlive())
             Invoke("WaitForWin", 5f);
 
-        if(character.playerLife < 1)
+        if (character.playerLife < 1)
             Invoke("WaitForDie", 5f);
-
-        //if (!character.alive)
-        //{
-        //    currentWindow = InGameWindows.Death;
-        //    Cursor.lockState = CursorLockMode.None;
-        //}
     }
-    public void Resume() => Invoke("DelayResume", .3f);
+    public void Resume()
+    {
+        currentWindow = InGameWindows.Null;
+        cameraFollow.enabled = true;
+        PauseWindow.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     public void Pause()
     {
         currentWindow = InGameWindows.Pause;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    public void Retry() =>  Invoke("DelayRetry", .3f);
-    public void Settings() => Invoke("DelaySettings", .3f);
+    public void Retry()
+    {
+        currentWindow = InGameWindows.Null;
+        Invoke("DelayButtonRetry", .3f);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(1);
+    }
+    public void Settings() =>
+        currentWindow = InGameWindows.Settings;
 
-    public void Back() => Invoke("DelayBack", .3f);
+public void Back() => currentWindow = InGameWindows.Pause;
 
     public void WaitForDie()
     {
@@ -145,23 +156,5 @@ public class GameManager : BaseSingleton<GameManager>
     {
         buttonRetry.SetActive(true);
         buttonExit.SetActive(true);
-    }
-
-    private void DelayBack() => currentWindow = InGameWindows.Pause;
-    private void DelaySettings() => currentWindow = InGameWindows.Settings;
-    private void DelayRetry()
-    {
-        currentWindow = InGameWindows.Null;
-        Invoke("DelayButtonRetry", .3f);
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
-    }
-    private void DelayResume()
-    {
-        currentWindow = InGameWindows.Null;
-        cameraFollow.enabled = true;
-        PauseWindow.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 }

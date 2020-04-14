@@ -6,22 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class FootSteps : MonoBehaviour
 {
-    public AudioSource audioSource;
-    public AudioClip footstepSFX;
+    [SerializeField] private AudioSource audioSource;
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() =>
         audioSource = GetComponent<AudioSource>(); 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        
-        audioSource.PlayOneShot(footstepSFX);
-    }
 }

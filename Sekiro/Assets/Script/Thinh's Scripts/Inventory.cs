@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class Inventory : BaseSingleton<Inventory>
 {
     private List<Item> itemList = new List<Item>();
-    private int potionCount = 0;
-    private int kunaiCount = 0;
-    private int shurikenCount = 0;
+    private int potionCount = 1;
+    private int kunaiCount = 1;
+    private int shurikenCount = 1;
 
     public List<Item> GetItemList() => itemList;
     public int GetPotionCount() => potionCount;
