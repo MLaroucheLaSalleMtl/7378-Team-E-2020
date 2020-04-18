@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class StealthKill : MonoBehaviour
 {
-    [SerializeField] private Transform target;
+    private Transform target;
     [SerializeField] private GameObject playerInput = null;
     private CharacterAnimation char_anim;
     private PlayerController player;
@@ -72,7 +72,7 @@ public class StealthKill : MonoBehaviour
 
     public void TakeDown()//to call in characterattack
     {
-        target.LookAt(this.transform);
+        target.LookAt(transform);
         transform.LookAt(target);
         char_anim.TakeDown(true);
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SwitchCamera : MonoBehaviour
 {
+    [SerializeField] private GameObject playerInput = null;
     public GameObject timelineCam;
     public GameObject playerCam;
     public float timeToWait = 0f;
@@ -11,19 +12,28 @@ public class SwitchCamera : MonoBehaviour
     void Start()
     {
         playerCam.SetActive(false);
+        timelineCam.SetActive(true);
+        playerInput.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeToWait++;
-        if (timeToWait >= 750)
-        {
-            timelineCam.SetActive(false);
-            playerCam.SetActive(true);
-            timeToWait--;
-        }        
+        Invoke("DelayCam", 58f);
+        //timeToWait++;
+        //if (timeToWait >= 2000)
+        //{
+        //    timelineCam.SetActive(false);
+        //    playerCam.SetActive(true);
+        //    timeToWait--;
+        //}        
     }
 
+    public void DelayCam()
+    {
+        timelineCam.SetActive(false);
+        playerCam.SetActive(true);
+        playerInput.SetActive(true);
+    }
   
 }

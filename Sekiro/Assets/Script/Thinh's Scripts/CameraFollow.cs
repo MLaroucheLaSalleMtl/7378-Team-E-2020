@@ -38,9 +38,12 @@ public class CameraFollow : MonoBehaviour
     {
         //Rotate the player horizontally
         float horizontal = deltamouse.x;
-        if (player.GetComponent<PlayerStat>().alive || player.GetComponent<StealthKill>().GetisFinish())
+        if (player.GetComponent<PlayerStat>().alive)
         {
-            player.Rotate(0, horizontal, 0);
+            if (player.GetComponent<StealthKill>().GetisFinish())
+            {
+                player.Rotate(0, horizontal, 0);
+            }
         }
         //Rotate the pivot vertically
         float vertical = deltamouse.y;

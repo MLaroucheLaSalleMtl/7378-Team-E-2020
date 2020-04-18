@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 //(2) Create an enum for different menu windows
 public enum MenuWindows { Play, MainMenu, Settings, Null }
@@ -20,15 +21,26 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] private GameObject MainMenuWindow;
     [SerializeField] private GameObject SetingsWindow;
+    [SerializeField] private GameObject menuDefaultButton;
+    [SerializeField] private GameObject settingDefaultButton;
 
     public MenuWindows currentWindow; // Get the current window
     private void Awake()
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
             currentWindow = MenuWindows.MainMenu;
+        }
+
         else
             currentWindow = MenuWindows.Play;
         Invoke("DeactivateFade", 2);
+    }
+    private void Start()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(menuDefaultButton);
+
     }
     public void DeactivateFade() =>
         fadeImage.SetActive(false);
@@ -44,6 +56,7 @@ public class MenuController : MonoBehaviour
                 currentWindow = MenuWindows.MainMenu;
                 MainMenuWindow.SetActive(true);
                 SetingsWindow.SetActive(false);
+                Time.timeScale = 1f;
                 break;
 
             case MenuWindows.Play:
@@ -79,12 +92,22 @@ public class MenuController : MonoBehaviour
 #endif
         }
     }
+
     public void Back() =>
         Invoke("DelayButtonBack", .3f);
-    public void Delay() =>
+    public void Delay()
+    {
         currentWindow = MenuWindows.Settings;
-    public void DelayButtonBack() =>
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingDefaultButton);
+    }
+    public void DelayButtonBack()
+    {
         currentWindow = MenuWindows.MainMenu;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(menuDefaultButton);
+
+    }
     public void DelayButtonBegin()
     {
         Invoke("Activate", 5f);
@@ -92,5 +115,11 @@ public class MenuController : MonoBehaviour
         fadeImage.SetActive(true);
         fadeAnim.SetTrigger("isFade");
         currentWindow = MenuWindows.Null;
+    }
+
+    public void InGameExit()
+    {
+        currentWindow = MenuWindows.MainMenu;
+        SceneManager.LoadScene(0);
     }
 }

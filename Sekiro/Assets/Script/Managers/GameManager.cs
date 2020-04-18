@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameManager : BaseSingleton<GameManager>
 {
@@ -17,7 +18,13 @@ public class GameManager : BaseSingleton<GameManager>
     [SerializeField] private GameObject playerInput = null;
     [SerializeField] private GameObject buttonRetry;
     [SerializeField] private GameObject buttonExit;
+    [SerializeField] private GameObject player = null;
 
+    [Header("Default Button")]
+    [SerializeField] private GameObject pauseDefaultButton = null;
+    [SerializeField] private GameObject settingDefaultButton = null;
+    [SerializeField] private GameObject victoryDefaultButton = null;
+    [SerializeField] private GameObject deathDefaultButton = null;
     private bool isOpeningInventory = true;
     private bool isPausing = false;
 
@@ -45,12 +52,10 @@ public class GameManager : BaseSingleton<GameManager>
             if (isPausing)
             {
                 Resume();
-                isPausing = false;
             }
             else
             {
                 Pause();
-                isPausing = true;
             }
         }
     }
@@ -83,7 +88,9 @@ public class GameManager : BaseSingleton<GameManager>
                 PauseWindow.SetActive(false);
                 VictoryWindow.SetActive(false);
                 SettingWindow.SetActive(false);
-                Invoke("DelayActive", 7f);
+                Invoke("DelayActive", 6.5f);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Time.timeScale = 1f;
                 break;
             case InGameWindows.Victory:
@@ -92,7 +99,9 @@ public class GameManager : BaseSingleton<GameManager>
                 DeathWindow.SetActive(false);
                 PauseWindow.SetActive(false);
                 SettingWindow.SetActive(false);
-                Invoke("DelayActive", 7f);
+                Invoke("DelayActive", 6.5f);
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 Time.timeScale = 1f;
                 break;
             case InGameWindows.Settings:
@@ -120,15 +129,24 @@ public class GameManager : BaseSingleton<GameManager>
     {
         currentWindow = InGameWindows.Null;
         cameraFollow.enabled = true;
+        isPausing = false;
         PauseWindow.SetActive(false);
+        player.GetComponent<PlayerController>().enabled = true;
+        player.GetComponent<ThrowShuriken>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
     public void Pause()
     {
+        PauseWindow.SetActive(true);
+        isPausing = true;
         currentWindow = InGameWindows.Pause;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        player.GetComponent<PlayerController>().enabled = false;
+        player.GetComponent<ThrowShuriken>().enabled = false;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pauseDefaultButton);
     }
     public void Retry()
     {
@@ -137,20 +155,30 @@ public class GameManager : BaseSingleton<GameManager>
         Time.timeScale = 1f;
         SceneManager.LoadScene(1);
     }
-    public void Settings() =>
+    public void Settings()
+    {
         currentWindow = InGameWindows.Settings;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingDefaultButton);
+    }
 
-public void Back() => currentWindow = InGameWindows.Pause;
+    public void Back() {
+        currentWindow = InGameWindows.Pause;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(pauseDefaultButton);
+    }
 
     public void WaitForDie()
     {
         currentWindow = InGameWindows.Death;
         Cursor.lockState = CursorLockMode.None;
+
     }
     public void WaitForWin()
     {
         currentWindow = InGameWindows.Victory;
         Cursor.lockState = CursorLockMode.None;
+
     }
     public void DelayActive()
     {
